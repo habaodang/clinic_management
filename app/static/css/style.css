@@ -1,0 +1,313 @@
+
+footer {
+  margin-top: 0.4rem;
+  width: 100%;
+  background: linear-gradient(to right, #00093c, #2d0b00) !important;
+  color: #fff;
+  padding: 100px 0 30px;
+  border-top-left-radius: 125px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+ol, ul {
+padding-left: 0rem;
+}
+.row{
+  background-color:
+  width: 98%;
+  margin: auto;
+  display:flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.col{
+  flex-basis: 25%;
+  padding: 10px;
+
+}
+col:nth-child(2),col:nth-child(3){
+    flex-basis:15%;
+}
+.logo {
+  width: 6rem;
+  margin-bottom: 1rem;
+}
+.col h3{
+  width: fit-content;
+  margin-bottom: 40px;
+  position: relative;
+
+}
+.email-id{
+  width: fit-content;
+  margin: 20px 0;
+}
+.email-id>a{
+  text-decoration: none;
+}
+h3.social{
+  margin-bottom: 1rem;
+}
+
+ul li{
+  list-style: none;
+  margin-bottom: 12px;
+
+}
+ul li a{
+  text-decoration: none;
+}
+.btn:hover{
+  color: white; /* Màu mặc định */
+  background-color: #0d6efd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+ }
+
+form{
+  padding-bottom: 15px;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc ;
+  margin-bottom: 50px;
+}
+form .fa-regular{
+  font-size: 18px;
+  margin-right: 10px;
+}
+form input{
+  width: 100%;
+  background:transparent;
+  color: #ccc;
+  border:0;
+  outline: none;
+}
+form button{
+    background: transparent;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+form button .fa-solid{
+  font-size: 16px;
+  color: #ccc;
+}
+.social-icons> ul>li>a{
+  display: flex;
+}
+.social-icons .fab{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  color: #000;
+  background: #fff;
+  margin-right: 15px;
+  cursor: pointer;
+
+}
+hr{
+  width: 90%;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  margin: 20px auto;
+}
+.copyright{
+  text-align: center;
+}
+.underline{
+  width: 100%;
+  height: 5px;
+  background: #767676;
+  border-radius: 3px;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  overflow:hidden;
+}
+.underline span{
+  width: 15px;
+  height: 100%;
+  background: #fff;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 10px;
+  animation: moving 2s linear infinite;
+}
+.active-color{
+  border-radius:2rem;
+  background: rgb(103, 103, 242);
+  color: white;
+}
+@keyframes moving{
+  0%{
+    left: -20px;
+  }
+  100%{
+    left: 100%;
+  }
+}
+.back_to_top {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background-color: #333;
+color: white;
+width: 40px;
+height: 40px;
+text-align: center;
+line-height: 40px;
+cursor: pointer;
+border-radius: 50%;
+display: none;
+}
+.carousel-inner img {
+        width: 100%;
+        height: 400px; /* Chiều cao cố định */
+        object-fit: cover; /* Đảm bảo hình ảnh được cắt để phù hợp với kích thước */
+        border-radius: 3rem; /* Bo góc nếu cần */
+    }
+
+.back_to_top.show {
+display: block;
+}
+body {
+  background-color: #e6f3ff
+}
+img.img-fluid {
+    border-radius: 20px;
+}
+
+a.text-lightblue {
+  text-decoration: none;
+}
+
+a.text-dark:hover {
+  text-decoration: none;
+  color: #blue;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff;
+  border-radius: 100px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px 20px;
+  transition: all 0.3s ease;
+}
+header.scrolled {
+  background-color: #e9f4ff;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#dropdownIcon {
+  transition: transform 0.3s ease; /* Chỉ áp dụng hiệu ứng mượt mà cho icon */
+}
+
+.dropdown-item {
+    color: black; /* Màu chữ mặc định */
+    background-color: white; /* Màu nền mặc định */
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+/* Khi hover, thay đổi màu nền và màu chữ */
+.dropdown-item:hover {
+    color: white; /* Màu chữ khi hover */
+    background-color: blue; /* Màu nền khi hover */
+}
+.dropdown-menu {
+  position: absolute !important;
+  z-index: 1050;
+  transform: translate3d(0, 0, 0);
+  max-height: 300px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-menu a {
+      color: black;
+      padding: 10px 20px;
+      transition: all 0.3s ease-in-out;
+      background-color: #e9f4ff
+    }
+
+.dropdown-menu a:hover {
+      background-color: blue;
+      color: #ffff;
+    }
+.dropdown-menu.show {
+    display: block;
+    background-color: #e9f4ff
+}
+
+@keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+.dropdown-toggle::after {
+  display: none !important;
+}
+.hero {
+  background-color: #e9f4ff;
+  padding: 50px 0;
+  border-radius: 50px;
+}
+
+.hero .badge {
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.btn-primary {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.btn-secondary {
+  border-radius: 20px;
+
+.hero img {
+  animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateYZ(-10px); }
+}
+
+.avatar-group img {
+  margin-left: -10px;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50%; /* Bo tròn avatar */
+  transition: transform 0.3s ease;
+}
+.avatar-group img:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+/* CSS cơ bản */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
