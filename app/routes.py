@@ -21,5 +21,9 @@ def login():
 def register():
     return render_template('register.html')
 
+@bp.route('/appointment')
+def appointment():
+    return render_template('appointment.html')
+
 
 
