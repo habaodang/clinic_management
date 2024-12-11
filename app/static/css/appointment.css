@@ -91,3 +91,34 @@ button.btn-primary:hover {
     padding-top: 0rem !important;
     padding-bottom: 0rem !important;
 }
+.appointmentBack{
+   height: 2.7rem;
+   background-color: red;
+   width: 6rem;
+}
+#cookie-consent {
+    display: none; /* Initially hidden */
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it */
+    width: 100%;
+    max-width: 500px; /* Set max width */
+    z-index: 9999;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    border-radius: 8px; /* Optional rounded corners */
+}
+.btTuvan {
+    margin-top: 2rem;
+    background-color: green !important;
+    color: white;
+    width: 10rem !important;
+}
+.appointmentFinish{
+
+  display: none;
+  background-color: green !important;
+  color: black;
+  height: 10rem !important;
+}

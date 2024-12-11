@@ -1,6 +1,5 @@
-from flask import Blueprint
-from flask import render_template, request, redirect
-from flask_login import login_user, logout_user
+from flask import Blueprint, render_template, render_template_string, redirect
+from flask_login import logout_user
 
 bp = Blueprint('main', __name__)
 
@@ -8,7 +7,7 @@ bp = Blueprint('main', __name__)
 def home():
     return render_template('index.html')
 
-@bp.route("/logout")
+@bp.route('/logout')
 def logout_process():
     logout_user()
     return redirect('/login')
@@ -25,5 +24,7 @@ def register():
 def appointment():
     return render_template('appointment.html')
 
-
+@bp.route('/appointment_body1')
+def appointment1():
+    return render_template('appointment/body1.html')
 
