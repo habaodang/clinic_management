@@ -12,6 +12,86 @@ footer {
   font-size: 13px;
   line-height: 20px;
 }
+
+.btnLogin {
+      background-color: #cfc8c8 !important;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: box-shadow 0.3s;
+    }
+    .btnLogin:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown-menu {
+      min-width: 200px;
+    }
+.btnDown {
+    border-radius: 2rem !important;
+}
+.btnDrop
+{
+ width: 13rem;
+}
+
+
+
+.dropdownToggle {
+  border: none;
+  outline: none;
+  background-color:#cfc8c8;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5rem !important;
+}
+
+.dropdownToggle:hover {
+   background-color:blue;
+   color:white
+}
+.dropdownToggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+.dropdownToggle i{
+   margin-right:1rem;
+ }
+.avt img {
+   width: 3rem;
+   height: 3rem;
+   margin:0.5rem;
+
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 5px 17px !important;
+    transition: all 0.3s ease-in-out;
+    background-color: #e9f4ff;
+
+}
+.dropdown-menu a:hover {
+    border-radius:2rem;
+
+
+}
+ .notification {
+      position: relative;
+      cursor: pointer;
+    }
+ .notification .badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
+    }
+ .dropdownHello li{
+   padding-left: 1rem;
+
+ }
 .statistics-container {
       padding: 1rem 1rem;
       margin-top: 11rem; /* Khoảng cách phía trên */
@@ -468,4 +548,3 @@ header.scrolled {
 .avatar-group img:hover {
   transform: scale(1.1); /* Phóng to nhẹ khi hover */
 }
-

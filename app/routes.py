@@ -16,6 +16,21 @@ def logout_process():
 def login():
     return render_template('login.html')
 
+
+@bp.route('/indexLogin')
+def index_login():
+    return render_template('indexLogin.html')
+
+
+@bp.route('/medicalBook')
+def medical_book():
+    return render_template('medicalBook.html')
+
+
+@bp.route('/setting')
+def setting():
+    return render_template('setting.html')
+
 @bp.route('/register')
 def register():
     return render_template('register.html')
