@@ -1,11 +1,9 @@
-from flask import Blueprint
-from app.controller import qr
-from flask import render_template, request, redirect
 from flask_login import login_user, logout_user
-from flask import Blueprint, render_template, render_template_string, redirect
-from flask_login import logout_user
+from flask import Blueprint, render_template, render_template_string, redirect,request,url_for
+import app.controller.qr as qr
+import app.controller.login as lg
 
-bp = Blueprint('main', __name__)
+bp = Blueprint('login', __name__)
 
 @bp.route('/')
 def home():
@@ -14,7 +12,7 @@ def home():
 @bp.route("/logout")
 def logout_process():
     logout_user()
-    return redirect('/login')
+    return redirect(url_for('login'))
 
 @bp.route('/login')
 def login():
@@ -40,4 +38,17 @@ def register():
     return render_template('register.html')
 
 
+@bp.route('/user-login',methods=['POST','GET'])
+def user_signin():
+    if request.method.__eq__('POST'):
+        user_name=request.form.get('username')
+        password=request.form.get('password')
 
+        user=lg.check_login(user_name=user_name, password=password)
+        if user:
+            return redirect(url_for('login.index_login'))
+        else:
+            return 'khong dk'
+    return 'khong dk'
+
+    # return render_template('login.html')

@@ -21,12 +21,13 @@
                     <p class="paragraph">
                         Vui lòng điền thông tin để truy cập tài khoản.
                     </p>
-                    <form class="signin_form">
+                    <form class="signin_form"  action= "{{url_for('login.user_signin')}}" method="POST">
                         <div class="input-form-container">
                             <label for="username" >Tên đăng nhập</label>
+
                             <div class="input-group">
                                 <input type="text" name="username" id="username"
-                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$" title="Vui lòng nhập lại tài khoản"
+                                       title="Vui lòng nhập lại tài khoản"
                                        required/>
                                 <ion-icon name="close-circle-outline" class="user-clear"></ion-icon>
                             </div>
@@ -35,7 +36,6 @@
                             <label for="password">Mật khẩu</label>
                             <div class="input-group">
                                 <input type="password" name="password" id="password"
-                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
                                        title="Vui lòng nhập lại mật khẩu" required/>
                                 <i class="fa-regular fa-eye-slash" id="togglePassword"
                                    onclick="changeTypePassword()"></i>
@@ -50,8 +50,7 @@
                             <a href="#!" class="link">Quên mật khẩu?</a>
                         </div>
                         <div class="input-form-container">
-                            <a href="/indexLogin"><button type="button" class="submit btn btn-primary">Đăng nhập</button></a>
-
+                          <button type="submit" class="submit btn btn-primary">Đăng nhập</button>
                         </div>
                         <div class="input-form-container">
                             <a href="#" class="btn btn-signup"><img
