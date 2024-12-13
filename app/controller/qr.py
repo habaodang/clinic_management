@@ -5,7 +5,7 @@ def scan_qr():
     qrc = cv2.QRCodeDetector()
 
     # Mở camera (nên thử với chỉ số 0 nếu không mở được camera)
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         print("Không thể mở camera.")
         exit()
