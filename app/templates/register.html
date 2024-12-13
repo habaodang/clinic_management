@@ -28,38 +28,26 @@
                     <p class="paragraph">
                         Vui lòng điền thông tin để truy cập tài khoản.
                     </p>
-                    <form class="signin_form">
-                        <div class="input-form-container">
-                            <label for="nameFields">Họ và tên</label>
-                            <div class="input-group">
-                                <input type="text" name="nameFields" id="nameFields"
-                                       pattern="^(?=.*[A-Za-zÀ-ÖØ-öø-ÿ])[^\d]+$" title="Vui lòng chỉ viết ký tự chữ "
-                                       required/>
-                                <ion-icon name="close-circle-outline" class="nameFields-clear"></ion-icon>
-                            </div>
-                        </div>
+                    <form class="signin_form" action= "{{url_for('auth.user_register')}}" method="POST">
                         <div class="input-form-container">
                             <div class="input-form-container">
                                 <label for="password">Tên đăng nhập</label>
                                 <div class="input-group">
-                                    <input type="text" name="userFields" id="userFields"
-                                           pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$"
+                                    <input type="text" name="name_user" id="userFields"
                                            title="Vui lòng không sử dụng cách và phải có ký tự số và chữ" required/>
                                     <ion-icon name="eye-off-outline" class="password-toggle"></ion-icon>
                                 </div>
                                 <div class="input-form-container">
-                                    <label for="password">Email</label>
+                                    <label >Email</label>
                                     <div class="input-group">
-                                        <input type="email" name="password" id="emailFields"
-                                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                                               title="Vui lòng điền đúng ký tự gmail phải có @ !!" required/>
+                                        <input type="email" name="email" id="emailFields"
+                                               title="Vui lòng điền gmail" required/>
                                         <ion-icon name="eye-off-outline" class="password-toggle"></ion-icon>
                                     </div>
                                     <div class="input-form-container">
-                                        <label for="password">Mật khẩu</label>
+                                        <label for="password" >Mật khẩu</label>
                                         <div class="input-group">
                                             <input type="password" name="password" id="passwordField"
-                                                   pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
                                                    title="Vui lòng không viết dưới 6 ký tự và phải sử dụng ký tự số"
                                                    required/>
                                             <i class="fa-regular fa-eye" onclick="changeTypePassword()"></i>
@@ -67,8 +55,7 @@
                                         <div class="input-form-container">
                                             <label for="password">Nhập lại mật khẩu</label>
                                             <div class="input-group">
-                                                <input type="password" name="password" id="passwordFields"
-                                                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                                                <input type="password" name="re_en_password" id="passwordFields"
                                                        title="Vui lòng nhập lại mật khẩu" required/>
                                                 <i class="fa-solid fa-lock" onclick="cofirmPassword()"></i>
                                             </div>
