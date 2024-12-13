@@ -1,5 +1,158 @@
 {% extends 'indexLogin.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/medicalBook.css') }}"/>
+{% endblock %}
 {% block content %}
-<div>Sổ tay khám bệnh</div>
+<main>
+    <div class="container ">
+         {% block left %}
+        <div class="left">
+            <a class="profile">
+                <div class="handle">
+                    <h4>Sổ Tay Khám Bệnh</h4>
+                </div>
+            </a>
+            <div class="sidebar ">
+                <a class="menu-item active" href="/medicalBook">
+                    <span><i class="fa-solid fa-house"></i></span>
+                    <h3>Hồ Sơ Cá Nhân</h3>
+                </a>
+                <a class="menu-item" href="/schedule">
+                    <span><i class="fa-regular fa-compass"></i></span>
+                    <h3>Lịch Hẹn</h3>
+                </a>
+                <a class="menu-item" id="messages-notification" href="/bill">
+                        <span><i class="fa-regular fa-envelope"><small class="notification-count"> 6</small></i></span>
+                        <h3>Hóa Đơn Thanh Toán</h3>
+                </a>
+                <a class="menu-item" id="theme" href="/history">
+                    <span><i class="fa-solid fa-palette"></i></span>
+                    <h3>Lịch Sử Khám Bệnh</h3>
+                </a>
+                <a class="menu-item" href="/indexLogin">
+                    <span><i class="fa-solid fa-gear"></i></span>
+                    <h3>Thoát</h3>
+                </a>
+            </div>
+            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
+        </div>
+        {% endblock %}
+        <div class="middle">
+             {% block middle %}
+            <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fa-solid fa-circle-info me-2"></i>
+                    <div>
+                        <strong>Thông Báo Xác Thực</strong>
+                        <p class="mb-0">Vui Lòng Xác Thực Thông Tin</p>
+                    </div>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-primary btn-lg">Xác Thực</button>
+            </div>
+             {% endblock %}
+        </div>
+        <div class="right">
+            <h5 class="text-primary">Các Gói Khám</h5>
+            <div class="list-group">
+                <!-- Gói khám 1 -->
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Gói Khám Tổng Quát</h6>
+                        <small class="text-muted">3,000,000 VNĐ</small>
+                    </div>
+                    <p class="mb-1 text-muted">Khám sức khỏe tổng quát, xét nghiệm máu, siêu âm.</p>
+                </a>
+                <!-- Gói khám 2 -->
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Gói Khám Tim Mạch</h6>
+                        <small class="text-muted">1,500,000 VNĐ</small>
+                    </div>
+                    <p class="mb-1 text-muted">Khám tim mạch chuyên sâu, ECG, siêu âm Doppler.</p>
+                </a>
+                <!-- Gói khám 3 -->
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Gói Khám Cho Sản Phụ</h6>
+                        <small class="text-muted">800,000 VNĐ</small>
+                    </div>
+                    <p class="mb-1 text-muted">Xét nghiệm đường huyết, kiểm tra HbA1c.</p>
+                </a>
+                <!-- Gói khám 4 -->
+                <a href="#" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">Gói Khám Nhi Khoa</h6>
+                        <small class="text-muted">500,000 VNĐ</small>
+                    </div>
+                    <p class="mb-1 text-muted">Khám sức khỏe định kỳ cho trẻ em.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+<div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verificationModalLabel">Xác Thực Thông Tin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Lựa chọn phương thức -->
+                <div class="mb-3">
+                    <label class="form-label">Chọn Phương Thức:</label>
+                    <select id="verificationMethod" class="form-select">
+                        <option value="manual">Nhập Thông Tin Thủ Công</option>
+                        <option value="image">Tải Ảnh Để Quét Mã QR</option>
+                    </select>
+                </div>
 
+                <!-- Form Nhập Thủ Công -->
+                <div id="manualForm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Họ Tên:</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nhập họ tên">
+                    </div>
+                    <div class="mb-3">
+                        <label for="idCard" class="form-label">Căn Cước Công Dân:</label>
+                        <input type="text" class="form-control" id="idCard" placeholder="Nhập số CCCD">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Địa Chỉ:</label>
+                        <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Ngày Sinh:</label>
+                        <input type="date" class="form-control" id="dob">
+                    </div>
+                </div>
+                <!-- Form Tải Ảnh -->
+                <div id="imageForm" style="display: none;">
+                    <div class="mb-3">
+                        <label for="uploadImage" class="form-label">Tải Ảnh:</label>
+                        <input type="file" class="form-control" id="uploadImage" accept="image/*">
+                    </div>
+                    <div class="alert alert-info">
+                        Sau khi tải ảnh, hệ thống sẽ tự động quét mã QR và lấy thông tin.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="back_to_top">
+    <span><i class="fa-solid fa-arrow-up"></i></span>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/medicalBook.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
