@@ -74,4 +74,6 @@ def medical_package():
 @bp.route('/specialty')
 def specialty():
     return render_template('specialty.html')
-
+@bp.route('/diagnose')
+def diagnose():
+    return render_template('diagnose.html')
