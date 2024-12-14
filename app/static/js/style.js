@@ -1,11 +1,25 @@
- window.addEventListener('scroll', function () {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
+
+const homeButton = document.getElementById('homeButton');
+const contactButton = document.getElementById('contactButton');
+
+if (homeButton) {
+    homeButton.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0, // Thay 160 bằng pixel phù hợp
+            behavior: 'smooth',
+        });
+    });
+}
+if (contactButton) {
+    contactButton.addEventListener('click', function () {
+        window.scrollTo({
+            top: 1800, // Thay 160 bằng pixel phù hợp
+            behavior: 'smooth',
+        });
+    });
+}
+
+
  document.querySelector('.dropdown-menu').addEventListener('wheel', function(event) {
       event.preventDefault();
       this.scrollBy({
@@ -46,13 +60,13 @@ document.querySelectorAll(".toggle-form").forEach((btn) => {
 
 
 
-document.getElementById('scrollButton').addEventListener('click', function () {
-            document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
-        });
 
-document.getElementById('homeButton').addEventListener('click', function () {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth' // Cuộn mượt
-        });
-    });
+
+ window.addEventListener('scroll', function () {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
