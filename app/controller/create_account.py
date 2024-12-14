@@ -10,3 +10,6 @@ def create_account(name_account, password, email, role):
         db.session.commit()
         return 'Tạo tài khoản thành công'
     return 'Tạo tài khoản không thành công'
+
+
+

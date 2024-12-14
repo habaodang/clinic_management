@@ -37,4 +37,18 @@ class Patient(User):
     __mapper_args__ = {
         'polymorphic_identity': 'patient'
     }
-    medical_history = Column(String(255))
+    # medical_history = Column(String(255))
+    # # Mối quan hệ với MedicalSchedule
+    # schedules = relationship('MedicalSchedule', back_populates='Patient')
+
+
+# class MedicalSchedule(db.Model):
+#     __tablename__ = 'MedicalSchedule'
+#     id = Column(Integer, primary_key=True,autoincrement=True)
+#     data_created = Column(Date, nullable=False)
+#     option=Column(String(7),nullable=False)
+#
+#     # Khóa ngoại liên kết với Patient
+#     patient_id = Column(String(10), ForeignKey('Patient.id'), nullable=False)
+#     patient = relationship('Patient', back_populates='MedicalSchedule')
+#
