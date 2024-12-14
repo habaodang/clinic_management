@@ -30,7 +30,6 @@ footer {
 }
 
 .img-head {
-
   overflow: hidden; /* Ẩn phần tràn để giữ bo góc */
 }
 
@@ -116,7 +115,6 @@ button.btn-primary:hover {
     width: 10rem !important;
 }
 .appointmentFinish{
-
   display: none;
   background-color: green !important;
   color: black;

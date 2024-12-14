@@ -5,14 +5,14 @@
             <ul class="list-unstyled d-flex mb-0">
                 <li class="me-3">
                     <div class="dropdown">
-                        <a href="/">
+                        <a href="/indexLogin">
                             <button class="btn btn-white bt-hover" type="button" id="homeButton">Trang Chủ</button>
                         </a>
                     </div>
                 </li>
                 <li class="me-3">
                     <div class="dropdown">
-                        <a href="/#gioithieuSection" id="introButtonLink">
+                        <a href="/indexLogin#gioithieuSection1" id="introButtonLink">
                             <button class="btn btn-white bt-hover" type="button" id="introButton">Giới Thiệu</button>
                         </a>
                     </div>
@@ -40,8 +40,9 @@
                             Gói Khám <i class="bi bi-chevron-down" id="dropdownIcon4"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                            <li><a class="dropdown-item" href="#">Gói Khám Dành Cho Người Lớn</a></li>
-                            <li><a class="dropdown-item" href="#">Gói Khám Dành Cho Trẻ Em</a></li>
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Tổng Quát</a></li>
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Tim Mạch</a></li>
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Nhi Khoa</a></li>
                             <li><a class="dropdown-item" href="#">Gói Khám Dành Cho Sản Phụ</a></li>
                         </ul>
                     </div>
@@ -57,33 +58,35 @@
                 </li>
             </ul>
         </nav>
-         <div class="d-flex align-items-center">
-        <!-- Notification Icon -->
-        <div class="dropdown notification me-3">
-          <i class="bi bi-bell fs-4" data-bs-toggle="dropdown" aria-expanded="false"></i>
-          <span class="badge">3</span>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="#">Thông báo 1</a></li>
-            <li><a class="dropdown-item" href="#">Thông báo 2</a></li>
-            <li><a class="dropdown-item" href="#">Thông báo 3</a></li>
-          </ul>
-        </div>
-        <div class="dropdown btnDrop">
-            <div class="d-flex align-items-center btnLogin avt" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://res.cloudinary.com/dwylms8iz/image/upload/v1733337201/cld-sample-5.jpg" alt="Avatar"
-                     class="rounded-circle">
-                <div>
-                    <div class="fw-bold">Cá nhân</div>
-                    <div>Lê Hồng Đức</div>
-                </div>
-                <button class = "dropdownToggle"><i class="bi bi-chevron-down"></i></button>
+        <div class="d-flex align-items-center">
+            <!-- Notification Icon -->
+            <div class="dropdown notification me-3">
+                <i class="bi bi-bell fs-4" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <span class="badge">3</span>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Thông báo 1</a></li>
+                    <li><a class="dropdown-item" href="#">Thông báo 2</a></li>
+                    <li><a class="dropdown-item" href="#">Thông báo 3</a></li>
+                </ul>
             </div>
-            <ul class="dropdown-menu dropdown-menu-end dropdownHello">
-                <li>Chào, DUC</li><hr>
-                <li><a class="dropdown-item" href="/medicalBook">Sổ tay khám bệnh</a></li>
-                <li><a class="dropdown-item" href="/setting">Cài đặt</a></li>
-                <li><a class="dropdown-item" href="/">Thoát</a></li>
-            </ul>
+            <div class="dropdown btnDrop">
+                <div class="d-flex align-items-center btnLogin avt" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://res.cloudinary.com/dwylms8iz/image/upload/v1733337201/cld-sample-5.jpg"
+                         alt="Avatar"
+                         class="rounded-circle">
+                    <div>
+                        <div class="fw-bold">Cá nhân</div>
+                        <div>Lê Hồng Đức</div>
+                    </div>
+                    <button class="dropdownToggle"><i class="bi bi-chevron-down"></i></button>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end dropdownHello">
+                    <li>Chào, DUC</li><hr>
+                    <li><a class="dropdown-item" href="/medicalBook">Sổ tay khám bệnh</a></li>
+                    <li><a class="dropdown-item" href="/info">Cài đặt</a></li>
+                    <li><a class="dropdown-item" href="/">Thoát</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </header>

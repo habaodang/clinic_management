@@ -1,16 +1,6 @@
 
 const homeButton = document.getElementById('homeButton');
 const contactButton = document.getElementById('contactButton');
-document.addEventListener('DOMContentLoaded', () => {
-    // Kiểm tra nếu URL có chứa "#gioithieuSection"
-    if (window.location.hash === '#gioithieuSection') {
-        const introSection = document.getElementById('gioithieuSection');
-        if (introSection) {
-            // Cuộn mượt đến phần giới thiệu
-            introSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-});
 
 if (homeButton) {
     homeButton.addEventListener('click', function () {
