@@ -1,0 +1,60 @@
+{% extends 'home_doctor.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/scheduleDoctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+
+   {% block left %}
+        <div class="left">
+            <div class="left col-md-3">
+                <div class="sidebar" id="sidebar">
+                    <a class="menu-item" href="/doctor">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <h3>Trang chủ</h3>
+                    </a>
+                    <a class="menu-item  active" href="/scheduleDoctor">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>Lịch làm việc</h3>
+                    </a>
+                    <a class="menu-item" href="/formDoctor">
+                        <span><i class="fas fa-user-md"></i></span>
+                        <h3>Lập Phiếu</h3>
+                    </a>
+                    <a class="menu-item" href="/lookupDoctor">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <h3>Tra cứu</h3>
+                    </a>
+                    <a class="menu-item" id="notifications" href="/tbDoctor">
+                        <span><i class="fa-regular fa-bell"><small class="notification-count">9+</small></i></span>
+                        <h3>Thông Báo</h3>
+                    </a>
+                    <a class="menu-item" id="theme">
+                        <span><i class="fa-solid fa-palette"></i></span>
+                        <h3>Theme</h3>
+                    </a>
+                    <a class="menu-item" href="/settingDoctor">
+                        <span><i class="fa-solid fa-gear"></i></span>
+                        <h3>Cài Đặt</h3>
+                    </a>
+                    <a href="/base" class="menu-item logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <h3>Đăng Xuất</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+          {% endblock %}
+{% block middle %}
+{% endblock %}
+
+
+{% block right %}
+
+form
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/doctor/scheduleDoctor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/style.js') }}"></script>
+ {% endblock %}

@@ -1,66 +1,72 @@
 {% extends 'layout/base.html' %}
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename= 'css/styledoc.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/home_doctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 {% endblock %}
 {% block middle %}
-<div class="col-md-6 middle">
-    <div class="good-morning">
-        <h2>Good morning, Dr. [Tên bác sĩ]!</h2>
-    </div>
-    <div class="luot-kham-hom-nay card">
-        <div class="card-body">
-            <h5 class="card-title">Lượt khám hôm nay</h5>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="benh-nhan-moi">
-                        <p class="card-text">Bệnh nhân mới</p>
-                        <span class="badge bg-primary">10</span>
-                    </div>
+ <div class="dashboard">
+        <div class="header">
+            <h1>Good Morning Dr. DUC!</h1>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <h2>40</h2>
+                <p>Bệnh Nhân Mới</p>
+            </div>
+            <div class="stat">
+                <h2>64</h2>
+                <p>Bệnh Nhân Cũ</p>
+            </div>
+        </div>
+
+        <div class="patient-list">
+            <div class="patient">
+                <div class="avatar sm">SM</div>
+                <div class="details">
+                    <p>Lê Hồng Đức</p>
+                    <p style="color: #ff0066;">Weekly Visit</p>
                 </div>
-                <div class="col-md-6">
-                    <div class="benh-nhan-cu">
-                        <p class="card-text">Bệnh nhân cũ</p>
-                        <span class="badge bg-secondary">20</span>
-                    </div>
+                <div class="time">9:15 AM</div>
+            </div>
+
+            <div class="patient">
+                <div class="avatar ad">AD</div>
+                <div class="details">
+                    <p>Đăng</p>
                 </div>
+                <div class="time">9:30 AM</div>
+            </div>
+
+            <div class="patient">
+                <div class="avatar dj">DJ</div>
+                <div class="details">
+                    <p>Hồng</p>
+                </div>
+                <div class="time">9:50 AM</div>
             </div>
         </div>
     </div>
-    <div class="danh-sach-benh-nhan card">
-        <div class="card-body">
-            <h5 class="card-title">Danh sách bệnh nhân</h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <span class="badge bg-secondary">SM</span> Lê Hồng Đức - 9:15 AM
-                </li>
-                <li class="list-group-item">
-                    <span class="badge bg-secondary">AD</span> Đăng - 9:30 AM
-                </li>
-                <li class="list-group-item">
-                    <span class="badge bg-secondary">DJ</span> Hồng - 9:50 AM
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 {% endblock %}
-
 {% block right %}
-<div class="col-md-3 right">
-    <div class="calendar card">
-        <div class="card-body">
-            <h5 class="card-title">Lịch</h5>
-            <div id="current-month"></div>
-            <div id="calendar"></div>
+<div class="calendar-container">
+        <div class="calendar-header">
+            <button id="prev-month">&#8592;</button>
+            <div class="month-year" id="monthYear"></div>
+            <button id="next-month">&#8594;</button>
+        </div>
+        <div class="calendar-grid" id="calendar">
+            <!-- Days and dates will be injected dynamically -->
+        </div>
+        <div class="view-details">
+            <a href="#">Xem Chi Tiết</a>
         </div>
     </div>
-    <div class="thong-diep-hom-nay card">
-        <div class="card-body">
-            <h5 class="card-title">Thông điệp hôm nay</h5>
-            <p class="card-text">"Mỗi lần bắt mạch, lắng nghe nhịp tim, bác sĩ không chỉ đo sức khỏe mà còn đo cả sự
-                quan tâm."</p>
-        </div>
-    </div>
-</div>
 {% endblock %}
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/home_doctor.js') }}"></script>
+<script src="{{ url_for('static', filename='js/style.js') }}"></script>
+
+ {% endblock %}

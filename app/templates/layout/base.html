@@ -7,26 +7,88 @@
     <title>
         {% block title %}Doctor's session{% endblock %}
     </title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {% block head %}
-
     {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
-
 </head>
 <body>
 {% block header %}
-{% include 'layout/header.html' %}
+<nav>
+    <div class="container">
+        <div class="log">
+            <button class="toggle-btn" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <img class="profile-photo"
+                 src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734080537/logo_ufixcb.jpg">
+            <div><h3>Healthy Care Clinic</h3></div>
+        </div>
+
+        <div class="profile">
+            <div class="profile-photo">
+                <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734080565/doctor_gqndni.png" alt="">
+            </div>
+            <div class="handle">
+                <h6>Nguyễn Thị Ánh Hồng</h6>
+                <p class="text-muted">Bác sĩ</p>
+            </div>
+        </div>
+    </div>
+</nav>
 {% endblock %}
 <!--    yeu cau duoc overriding-->
-<div class="dashboard container-fluid">
-    <div class="row">
+ <main>
+     <div class="container ">
+
         <div class="left">
-            {% block left %}
-            {% include 'layout/sidebar.html' %}
-            {% endblock %}
+             {% block left %}
+            <div class="left col-md-3">
+                <div class="sidebar" id="sidebar">
+                    <a class="menu-item active" href="/doctor">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <h3>Trang chủ</h3>
+                    </a>
+                    <a class="menu-item" href="/scheduleDoctor">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>Lịch làm việc</h3>
+                    </a>
+                    <a class="menu-item" href="/formDoctor">
+                        <span><i class="fas fa-user-md"></i></span>
+                        <h3>Lập Phiếu</h3>
+                    </a>
+                    <a class="menu-item" href="/lookupDoctor">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <h3>Tra cứu</h3>
+                    </a>
+                    <a class="menu-item" id="notifications" href="/tbDoctor">
+                        <span><i class="fa-regular fa-bell"><small class="notification-count">9+</small></i></span>
+                        <h3>Thông Báo</h3>
+                    </a>
+                    <a class="menu-item" id="theme" href="/themeDoctor">
+                        <span><i class="fa-solid fa-palette"></i></span>
+                        <h3>Theme</h3>
+                    </a>
+                    <a class="menu-item" href="/settingDoctor">
+                        <span><i class="fa-solid fa-gear"></i></span>
+                        <h3>Cài Đặt</h3>
+                    </a>
+                    <a href="/base" class="menu-item logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <h3>Đăng Xuất</h3>
+                    </a>
+                </div>
+            </div>
+                 {% endblock %}
         </div>
+
         <div class="middle">
             {% block middle %}{% endblock %}
         </div>
@@ -34,22 +96,13 @@
             {% block right %}{% endblock %}
         </div>
     </div>
-</div>
-
+    </main>
 <div class="customize-theme">
     {% block customize %}
     {% include 'layout/customize.html' %}
     {% endblock %}
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
-<script src="{{ url_for('static', filename='js/dc.js') }}"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+{% block javascript %}
+ {% endblock %}
 </body>
 </html>
