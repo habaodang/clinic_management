@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'indexLogin.html' %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}"/>
@@ -7,8 +7,11 @@
 {% block content %}
 
 <div class="container my-5">
-  <div class="page-header text-center">
-    <p>Trang chủ / Chuyên khoa / Chẩn đoán hình ảnh</p>
+  <div class="page-header text-center editA">
+      <h3>Chuyên Khoa</h3>
+    <a href = "/">  Trang chủ</a> /
+      <a href = "/specialtyLogin" > Chuyên khoa </a> /
+      <a> Chẩn đoán hình ảnh</a>
   </div>
 
   <div class="specialty-content">

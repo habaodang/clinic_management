@@ -1,9 +1,17 @@
 
-.col {
+.split {
     flex-basis: 50% !important;
     margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.editA a{
+    text-decoration: none;
+    color: white;
 }
 
+.editA a:hover{
+    color: black;
+    }
 .card-img-top {
             height: 200px;
             object-fit: cover;

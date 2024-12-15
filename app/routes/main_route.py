@@ -1,6 +1,4 @@
-from flask import Blueprint, render_template,redirect,request,url_for
-from app import login_manager
-from flask_login import login_required,logout_user,current_user
+from flask import Blueprint, render_template,redirect
 
 main_bp = Blueprint('main', __name__)
 
@@ -23,7 +21,7 @@ def register():
 def login():
     return render_template('login.html')
 
-@main_bp.route('/index-login')
+@main_bp.route('/indexLogin')
 def index_login():
     name_user=request.args.get('name','Khách')
     return render_template('indexLogin.html',name_user=current_user.name_account)
@@ -72,8 +70,63 @@ def appointment1():
 
 @main_bp.route('/medicalPackage')
 def medical_package():
-    return render_template('medicalPackage.html')
+    return render_template('medicalPackage/medicalPackage.html')
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty.html')
+    return render_template('specialty/specialty.html')
+
+@main_bp.route('/medicalPackageLogin')
+def package_login():
+    return render_template('medicalPackage/medicalPackageLogin.html')
+
+@main_bp.route('/specialtyLogin')
+def specialty_login():
+    return render_template('specialty/specialtyLogin.html')
+
+@main_bp.route('/khoa')
+def department_khoa():
+    return render_template('department/khoa.html')
+
+@main_bp.route('/khoaLogin')
+def department_login():
+    return render_template('department/khoaLogin.html')
+
+@main_bp.route('/doctor')
+def doctor():
+    return render_template('home_doctor.html')
+
+@main_bp.route('/base')
+def base():
+    return render_template('layout/base_doctor.html')
+
+@main_bp.route('/formDoctor')
+def form_doctor():
+    return render_template('doctor/formDoctor.html')
+
+@main_bp.route('/lookupDoctor')
+def look_doctor():
+    return render_template('doctor/lookupDoctor.html')
+@main_bp.route('/tbDoctor')
+def tbDoctor():
+    return render_template('home_doctor.html')
+
+@main_bp.route('/settingDoctor')
+def setting_doctor():
+    return render_template('doctor/settingDoctor.html')
+
+@main_bp.route('/scheduleDoctor')
+def schedule_doctor():
+    return render_template('doctor/scheduleDoctor.html')
+@main_bp.route('/themeDoctor')
+def themeDoctor():
+    return render_template('doctor/themeDoctor.html')
+
+
+@main_bp.route('/package')
+def package_index():
+    return render_template('detailPackage/package.html')
+
+@main_bp.route('/packageLogin1')
+def package_login1():
+    return render_template('detailPackage/packageLogin1.html')

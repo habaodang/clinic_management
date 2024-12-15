@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'indexLogin.html' %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/specialty.css') }}"/>
@@ -6,73 +6,70 @@
 {% endblock %}
 {% block content %}
 <div class="container my-5">
-  <div class="page-header text-center">
-    <p>Trang chủ / Chuyên khoa</p>
+  <div class="page-header text-center editA">
+    <h3>Chuyên Khoa</h3>
+    <a href = "/indexLogin">Trang Chủ</a> /
+    <a href ="/specialtyLogin">Chuyên Khoa</a>
   </div>
-
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-person-dots-from-line"></i>
         <h4>Chẩn đoán hình ảnh</h4>
-        <a href="/diagnose">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-bone"></i>
         <h4>Cơ - Xương - Khớp</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-child"></i>
         <h4>Nhi khoa</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-person-pregnant"></i>
         <h4>Sản - Phụ khoa</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-ear-listen"></i>
         <h4>Tai - Mũi - Họng</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-heart-circle-bolt"></i>
         <h4>Tim mạch</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-lungs"></i>
         <h4>Hô hấp và dị ứng miễn dịch lâm sàng</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
-    <div class="col">
+    <div class="split">
       <div class="specialty-card">
         <i class="fa-solid fa-child"></i>
         <h4>Nội soi</h4>
-        <a href="#">Xem chi tiết</a>
+        <a href="/khoaLogin">Xem chi tiết</a>
       </div>
     </div>
   </div>
 </div>
-
-
-
-
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/medicalBook.js') }}"></script>
