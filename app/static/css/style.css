@@ -358,8 +358,8 @@ main .container .left .profile{
 /* Phần Middle */
 .middle {
     text-align: center; /* Căn giữa nội dung văn bản bên trong */
-    background: var(--color-white);
     padding: var(--card-padding);
+    background: var(--color-white);
     border-radius: var(--card-border-radius);
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
     width: 42rem; /* Chiếm toàn bộ khoảng trống auto */

@@ -21,18 +21,18 @@ def form_doctor():
 @bp.route('/lookupDoctor')
 def look_doctor():
     return render_template('doctor/lookupDoctor.html')
-
 @bp.route('/tbDoctor')
-def tb_doctor():
-    return render_template('doctor/tbDoctor.html')
+def tbDoctor():
+    return render_template('home_doctor.html')
 
 @bp.route('/settingDoctor')
 def setting_doctor():
     return render_template('doctor/settingDoctor.html')
+
 @bp.route('/scheduleDoctor')
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html')
-@bp.route('/theme')
-def theme():
+@bp.route('/themeDoctor')
+def themeDoctor():
     return render_template('doctor/themeDoctor.html')
 
