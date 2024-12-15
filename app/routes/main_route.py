@@ -1,6 +1,11 @@
-from flask import Blueprint, render_template,redirect
+from flask import Blueprint, render_template,redirect,request,url_for
+from app import login_manager
+from flask_login import login_required,logout_user,current_user
 
 main_bp = Blueprint('main', __name__)
+
+# Cấu hình trang đăng nhập
+login_manager.login_view = 'main.login'
 
 @main_bp.route('/')
 def index():
@@ -20,11 +25,13 @@ def login():
 
 @main_bp.route('/index-login')
 def index_login():
-    return render_template('indexLogin.html')
+    name_user=request.args.get('name','Khách')
+    return render_template('indexLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/logout')
 def logout_process():
-    return redirect('/login')
+    logout_user()
+    return redirect(url_for('main.index'))
 
 @main_bp.route('/schedule')
 def medical_schedule():
@@ -55,6 +62,7 @@ def setting_passwd():
     return render_template('setting/passwd.html')
 
 @main_bp.route('/appointment')
+@login_required
 def appointment():
     return render_template('appointment.html')
 
@@ -69,4 +77,3 @@ def medical_package():
 @main_bp.route('/specialty')
 def specialty():
     return render_template('specialty.html')
-

@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, redirect, url_for, request
-from flask_login import login_user, logout_user
+from flask import Blueprint, render_template, redirect, url_for, request,session
+from flask_login import login_user, logout_user,current_user
 import app.controller.login as lg
 import app.controller.create_account as cra
+import app.models as mdl
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -11,9 +12,11 @@ def user_signin():
         username = request.form.get('username')
         password = request.form.get('password')
         user = lg.check_login(username, password)
+
         if user:
-            # login_user(user)
+            login_user(user)
             return redirect(url_for('main.index_login'))
+
         return 'Login failed'
     return render_template('login.html')
 
@@ -31,7 +34,7 @@ def user_register():
         email = request.form.get('email')
 
         if password == re_en_password:
-            account = cra.create_account(name_account=user_name, password=password, email=email, role='PA')
+            account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.USER)
             return account
         else:
             return 'khong dk'
