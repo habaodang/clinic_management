@@ -23,13 +23,22 @@
   font-size: 30px;
 
 }
+appointment-note{
+    color: #D3D3D3;
+}
 
 .appointment-details {
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
+  border-radius: 10px 10px;
+  padding: 1rem;
+  background-color: lightcyan;
+  margin-bottom: 1rem;
 }
-
+.dayappoint{
+    border
+}
 .confirm-btn {
   background-color: #4CAF50;
   color: white;

@@ -1,7 +1,7 @@
 {% extends 'home_doctor.html' %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css')}}">
-<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
  {% endblock %}
    {% block left %}
@@ -53,5 +53,5 @@
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/doctor/formDoctor.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
-<script src="{{ url_for('static', filename='js/style.js') }}"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
  {% endblock %}

@@ -2,9 +2,7 @@
 from flask import Blueprint, render_template
 
 bp = Blueprint('main', __name__)
-@bp.route('/')
-def home():
-    return render_template('index.html')
+
 
 @bp.route('/doctor')
 def doctor():
@@ -12,7 +10,7 @@ def doctor():
 
 @bp.route('/base')
 def base():
-    return render_template('layout/base.html')
+    return render_template('layout/base_doctor.html')
 
 @bp.route('/formDoctor')
 def form_doctor():
