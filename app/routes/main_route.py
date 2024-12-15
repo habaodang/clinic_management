@@ -86,6 +86,37 @@ def department_khoa():
 def department_login():
     return render_template('department/khoaLogin.html')
 
+@main_bp.route('/doctor')
+def doctor():
+    return render_template('home_doctor.html')
+
+@main_bp.route('/base')
+def base():
+    return render_template('layout/base_doctor.html')
+
+@main_bp.route('/formDoctor')
+def form_doctor():
+    return render_template('doctor/formDoctor.html')
+
+@main_bp.route('/lookupDoctor')
+def look_doctor():
+    return render_template('doctor/lookupDoctor.html')
+@main_bp.route('/tbDoctor')
+def tbDoctor():
+    return render_template('home_doctor.html')
+
+@main_bp.route('/settingDoctor')
+def setting_doctor():
+    return render_template('doctor/settingDoctor.html')
+
+@main_bp.route('/scheduleDoctor')
+def schedule_doctor():
+    return render_template('doctor/scheduleDoctor.html')
+@main_bp.route('/themeDoctor')
+def themeDoctor():
+    return render_template('doctor/themeDoctor.html')
+
+
 @main_bp.route('/package')
 def package_index():
     return render_template('detailPackage/package.html')
