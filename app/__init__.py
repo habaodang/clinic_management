@@ -7,7 +7,7 @@ def create_app():
     app = Flask(__name__)
 
     # Cấu hình ứng dụng
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:rin2406@localhost/app?charset=utf8mb4'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:123456789a@localhost/app?charset=utf8mb4'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Khởi tạo SQLAlchemy

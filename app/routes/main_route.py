@@ -18,7 +18,7 @@ def register():
 def login():
     return render_template('login.html')
 
-@main_bp.route('/index-login')
+@main_bp.route('/indexLogin')
 def index_login():
     return render_template('indexLogin.html')
 
@@ -64,9 +64,32 @@ def appointment1():
 
 @main_bp.route('/medicalPackage')
 def medical_package():
-    return render_template('medicalPackage.html')
+    return render_template('medicalPackage/medicalPackage.html')
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty.html')
+    return render_template('specialty/specialty.html')
 
+@main_bp.route('/medicalPackageLogin')
+def package_login():
+    return render_template('medicalPackage/medicalPackageLogin.html')
+
+@main_bp.route('/specialtyLogin')
+def specialty_login():
+    return render_template('specialty/specialtyLogin.html')
+
+@main_bp.route('/khoa')
+def department_khoa():
+    return render_template('department/khoa.html')
+
+@main_bp.route('/khoaLogin')
+def department_login():
+    return render_template('department/khoaLogin.html')
+
+@main_bp.route('/package')
+def package_index():
+    return render_template('detailPackage/package.html')
+
+@main_bp.route('/packageLogin1')
+def package_login1():
+    return render_template('detailPackage/packageLogin1.html')

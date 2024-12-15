@@ -1,8 +1,16 @@
-.col{
+.split {
     flex-basis: 50% !important;
     margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.editA a{
+    text-decoration: none;
+    color: white;
 }
 
+.editA a:hover{
+    color: black;
+    }
 .page-header {
       background-color: #007bff;
       color: white;
@@ -10,7 +18,7 @@
       border-radius: 20px 0 0 0;
       margin-bottom: 20px;
       margin-top:-3rem;
-    }
+}
 p{
     margin-bottom:0;
 }

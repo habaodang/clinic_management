@@ -6,6 +6,14 @@
       margin-bottom: 20px;
       margin-top:-3rem;
     }
+    .editA a{
+    text-decoration: none;
+    color: white;
+    }
+
+    .editA a:hover{
+    color: black;
+    }
     h2 {
       color: #007bff; /* Màu xanh cho tiêu đề */
     }
