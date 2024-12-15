@@ -1,3 +1,5 @@
+
+
 .appointment-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -36,9 +38,7 @@ appointment-note{
   background-color: lightcyan;
   margin-bottom: 1rem;
 }
-.dayappoint{
-    border
-}
+
 .confirm-btn {
   background-color: #4CAF50;
   color: white;

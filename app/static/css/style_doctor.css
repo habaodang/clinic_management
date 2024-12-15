@@ -116,7 +116,69 @@ nav .profile img {
     border-radius: 50%; /* Giới hạn ảnh thành hình tròn */
 }
 /* MAIN */
+.color-toggle {
+    background:white;
 
+}
+.btnDown {
+    border-radius: 2rem !important;
+}
+.avt {
+   background:#cfc8c8;
+   border-radius:2rem;
+
+}
+.dropdownToggle {
+  border: none;
+  outline: none;
+  background-color:#cfc8c8;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5rem !important;
+}
+
+.dropdownToggle:hover {
+   background-color:blue;
+   color:white
+}
+.dropdownToggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+.avt img {
+   width: 3rem;
+   height: 3rem;
+   margin:0.5rem;
+}
+
+.dropdown-menu a {
+    color: black;
+    padding: 5px 17px !important;
+    transition: all 0.3s ease-in-out;
+    background-color: #e9f4ff;
+
+}
+.dropdown-menu a:hover {
+    border-radius:2rem;
+}
+ .notification {
+      position: relative;
+      cursor: pointer;
+    }
+ .notification .badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      font-size: 12px;
+      padding: 2px 6px;
+    }
+ .dropdownHello li{
+   padding-left: 1rem;
+
+ }
 main{
     position: relative;
     top: 6.4rem;
@@ -195,14 +257,13 @@ main .container{
 /* Đăng xuất */
 /* Mục Log Out */
 .menu-item.logout {
-    margin-top: 8rem; /* Đẩy mục Log Out xuống cuối */
+    margin-top: 13rem; /* Đẩy mục Log Out xuống cuối */
     position: fixed;
     background-color: #f4f4f4;
     border-top: 1px solid #ddd; /* Đường kẻ phân cách */
     padding: 15px;
     transition: background-color 0.3s;
     border-radius: 10px 0 0 10px;
-
 }
 
 .menu-item.logout:hover {

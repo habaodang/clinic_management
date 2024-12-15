@@ -1,4 +1,6 @@
 
+
+
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("collapsed");
@@ -178,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   calendar.render();
 });
+
 
 
 

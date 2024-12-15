@@ -53,9 +53,8 @@
             <div class="text-center mt-4">
                 <button type="button" class="btn btn-primary btn-lg">Xác Thực</button>
             </div>
-               </div>
              {% endblock %}
-
+  </div>
         <div class="right">
             <h5 class="text-primary">Các Gói Khám</h5>
             <div class="list-group">
@@ -112,7 +111,6 @@
                         <option value="image">Tải Ảnh Để Quét Mã QR</option>
                     </select>
                 </div>
-
                 <!-- Form Nhập Thủ Công -->
                 <div id="manualForm">
                     <div class="mb-3">
@@ -128,9 +126,14 @@
                         <input type="text" class="form-control" id="sdt" placeholder="Nhập Số Điện Thoại">
                     </div>
                       <div class="mb-3">
-                        <label for="address" class="form-label">Giới Tính :</label>
-                        <input type="text" class="form-control" id="sex" placeholder="Chọn Giới Tính">
-                    </div>
+                            <label for="address" class="form-label">Giới Tính :</label>
+                            <select class="form-control" id="sex">
+                                <option value="">Chọn Giới Tính</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Địa Chỉ:</label>
                         <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ">

@@ -67,10 +67,6 @@ document.querySelectorAll(".toggle-form").forEach((btn) => {
   });
 });
 
-
-
-
-
  window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {

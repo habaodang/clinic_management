@@ -124,3 +124,12 @@ def package_index():
 @main_bp.route('/packageLogin1')
 def package_login1():
     return render_template('detailPackage/packageLogin1.html')
+
+
+@main_bp.route('/formMedicine')
+def form_medicine():
+    return render_template('doctor/formMedicine.html')
+
+@main_bp.route('/formConfirm')
+def form_confirm():
+    return render_template('doctor/formConfirm.html')
