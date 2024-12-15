@@ -24,7 +24,7 @@ class User(db.Model):
     sex = Column(String(3),nullable=False)
     birth = Column(Date,nullable=False)
     phone = Column(String(10),nullable=False)
-
+    cccd=Column(String(12),nullable=False)
     # Relationships
     account = relationship('Account', uselist=False, back_populates='user',lazy=False)
 
