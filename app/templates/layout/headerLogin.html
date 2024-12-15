@@ -1,0 +1,93 @@
+<header class="bg-light py-3 shadow-sm">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="#" class="text-lightblue fw-bold fs-4">Healthy Care</a>
+        <nav class="d-none d-lg-block">
+            <ul class="list-unstyled d-flex mb-0">
+                <li class="me-3">
+                    <div class="dropdown">
+                        <a href="/indexLogin">
+                            <button class="btn btn-white bt-hover" type="button" id="homeButton">Trang Chủ</button>
+                        </a>
+                    </div>
+                </li>
+                <li class="me-3">
+                    <div class="dropdown">
+                        <a href="/indexLogin#gioithieuSection1" id="introButtonLink">
+                            <button class="btn btn-white bt-hover" type="button" id="introButton">Giới Thiệu</button>
+                        </a>
+                    </div>
+                </li>
+                <li class="me-3">
+                    <div class="dropdown">
+                        <button class="btn btn-white dropdown-toggle bt-hover" type="button" id="dropdownMenu"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Chuyên Khoa <i class="bi bi-chevron-down" id="dropdownIcon3"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                            <li><a class="dropdown-item" href="#">1. Khoa Nội</a></li>
+                            <li><a class="dropdown-item" href="#">2. Khoa Mắt</a></li>
+                            <li><a class="dropdown-item" href="#">3. Khoa Sản phụ</a></li>
+                            <li><a class="dropdown-item" href="#">4. Khoa Nhi</a></li>
+                            <li><a class="dropdown-item" href="#">5. Răng - Hàm - Mặt</a></li>
+                            <li><a class="dropdown-item" href="#">6. Khoa Da Liễu</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="me-3">
+                    <div class="dropdown bt-hover">
+                        <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu2"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            Gói Khám <i class="bi bi-chevron-down" id="dropdownIcon4"></i>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Tổng Quát</a></li>
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Tim Mạch</a></li>
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Nhi Khoa</a></li>
+                            <li><a class="dropdown-item" href="#">Gói Khám Dành Cho Sản Phụ</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="me-3">
+                    <div class="dropdown bt-hover">
+                        <a href="#section2" id="contactButton">
+                            <button class="btn btn-white" type="button">
+                                Liên Hệ
+                            </button>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div class="d-flex align-items-center">
+            <!-- Notification Icon -->
+            <div class="dropdown notification me-3">
+                <i class="bi bi-bell fs-4" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                <span class="badge">3</span>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Thông báo 1</a></li>
+                    <li><a class="dropdown-item" href="#">Thông báo 2</a></li>
+                    <li><a class="dropdown-item" href="#">Thông báo 3</a></li>
+                </ul>
+            </div>
+            <div class="dropdown btnDrop">
+                <div class="d-flex align-items-center btnLogin avt" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://res.cloudinary.com/dwylms8iz/image/upload/v1733337201/cld-sample-5.jpg"
+                         alt="Avatar"
+                         class="rounded-circle">
+                    <div>
+                        <div class="fw-bold">Cá nhân</div>
+                        <div>Lê Hồng Đức</div>
+                    </div>
+                    <button class="dropdownToggle"><i class="bi bi-chevron-down"></i></button>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end dropdownHello">
+                    <li>Chào, DUC</li><hr>
+                    <li><a class="dropdown-item" href="/medicalBook">Sổ tay khám bệnh</a></li>
+                    <li><a class="dropdown-item" href="/info">Cài đặt</a></li>
+                    <li><a class="dropdown-item" href="/">Thoát</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">

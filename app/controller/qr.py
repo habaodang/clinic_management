@@ -31,4 +31,3 @@ def scan_qr():
     cap.release()
     cv2.destroyAllWindows()
 
-scan_qr()
