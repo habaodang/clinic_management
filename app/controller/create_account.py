@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import hashlib
 from app.models import Account
 from app import db
@@ -13,3 +14,13 @@ def create_account(name_account, password, email, role):
 
 
 
+=======
+from app.models import Account,Patient
+
+
+
+def create_account(name_account,password,role):
+    # hash_password
+    pass
+
+>>>>>>> Stashed changes

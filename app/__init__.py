@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import timedelta
 from flask_login import LoginManager
 
+<<<<<<< Updated upstream
 db = SQLAlchemy()
 login_manager = LoginManager()
 
@@ -31,7 +32,21 @@ def create_app():
         db.create_all()
 
     return app
+=======
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:rin2406@localhost/app?charset=utf8mb4'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+>>>>>>> Stashed changes
+
+def create_app():
+    app.run(debug=True)
 
 
 
+<<<<<<< Updated upstream
+=======
+db=SQLAlchemy(app=app)
 
+
+>>>>>>> Stashed changes
