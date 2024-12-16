@@ -144,3 +144,7 @@ def form_medicine():
 @main_bp.route('/formConfirm')
 def form_confirm():
     return render_template('doctor/formConfirm.html')
+
+@main_bp.route('/authenticate')
+def authenticate():
+    return render_template('medicalbook/authenticate.html')

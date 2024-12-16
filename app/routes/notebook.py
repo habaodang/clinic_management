@@ -7,7 +7,7 @@ import app.models as mdl
 note_book = Blueprint('notebook', __name__)
 
 @login_required
-@note_book.route('/authenticate',methods=['GET','POST'])
+@note_book.route('/authenticate.html',methods=['GET','POST'])
 def authenticate():
     if request.method == 'POST':
         name = request.form.get('name')
