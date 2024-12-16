@@ -17,8 +17,11 @@
                         Hãy xác thực để được nhận nhiều ưu đãi nhé.
                     </p>
                     <div class="mt-4">
-
-                        <a href="{{url_for('main.appointment')}}"><button class="btn btn-primary me-3">Xác Thực Ngay Bây Giờ</button></a>
+                        {% if status_auth%}
+                        <a href="{{url_for('main.appointment')}}"><button class="btn btn-primary me-3">Đăt Lịch Ngay Bây Giờ</button></a>
+                        {% else %}
+                        <a href="{{url_for('main.medical_book')}}"><button class="btn btn-primary me-3">Xác Thực Ngay Bây Giờ</button></a>
+                        {% endif %}
                         <button class="btn btn-outline-secondary" id="playVideoBtn">Xem Video</button>
                     </div>
                 </div>

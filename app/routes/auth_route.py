@@ -35,7 +35,7 @@ def user_register():
 
         if password == re_en_password:
             account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.USER)
-            return account
+            return redirect(url_for('main.index'))
         else:
             return 'khong dk'
     return 'khong dk'
