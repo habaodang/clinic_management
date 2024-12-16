@@ -1,0 +1,51 @@
+{% extends 'doctor/formDoctor.html' %}
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formConfirm.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+ {% endblock %}
+{% block middle %}
+ <div class="form-container">
+        <div class="header">Thông Tin Bệnh Nhân</div>
+        <div class="form-group">
+            <div class="form-label">Họ và tên:</div>
+            <div class="form-value">Lê Hồng Đức</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Ngày sinh:</div>
+            <div class="form-value">20/12/2004</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Số CMND/CCCD:</div>
+            <div class="form-value">045204003235</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Địa chỉ:</div>
+            <div class="form-value">Thôn Mỹ Chánh, Xã Hải Chánh, Huyện Hải Lăng, Tỉnh Quảng Trị</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Số điện thoại:</div>
+            <div class="form-value">0399646729</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Nghề nghiệp:</div>
+            <div class="form-value">Sinh Viên</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Tiền sử bệnh:</div>
+            <div class="form-value">Không Có</div>
+        </div>
+    </div>
+{% endblock %}
+{% block right %}
+ <div class="form-containers">
+        <div class="header">Phiếu Khám Bệnh</div>
+        <div class="form-label">Triệu Chứng:</div>
+        <input type="text" class="doctor-input">
+        <div class="form-label">Chẩn Đoán Loại Bệnh:</div>
+        <input type="text" class="doctor-input">
+         <a href ="/formMedicine"><button class="confirm-btn">Xác Nhận</button></a>
+    </div>
+{% endblock %}

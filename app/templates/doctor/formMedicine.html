@@ -1,0 +1,98 @@
+{% extends 'doctor/formDoctor.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formMedicine.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+
+{% block middle %}
+<h2>Quản Lý Kê Toa Thuốc</h2>
+
+<div class="top-bar" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+  <!-- Nút Thêm Thuốc (nằm bên trái) -->
+  <button onclick="openForm()">+ Thêm Thuốc</button>
+  <!-- Nút Xóa Tất Cả (nằm bên phải) -->
+  <button onclick="clearTable()" style="background-color: #dc3545;">Xóa Tất Cả</button>
+</div>
+
+<!-- Form Hiển Thị Giữa Màn Hình -->
+<div class="overlay" id="overlay">
+  <div class="form-container">
+    <h3>Tìm Kiếm Thuốc</h3>
+    <input type="text" id="medicineCode" placeholder="Nhập Mã Thuốc">
+    <button onclick="searchMedicine()" class="center">Tìm Kiếm</button>
+
+    <!-- Thông Tin Thuốc -->
+    <div id="infoContainer" style="display: none;">
+      <label>Tên Thuốc:</label>
+      <input type="text" id="medicineName" readonly>
+
+      <label>Đơn Vị:</label>
+      <input type="text" id="medicineUnit" readonly>
+
+      <label>Số Lượng:</label>
+      <input type="number" id="medicineQuantity" min="1" value="1">
+
+      <label>Tác Dụng:</label>
+      <input type="text" id="medicineEffect" readonly>
+
+      <label>Cách Dùng:</label>
+      <input type="text" id="medicineUsage" readonly>
+
+      <button onclick="addMedicine()">Xác Nhận</button>
+      <button onclick="closeForm()">Hủy</button>
+    </div>
+  </div>
+</div>
+<!-- Bảng Hiển Thị Thuốc -->
+<table>
+  <thead>
+    <tr>
+      <th>Mã Thuốc</th>
+      <th>Tên Thuốc</th>
+      <th>Đơn Vị</th>
+      <th>Số Lượng</th>
+      <th>Tác Dụng</th>
+      <th>Cách Dùng</th>
+      <th>Cập Nhật</th>
+    </tr>
+  </thead>
+  <tbody id="medicineTable"></tbody>
+</table>
+
+<!-- Modal Xác Nhận Cập Nhật -->
+<div id="updateConfirmation" class="overlay">
+  <div class="form-container">
+    <h3>Bạn muốn làm gì với thuốc này?</h3>
+    <button onclick="confirmUpdate('update')">Cập Nhật lại</button>
+    <button onclick="confirmUpdate('delete')">Xóa đi</button>
+    <button onclick="closeUpdateConfirmation()">Hủy</button>
+  </div>
+</div>
+
+<!-- Overlay cho form cập nhật -->
+<div class="overlay" id="updateFormOverlay">
+  <div class="form-container">
+    <h2>Cập Nhật Thuốc</h2>
+    <form id="updateForm">
+      <label for="name">Tên Thuốc:</label>
+      <input type="text" id="name" name="name" placeholder="Tên thuốc">
+      <label for="effect">Tác Dụng:</label>
+      <input type="text" id="effect" name="effect" placeholder="Tác dụng">
+      <label for="usage">Cách Dùng:</label>
+      <input type="text" id="usage" name="usage" placeholder="Cách dùng">
+      <button type="submit">Xác Nhận</button>
+      <button type="button" id="cancelBtn">Hủy</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+{% block right %}
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/doctor/formMedicine.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+{% endblock %}

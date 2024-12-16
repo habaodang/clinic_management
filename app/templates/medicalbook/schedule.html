@@ -1,0 +1,77 @@
+{% extends 'medicalBook.html' %}
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/medicalBook.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/medicalbook/schedule.css') }}"/>
+
+{% endblock %}
+ {% block left %}
+        <div class="left">
+            <a class="profile">
+                <div class="handle">
+                    <h4>Sổ Tay Khám Bệnh</h4>
+                </div>
+            </a>
+            <div class="sidebar ">
+                <a class="menu-item" href="/medicalBook">
+                    <span><i class="fa-solid fa-house"></i></span>
+                    <h3>Hồ Sơ Cá Nhân</h3>
+                </a>
+                <a class="menu-item active" href="/schedule">
+                    <span><i class="fa-regular fa-compass"></i></span>
+                    <h3>Lịch Hẹn</h3>
+                </a>
+                <a class="menu-item" id="messages-notification" href="/bill">
+                        <span><i class="fa-regular fa-envelope"><small class="notification-count"> 6</small></i></span>
+                        <h3>Hóa Đơn Thanh Toán</h3>
+                </a>
+                <a class="menu-item" id="theme" href="/history">
+                    <span><i class="fa-solid fa-palette"></i></span>
+                    <h3>Lịch Sử Khám Bệnh</h3>
+                </a>
+                <a class="menu-item"  href="/indexLogin">
+                    <span><i class="fa-solid fa-gear"></i></span>
+                    <h3>Thoát</h3>
+                </a>
+            </div>
+            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
+        </div>
+        {% endblock %}
+    {% block middle %}
+       <div class="appointment-wrapper">
+        <div class="header-title">Lịch Hẹn Khám Bệnh</div>
+
+        <div class="appointment-card">
+            <button class="close-btn">&times;</button>
+            <div class="appointment-title">Hẹn Khám Bệnh Khoa Tổng Quát</div>
+            <p>Lịch hẹn vào 1:00 am ngày 20/12/2024</p>
+            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh Khoa Tổng Quát', '1:00 am ngày 20/12/2024', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
+        </div>
+
+        <div class="appointment-card">
+            <button class="close-btn">&times;</button>
+            <div class="appointment-title">Hẹn Tái Khám</div>
+            <p>Lịch hẹn vào 10:00 am ngày 01/09/2024</p>
+            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
+        </div>
+    </div>
+
+    <div class="modal" id="detailsModal">
+        <div class="modal-content">
+            <h3>Lịch Hẹn Khám</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <form class="modal-form">
+                <label for="nurseName">Tên y tá</label>
+                <input type="text" id="nurseName" readonly>
+                <label for="appointmentDate">Ngày giờ hẹn</label>
+                <input type="text" id="appointmentDate" readonly>
+                <label for="appointmentReason">Hẹn khám về</label>
+                <textarea id="appointmentReason" rows="3" readonly></textarea>
+            </form>
+        </div>
+    </div>
+        {% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/medicalbook/schedule.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

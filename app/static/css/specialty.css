@@ -1,0 +1,64 @@
+.split {
+    flex-basis: 50% !important;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.editA a{
+    text-decoration: none;
+    color: white;
+}
+
+.editA a:hover{
+    color: black;
+    }
+.page-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 0;
+      border-radius: 20px 0 0 0;
+      margin-bottom: 20px;
+      margin-top:-3rem;
+}
+p{
+    margin-bottom:0;
+}
+.specialty-card {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.specialty-card {
+      border: 2px solid #007bff; /* Viền xanh */
+      background-color:  #e9ecef;
+      border-radius: 10px; /* Bo góc */
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center; /* Căn giữa nội dung */
+    }
+
+.specialty-card i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.specialty-card:hover i,
+.specialty-card i:hover ~ h4,
+.specialty-card i:hover ~ a{
+  color: #007bff;
+}
+
+.specialty-card i:hover ~ .specialty-card {
+  background-color: #007bff;
+
+}
+
+.specialty-card h4,
+.specialty-card a {
+  color: #333;
+  transition: color 0s ease;
+}

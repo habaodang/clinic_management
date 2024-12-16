@@ -1,0 +1,56 @@
+
+.split {
+    flex-basis: 50% !important;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+.editA a{
+    text-decoration: none;
+    color: white;
+}
+
+.editA a:hover{
+    color: black;
+    }
+.card-img-top {
+            height: 200px;
+            object-fit: cover;
+            padding:1rem;
+}
+img.img-fluid {
+    padding: 1rem;
+}
+.card-title { /* Chọn tất cả các phần tử có class card-title */
+  color: #007bff; /* Thiết lập màu chữ thành màu xanh */
+}
+.dd-toggle {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.custom-dropdown .btn {
+      background-color: #007bff; /* Màu nền xanh */
+      color: white; /* Màu chữ trắng */
+      border: 1px solid black; /* Viền đen */
+      border-radius: 5px; /* Bo góc */
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+}
+
+.custom-dropdown .dropdown-toggle::after {
+      border: none; /* Ẩn mũi tên mặc định */
+      content: '\25BC'; /* Thêm mũi tên mới */
+      font-size: 12px;
+      margin-left: 5px;
+}
+.page-header { /* CSS cho phần tiêu đề */
+     background-color: #007bff;
+     color: white;
+     padding: 10px 20px;
+     border-radius: 20px 0 0 0;
+     margin-top: -3rem;
+     margin-bottom:1rem;
+}
+ .list-title { /* Style cho dòng "DANH SÁCH GÓI KHÁM" */
+      border-bottom: 2px solid #007bff; /* Thêm đường viền xanh */
+      padding-bottom: 0;
+      margin-bottom:0;
+    }

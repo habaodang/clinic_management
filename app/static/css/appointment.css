@@ -1,0 +1,122 @@
+
+*, ::after, ::before {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+.contain-center{
+   width:85rem;
+   margin-left:-20rem;
+
+}
+footer {
+  margin-top:3rem !important;
+  border-radius:2rem 2rem 0 0;
+}
+.form-label {
+    margin-right:15.5rem;
+}
+
+.check-form{
+ margin-right:30rem;
+}
+
+.mleft-2 {
+ margin-left:1rem;
+}
+.bg-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-head {
+  overflow: hidden; /* Ẩn phần tràn để giữ bo góc */
+}
+
+.img-container {
+  margin: 0 0.8rem 0 0.8rem; /* Padding vào trong */
+  background-color: #e6f3ff;
+
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+}
+
+.img-container img {
+  width: 100%; /* Hình ảnh co dãn theo container */
+  height: auto;
+  display: block; /* Xóa khoảng trắng dưới ảnh nếu cần */
+}
+
+.img-head img {
+  object-fit: cover;
+  height: 9rem !important; /* Đảm bảo chiều cao của hình ảnh nền */
+  border-radius:10rem 10rem 0 0 ;
+}
+
+.img-foot img {
+  object-fit: cover;
+  border-radius:0 !important;
+}
+.bg-overlay img {
+  object-fit: cover;
+  height: 30rem; /* Đảm bảo chiều cao của hình ảnh nền */
+}
+
+.bg-overlay .position-absolute {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card-title {
+  font-weight: bold;
+}
+
+button.btn-primary {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+button.btn-primary:hover {
+  background-color: #2980b9;
+  border-color: #2980b9;
+}
+
+
+#appointment-content {
+  background-color: #e6f3ff;
+  padding: 0;
+}
+.py-5 {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+}
+.appointmentBack{
+   height: 2.7rem;
+   background-color: red;
+   width: 6rem;
+}
+#cookie-consent {
+    display: none; /* Initially hidden */
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it */
+    width: 100%;
+    max-width: 500px; /* Set max width */
+    z-index: 9999;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    border-radius: 8px; /* Optional rounded corners */
+}
+.btTuvan {
+    margin-top: 2rem;
+    background-color: green !important;
+    color: white;
+    width: 10rem !important;
+}
+.appointmentFinish{
+  display: none;
+  background-color: green !important;
+  color: black;
+  height: 10rem !important;
+}

@@ -1,0 +1,23 @@
+.page-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 0;
+      border-radius: 20px 0 0 0;
+      margin-bottom: 20px;
+      margin-top:-3rem;
+    }
+    .editA a{
+    text-decoration: none;
+    color: white;
+    }
+
+    .editA a:hover{
+    color: black;
+    }
+    h2 {
+      color: #007bff; /* Màu xanh cho tiêu đề */
+    }
+    /* CSS để in đậm tên dịch vụ con */
+    strong {
+      font-weight: bold;
+    }
