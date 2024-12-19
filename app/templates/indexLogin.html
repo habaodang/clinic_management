@@ -19,10 +19,10 @@
                     <div class="mt-4">
                         {% if status_auth%}
                         <a href="{{url_for('main.appointment_login')}}"><button class="btn btn-primary me-3">Đăt Lịch Ngay Bây Giờ</button></a>
+                        <a href="{{url_for('main.appointment_login')}}"><button class="btn btn-primary me-3">Tư vấn</button></a>
                         {% else %}
                         <a href="{{url_for('main.medical_book')}}"><button class="btn btn-primary me-3">Xác Thực Ngay Bây Giờ</button></a>
                         {% endif %}
-                        <button class="btn btn-outline-secondary" id="playVideoBtn">Xem Video</button>
                     </div>
                 </div>
                 <div class="col-md-6 text-center">
