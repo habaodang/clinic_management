@@ -75,31 +75,30 @@
 <div class="overlays" id="updateFormOverlay">
   <div class="form-container">
     <h2>Cập Nhật Thuốc</h2>
-     <form id="updateForm" method="POST" action="{{ url_for('update_medicine') }}">
+<!--     <form id="updateForm" method="POST" action="{{ url_for('main.form_medicine') }}">-->
         <div class="form-container">
             <label>Mã Thuốc:</label>
-            <input type="text" id="medicineCode" name="medicineCode" readonly>
+            <input type="text" id="medicineCode1" name="medicineCode" readonly>
 
             <label>Tên Thuốc:</label>
-            <input type="text" id="medicineName" name="medicineName" required>
+            <input type="text" id="medicineName2" name="medicineName" required>
 
             <label>Đơn Vị:</label>
-            <input type="text" id="medicineUnit" name="medicineUnit" required>
+            <input type="text" id="medicineUnit3" name="medicineUnit" required>
 
             <label>Số Lượng:</label>
-            <input type="number" id="medicineQuantity" name="medicineQuantity" min="1" value="1" required>
+            <input type="number" id="medicineQuantity4" name="medicineQuantity" min="1" value="1" required>
 
             <label>Tác Dụng:</label>
-            <input type="text" id="medicineEffect" name="medicineEffect" required>
+            <input type="text" id="medicineEffect5" name="medicineEffect" required>
 
             <label>Cách Dùng:</label>
-            <input type="text" id="medicineUsage" name="medicineUsage" required>
+            <input type="text" id="medicineUsage6" name="medicineUsage" required>
 
             <button type="submit">Xác Nhận</button>
             <button type="button" onclick="closeForm()">Hủy</button>
         </div>
-    </form>
-
+<!--    </form>-->
   </div>
 </div>
 </div>
@@ -108,6 +107,7 @@
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/doctor/formMedicine.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+
 <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 {% endblock %}
