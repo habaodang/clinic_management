@@ -39,3 +39,6 @@ def user_register():
         else:
             return 'khong dk'
     return 'khong dk'
+
+
+

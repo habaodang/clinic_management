@@ -16,7 +16,6 @@ def authenticate():
         sex = request.form.get('sex')
         birth = request.form.get('birth')
         phone = request.form.get('sdt')
-
-        id=in_u.add_infor_user(name, cccd, address, sex, birth, phone)
+        id = in_u.add_infor_user(name, cccd, address, sex, birth, phone)
         in_u.mapping_account_user(id)
         return redirect(url_for('main.index_login'))

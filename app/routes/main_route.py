@@ -2,6 +2,7 @@ from flask import Blueprint, render_template,redirect,request,url_for
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 
+
 main_bp = Blueprint('main', __name__)
 
 # Cấu hình trang đăng nhập
@@ -25,7 +26,7 @@ def register():
 def login():
     return render_template('login.html')
 
-@main_bp.route('/index-login')
+@main_bp.route('/indexLogin')
 def index_login():
     name_user=request.args.get('name','Khách')
     return render_template('indexLogin.html',name_user=current_user.name_account,status_auth=current_user.user_id)
@@ -68,6 +69,12 @@ def setting_passwd():
 def appointment():
     return render_template('appointment.html')
 
+@main_bp.route('/appointmentLogin')
+@login_required
+def appointment_login():
+    return render_template('appointmentLogin.html')
+
+
 @main_bp.route('/appointment_body1')
 def appointment1():
     return render_template('appointment/body1.html')
@@ -79,7 +86,7 @@ def medical_package():
 @main_bp.route('/specialty')
 def specialty():
     return render_template('specialty.html')
-    return render_template('specialty/specialty.html')
+
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -123,6 +130,7 @@ def setting_doctor():
 @main_bp.route('/scheduleDoctor')
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html')
+
 @main_bp.route('/themeDoctor')
 def themeDoctor():
     return render_template('doctor/themeDoctor.html')
@@ -148,3 +156,5 @@ def form_confirm():
 @main_bp.route('/authenticate')
 def authenticate():
     return render_template('medicalbook/authenticate.html')
+
+

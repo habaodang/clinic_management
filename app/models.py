@@ -148,8 +148,14 @@ class ChiTietDonThuoc(db.Model):
 class Thuoc(db.Model):
     __tablename__ = 'thuoc'
 
-    id = Column(Integer, primary_key=True)
+    stt = Column(Integer, primary_key=True, autoincrement=True)  # STT tự tăng
+    id = Column(Integer, nullable=False, unique=True)
+    code = Column(String(10), nullable=False, unique=True)
     name = Column(String(150), nullable=False)
+    unit = Column(String(50), nullable=False)
+    quantity = Column(Integer, nullable=False)
+    effect = Column(String(200), nullable=False)
+    usage = Column(String(200), nullable=False)
 
     # Relationships
     chi_tiet_don_thuoc = relationship('ChiTietDonThuoc', back_populates='thuoc',lazy=False)

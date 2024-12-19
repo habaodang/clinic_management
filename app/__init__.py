@@ -29,8 +29,6 @@ def create_app():
     # Tạo bảng (chỉ khi chạy lần đầu)
     with app.app_context():
         db.create_all()
+        print("Database và các bảng đã được khởi tạo!")
 
     return app
-
-
-
