@@ -1,3 +1,4 @@
+
  document.getElementById('searchButton').addEventListener('click', function () {
         const searchType = document.getElementById('searchType').value;
         const searchInput = document.getElementById('searchInput').value.trim();

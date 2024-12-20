@@ -105,10 +105,6 @@ def department_login():
 def doctor():
     return render_template('home_doctor.html')
 
-@main_bp.route('/base')
-def base():
-    return render_template('layout/base_doctor.html')
-
 @main_bp.route('/formDoctor')
 def form_doctor():
     return render_template('doctor/formDoctor.html')
@@ -116,9 +112,6 @@ def form_doctor():
 @main_bp.route('/lookupDoctor')
 def look_doctor():
     return render_template('doctor/lookupDoctor.html')
-@main_bp.route('/tbDoctor')
-def tbDoctor():
-    return render_template('home_doctor.html')
 
 @main_bp.route('/settingDoctor')
 def setting_doctor():
@@ -127,9 +120,8 @@ def setting_doctor():
 @main_bp.route('/scheduleDoctor')
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html')
-
 @main_bp.route('/themeDoctor')
-def themeDoctor():
+def theme_doctor():
     return render_template('doctor/themeDoctor.html')
 
 @main_bp.route('/package')
@@ -152,4 +144,71 @@ def form_confirm():
 def authenticate():
     return render_template('medicalbook/authenticate.html')
 
+
+
+
+# nurse
+@main_bp.route('/nurse')
+def nurse():
+    return render_template('home_nurse.html')
+@main_bp.route('/scheduleNurse')
+def schedule_nurse():
+    return render_template('nurse/scheduleNurse.html')
+@main_bp.route('/formNurse')
+def form_nurse():
+    return render_template('nurse/formNurse.html')
+
+@main_bp.route('/lookupNurse')
+def look_nurse():
+    return render_template('nurse/lookupNurse.html')
+
+@main_bp.route('/settingNurse')
+def setting_nurse():
+    return render_template('nurse/settingNurse.html')
+
+
+@main_bp.route('/formCheck')
+def form_check():
+    return render_template('nurse/formCheck.html')
+
+#cashier
+@main_bp.route('/cashier')
+def cashier():
+    return render_template('home_cashier.html')
+@main_bp.route('/scheduleCashier')
+def schedule_cashier():
+    return render_template('cashier/scheduleCashier.html')
+@main_bp.route('/paymentInvoice')
+def payment_invoice():
+    return render_template('cashier/paymentInvoice.html')
+
+@main_bp.route('/lookupCashier')
+def look_cashier():
+    return render_template('cashier/lookupCashier.html')
+
+@main_bp.route('/settingCashier')
+def setting_cashier():
+    return render_template('cashier/settingCashier.html')
+
+@main_bp.route('/formInvoice')
+def view_Invoice():
+    return render_template('cashier/formInvoice.html')
+
+#admin
+@main_bp.route('/admin')
+def home_admin():
+    return render_template('home_admin.html')
+@main_bp.route('/regulations')
+def regulation_admin():
+    return render_template('admin/regulations.html')
+
+@main_bp.route('/report')
+def report_admin():
+    return render_template('admin/report.html')
+@main_bp.route('/searchAdmin')
+def search_admin():
+    return render_template('admin/search.html')
+@main_bp.route('/settingAdmin')
+def setting_admin():
+    return render_template('admin/settingAdmin.html')
 

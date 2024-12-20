@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
  {% endblock %}
-   {% block left %}
+ {% block left %}
         <div class="left">
             <div class="left col-md-3">
                 <div class="sidebar" id="sidebar">
@@ -32,7 +32,7 @@
                         <span><i class="fa-solid fa-gear"></i></span>
                         <h3>Cài Đặt</h3>
                     </a>
-                    <a href="/base" class="menu-item logout">
+                    <a href="/" class="menu-item logout">
                         <span><i class="fas fa-sign-out-alt"></i></span>
                         <h3>Đăng Xuất</h3>
                     </a>
@@ -40,7 +40,6 @@
             </div>
         </div>
 {% endblock %}
-
 {% block middle %}
  <!-- Tabs Section -->
     <section class="tabs">

@@ -4,12 +4,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 {% endblock %}
-
-   {% block left %}
+ {% block left %}
         <div class="left">
             <div class="left col-md-3">
                 <div class="sidebar" id="sidebar">
-                    <a class="menu-item " href="/doctor">
+                    <a class="menu-item" href="/doctor">
                         <span><i class="fa-solid fa-house"></i></span>
                         <h3>Trang chủ</h3>
                     </a>
@@ -17,7 +16,7 @@
                         <span><i class="fa-solid fa-calendar-days"></i></span>
                         <h3>Lịch làm việc</h3>
                     </a>
-                    <a class="menu-item" href="/formDoctor">
+                    <a class="menu-item active" href="/formDoctor">
                         <span><i class="fas fa-user-md"></i></span>
                         <h3>Lập Phiếu</h3>
                     </a>
@@ -25,7 +24,7 @@
                         <span><i class="fa-solid fa-magnifying-glass"></i></span>
                         <h3>Tra cứu</h3>
                     </a>
-                    <a class="menu-item  active" id="theme">
+                    <a class="menu-item" id="theme" >
                         <span><i class="fa-solid fa-palette"></i></span>
                         <h3>Theme</h3>
                     </a>
@@ -33,14 +32,14 @@
                         <span><i class="fa-solid fa-gear"></i></span>
                         <h3>Cài Đặt</h3>
                     </a>
-                    <a href="/base" class="menu-item logout">
+                    <a href="/" class="menu-item logout">
                         <span><i class="fas fa-sign-out-alt"></i></span>
                         <h3>Đăng Xuất</h3>
                     </a>
                 </div>
             </div>
         </div>
-          {% endblock %}
+{% endblock %}
 {% block middle %}
 {% endblock %}
 {% block right %}
