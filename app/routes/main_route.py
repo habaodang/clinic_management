@@ -15,7 +15,6 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-
     return render_template('medicalBook.html',status_auth=current_user.user_id)
 
 @main_bp.route('/register')
@@ -74,19 +73,17 @@ def appointment():
 def appointment_login():
     return render_template('appointmentLogin.html')
 
-
 @main_bp.route('/appointment_body1')
 def appointment1():
     return render_template('appointment/body1.html')
 
 @main_bp.route('/medicalPackage')
 def medical_package():
-    return render_template('medicalPackage.html')
+    return render_template('medicalPackage/medicalPackage.html')
 
 @main_bp.route('/specialty')
 def specialty():
     return render_template('specialty.html')
-
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -135,7 +132,6 @@ def schedule_doctor():
 def themeDoctor():
     return render_template('doctor/themeDoctor.html')
 
-
 @main_bp.route('/package')
 def package_index():
     return render_template('detailPackage/package.html')
@@ -143,7 +139,6 @@ def package_index():
 @main_bp.route('/packageLogin1')
 def package_login1():
     return render_template('detailPackage/packageLogin1.html')
-
 
 @main_bp.route('/formMedicine')
 def form_medicine():
