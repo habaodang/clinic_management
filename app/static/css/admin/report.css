@@ -13,3 +13,7 @@ main .container .middle {
     grid-column: span 2; /* Chiếm cả 2 cột lưới */
     width: 100%; /* Tăng chiều rộng để phù hợp */
 }
+.card-body{
+    padding:0;
+    margin:0;
+}

@@ -32,7 +32,7 @@
                 <span><i class="fa-solid fa-gear"></i></span>
                 <h3>Cài Đặt</h3>
             </a>
-            <a href="/base" class="menu-item logout">
+            <a href="/" class="menu-item logout">
                 <span><i class="fas fa-sign-out-alt"></i></span>
                 <h3>Đăng Xuất</h3>
             </a>
@@ -68,6 +68,10 @@
         </div>
     </div>
 </div>
+<div class="container mt-5">
+  <h5 class="text-center">Biểu đồ Doanh Thu Theo Tháng</h5>
+  <canvas id="revenueChart" height="100" ></canvas>
+</div>
 {% endblock %}
 
 
@@ -75,6 +79,7 @@
 
 {% endblock %}
 {% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/admin/report.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
