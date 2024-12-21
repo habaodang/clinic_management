@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey,Enum
+from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey,Enum,Time,DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app import db
@@ -13,6 +13,11 @@ class UserRole(Pyenmu):
     NURSE = 'NU'
     CASHIER = 'CA'
     USER="US"
+
+class PackageMedical(Pyenmu):
+    VIP = 'VIP'
+    NORMAL = 'NORMAL'
+
 
 # Base User model with inheritance for Nurse, Doctor, Cashier, Patient
 class User(db.Model):
@@ -54,26 +59,35 @@ class Nurse(User):
     id_department=Column(Integer, db.ForeignKey('department.id'))
     # Relationships
     department = relationship('Department', back_populates='nurse',lazy=False)
+    lich_kham = relationship('LichKham', back_populates='nurse', lazy=False)
+
 
 class Department(db.Model):
     __tablename__ = 'department'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True,autoincrement=True)
     name = Column(String(50), nullable=False)
 
     # Relationships
     nurse = relationship('Nurse', back_populates='department',lazy=False)
-    doctors = db.relationship('Doctor', back_populates='department', lazy=False)
+    doctor = db.relationship('Doctor', back_populates='department', lazy=False)
+    lich_kham = relationship('LichKham', back_populates='department', lazy=False)
+
 
 class Doctor(User):
     __tablename__ = 'doctor'
 
     id = Column(String(10), ForeignKey('user.id'), primary_key=True)
     degree = Column(String(50))
+
     id_department=Column(Integer, ForeignKey('department.id'),nullable=False)
-    department = db.relationship('Department', back_populates='doctors', lazy=False)
+    department = db.relationship('Department', back_populates='doctor', lazy=False)
+
     # Relationships
     phieu_kham = relationship('PhieuKham', back_populates='doctor',lazy=False)
+    lich_kham = relationship('LichKham', back_populates='doctor', lazy=False)
+
+
 
 class Cashier(User):
     __tablename__ = 'cashier'
@@ -92,16 +106,30 @@ class Patient(User):
 class LichKham(db.Model):
     __tablename__ = 'lich_kham'
 
-    id = Column(Integer, primary_key=True)
-    time = Column(Date, nullable=False)
-    option = Column(String(10))
-    status = Column(Boolean)
+    id = Column(Integer, primary_key=True,autoincrement=True)
+    time = Column(Time, nullable=False)
+    status = Column(Boolean,default=False)
+    created_date = Column(DateTime, default=datetime.utcnow)
+    date = Column(Date, nullable=False)
+    location = Column(String(150), nullable=False)
+    package = Column(Enum(PackageMedical), nullable=False)
+    note = Column(String(150), nullable=False)
 
-    # Foreign key
-    patient_id = Column(String(10), db.ForeignKey('patient.id'))
+    doctor_id = Column(String(10), ForeignKey('doctor.id'))
+    doctor = relationship("Doctor", back_populates="lich_kham",lazy=False)
 
-    # Relationships
-    patient = db.relationship('Patient', back_populates='lich_kham',lazy=False)
+    # Tham chiếu đến bảng y tá
+    nurse_id = Column(String(10), ForeignKey('nurse.id'))
+    nurse = relationship("Nurse", back_populates="lich_kham",lazy=False)
+
+    # Tham chiếu đến bảng bệnh nhân
+    patient_id = Column(String(10), ForeignKey('patient.id'),nullable=False)
+    patient = relationship("Patient", back_populates="lich_kham",lazy=False)
+
+    # Tham chiếu đến bảng khoa
+    department_id = Column(Integer, ForeignKey('department.id'))
+    department = relationship("Department", back_populates="lich_kham",lazy=False)
+
 
 class PhieuKham(db.Model):
     __tablename__ = 'phieu_kham'

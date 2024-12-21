@@ -1,7 +1,10 @@
 from flask import Blueprint, render_template,redirect,request,url_for
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
-
+import app.models as mdl
+import app.controller.department_process as depp
+import app.controller.notebook as nte
+import app.controller.department_process as depp
 
 main_bp = Blueprint('main', __name__)
 
@@ -15,8 +18,7 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-
-    return render_template('medicalBook.html',status_auth=current_user.user_id)
+    return render_template('medicalBook.html',status_auth=current_user.user_id ,user=current_user.user)
 
 @main_bp.route('/register')
 def register():
@@ -38,7 +40,8 @@ def logout_process():
 
 @main_bp.route('/schedule')
 def medical_schedule():
-    return render_template('medicalbook/schedule.html')
+    list_lichkham = nte.get_examination_history()
+    return render_template('medicalbook/schedule.html',list_lichkham=list_lichkham,name_department='sdfsf')
 
 @main_bp.route('/bill')
 def medical_bill():
@@ -62,7 +65,7 @@ def setting_theme():
 
 @main_bp.route('/passwd')
 def setting_passwd():
-    return render_template('setting/passwd.html')
+    return render_template('setting/passwd.html',name_user=current_user.name_account)
 
 @main_bp.route('/appointment')
 @login_required
@@ -72,12 +75,20 @@ def appointment():
 @main_bp.route('/appointmentLogin')
 @login_required
 def appointment_login():
-    return render_template('appointmentLogin.html')
+    return render_template('appointmentLogin.html',packages=mdl.PackageMedical)
 
 
 @main_bp.route('/appointment_body1')
 def appointment1():
-    return render_template('appointment/body1.html')
+    date = request.args.get('date')
+    time = request.args.get('time')
+    location = request.args.get('location')
+    package = request.args.get('package')
+
+    #lay cac khoa
+    list_khoa=depp.get_department()
+
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
@@ -85,8 +96,7 @@ def medical_package():
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty.html')
-
+    return render_template('specialty/specialty.html')
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():

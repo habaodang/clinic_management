@@ -15,7 +15,10 @@ def user_signin():
 
         if user:
             login_user(user)
-            return redirect(url_for('main.index_login'))
+            if user.role == mdl.UserRole.DOCTOR:
+                return redirect(url_for('main.doctor'))
+            if user.role == mdl.UserRole.USER:
+                return redirect(url_for('main.index_login'))
 
         return 'Login failed'
     return render_template('login.html')
