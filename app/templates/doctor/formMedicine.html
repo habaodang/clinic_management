@@ -45,8 +45,6 @@
     </div>
   </div>
 </div>
-
-
 <!-- Bảng Hiển Thị Thuốc -->
 <table>
   <thead>
@@ -101,6 +99,7 @@
 <!--    </form>-->
   </div>
 </div>
+<button type="button" onclick="goBack()" class="btn btn-success rounded-pill mt-3" style="float: right;">Hoàn tất</button>
 </div>
 {% endblock %}
 {% block right %}
@@ -110,4 +109,5 @@
 
 <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
 {% endblock %}

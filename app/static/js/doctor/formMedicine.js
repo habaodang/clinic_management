@@ -36,6 +36,7 @@ function searchMedicine() {
   }
 }
 
+// Thêm thuốc vào bảng
 function addMedicine() {
   const code = document.getElementById("medicineCode").value.toUpperCase();
   const name = document.getElementById("medicineName").value;
@@ -58,13 +59,15 @@ function addMedicine() {
     <td>${usage}</td>
     <td><button class="update-btn" onclick="showUpdateConfirmation(this)">Cập Nhật</button></td>
   `;
+
   closeForm();
 }
+
+// Hiển thị modal xác nhận cập nhật hoặc xóa
 function showUpdateConfirmation(button) {
   // Lưu chỉ số hàng cần cập nhật
-  updateRowIndex = button.closest('tr').rowIndex; // Lấy chỉ số hàng
-
-  const row = document.getElementById('medicineTable').rows[updateRowIndex - 1]; // Trừ 1 vì bảng bắt đầu từ 0
+  updateRowIndex = button.closest('tr').rowIndex;
+  const row = document.getElementById('medicineTable').rows[updateRowIndex - 1]; // Chú ý cần trừ 1 vì bảng bắt đầu từ 0
 
   // Điền thông tin vào form cập nhật
   document.getElementById("medicineCode").value = row.cells[1].textContent; // Cột Mã Thuốc
@@ -74,9 +77,12 @@ function showUpdateConfirmation(button) {
   document.getElementById("medicineEffect").value = row.cells[5].textContent; // Cột Tác Dụng
   document.getElementById("medicineUsage").value = row.cells[6].textContent; // Cột Cách Dùng
 
+  document.getElementById("overlay").style.display = "flex"; // Hiển thị form cập nhật
   document.getElementById("infoContainer").style.display = "block"; // Hiển thị thông tin thuốc
   document.getElementById("updateConfirmation").style.display = "flex"; // Hiển thị modal cập nhật
 }
+
+// Modal Xác nhận Cập Nhật hoặc Xóa
 function confirmUpdate(action) {
   const table = document.getElementById("medicineTable");
 
@@ -115,6 +121,10 @@ function closeUpdateConfirmation() {
 function clearTable() {
   const table = document.getElementById("medicineTable");
   table.innerHTML = ""; // Xóa toàn bộ các dòng trong bảng
+}
+// Hàm quay lại trang trước
+function goBack() {
+    window.history.back();
 }
 
 function openUpdateForm() {
