@@ -46,10 +46,7 @@
         <div class="form-label">Khoa</div>
         <div class="form-value">Tai-mũi-họng</div>
     </div>
-    <div class="form-group">
-        <div class="form-label">Khoa</div>
-        <div class="form-value">Tai-mũi-họng</div>
-    </div>
+
     <div class="form-group">
         <div class="form-label">Tình trạng</div>
         <div class="form-value">Có hạch ở cổ</div>
@@ -65,7 +62,14 @@
         <div class="form-value " contenteditable="true" id="editable-date"></div>
 
     </div>
-
+    <!-- Khối tìm kiếm bác sĩ (ẩn khi chưa được kích hoạt) -->
+    <div class="search-container d-none" id="search-container">
+        <div class="form-group position-relative mb-4 ">
+            <label for="search-doctor" class="form-label">Tìm kiếm bác sĩ</label>
+            <input type="text" class="form-control" id="search-doctor" placeholder="Nhập tên bác sĩ...">
+            <div class="search-results d-none" id="search-results"></div>
+        </div>
+    </div>
 
 
     {% endblock %}
@@ -74,14 +78,7 @@
         <button class="confirm-btn danger">Cập nhật</button>
         <button class="confirm-btn">Xác Nhận</button>
     </div>
-     <!-- Khối tìm kiếm bác sĩ (ẩn khi chưa được kích hoạt) -->
-    <div class="search-container d-none" id="search-container">
-        <div class="form-group position-relative mb-4">
-            <label for="search-doctor" class="form-label">Tìm kiếm bác sĩ</label>
-            <input type="text" class="form-control" id="search-doctor" placeholder="Nhập tên bác sĩ...">
-            <div class="search-results d-none" id="search-results"></div>
-        </div>
-    </div>
+
     {% endblock %}
 
     {% block javascript %}

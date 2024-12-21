@@ -119,3 +119,7 @@ function clearTable() {
   const table = document.getElementById("medicineTable");
   table.innerHTML = ""; // Xóa toàn bộ các dòng trong bảng
 }
+// Hàm quay lại trang trước
+function goBack() {
+    window.history.back();
+}
