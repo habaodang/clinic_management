@@ -12,7 +12,6 @@ def user_signin():
         username = request.form.get('username')
         password = request.form.get('password')
         user = lg.check_login(username, password)
-
         if user:
             login_user(user)
             if user.role == mdl.UserRole.DOCTOR:
@@ -35,7 +34,6 @@ def user_register():
         password = request.form.get('password')
         re_en_password = request.form.get('re_en_password')
         email = request.form.get('email')
-
         if password == re_en_password:
             account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.USER)
             return redirect(url_for('main.index'))

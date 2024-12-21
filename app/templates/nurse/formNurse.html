@@ -1,0 +1,165 @@
+{% extends 'home_nurse.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/nurse/formNurse.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_nurse.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+{% block left %}
+<div class="left">
+
+    <div class="left col-md-3">
+        <div class="sidebar" id="sidebar">
+            <a class="menu-item " href="/nurse">
+                <span><i class="fa-solid fa-house"></i></span>
+                <h3>Trang chủ</h3>
+            </a>
+            <a class="menu-item" href="/scheduleNurse">
+                <span><i class="fa-solid fa-calendar-days"></i></span>
+                <h3>Lịch làm việc</h3>
+            </a>
+            <a class="menu-item active" href="/formNurse">
+                <span><i class="fas fa-user-md"></i></span>
+                <h3>Phiếu khám bệnh</h3>
+            </a>
+            <a class="menu-item" href="/lookupNurse">
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                <h3>Tra cứu</h3>
+            </a>
+            <a class="menu-item" id="theme" >
+                <span><i class="fa-solid fa-palette"></i></span>
+                <h3>Theme</h3>
+            </a>
+            <a class="menu-item" href="/settingNurse">
+                <span><i class="fa-solid fa-gear"></i></span>
+                <h3>Cài Đặt</h3>
+            </a>
+            <a href="/" class="menu-item logout">
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                <h3>Đăng Xuất</h3>
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+{% block middle %}
+<!-- Tabs Section -->
+<section class="tabs">
+    <button class="filter-btn active">All <span>50</span></button>
+    <button class="filter-btn">Started <span>20</span></button>
+    <button class="filter-btn">Finished <span>17</span></button>
+    <button id="exportButton"  class="btn export-btn"> <i class="fa-solid fa-file-export"></i> Xuất danh sách phiếu khám</button>
+</section>
+
+<!-- Cards Container -->
+<section class="card-container">
+    <!-- Card 1 -->
+    <article class="card">
+        <span class="card-badge pink">1</span>
+        <span class="new-badge">NEW</span>
+        <h3>Lê Hồng Đức</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+    <!-- Card 2 -->
+    <article class="card">
+        <span class="card-badge teal">2</span>
+        <h3>Hà Bảo Đăng</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+    <article class="card">
+        <span class="card-badge pink">1</span>
+        <span class="new-badge">NEW</span>
+        <h3>Lê Hồng Đức</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+    <!-- Card 2 -->
+    <article class="card">
+        <span class="card-badge teal">2</span>
+        <h3>Hà Bảo Đăng</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+    <article class="card">
+        <span class="card-badge pink">1</span>
+        <span class="new-badge">NEW</span>
+        <h3>Lê Hồng Đức</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+    <!-- Card 2 -->
+    <article class="card">
+        <span class="card-badge teal">2</span>
+        <h3>Hà Bảo Đăng</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+    <article class="card">
+        <span class="card-badge pink">1</span>
+        <span class="new-badge">NEW</span>
+        <h3>Lê Hồng Đức</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+            <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card">
+        <span class="card-badge teal">2</span>
+        <h3>Hà Bảo Đăng</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
+        <a href="/formCheck">
+           <button class="confirm-btn danger">Cập nhật</button>
+            <button class="confirm-btn">Xác Nhận</button>
+        </a>
+    </article>
+
+    <!-- Thêm các thẻ article tương tự -->
+</section>
+{% endblock %}
+{% block right %}
+
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/nurse/formNurse.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/nurse.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'layout/base_nurse.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/home_nurse.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_nurse.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+{% block middle %}
+<div class="dashboard">
+    <div class="header">
+        <h1>Good Morning <b>Nurse. Hong!</b></h1>
+    </div>
+    <div class="pt">
+        <div class="stats">
+            <div class="stat">
+                <h2>40</h2>
+                <p>Bệnh Nhân Mới</p>
+            </div>
+            <div class="stat">
+                <h2>64</h2>
+                <p>Bệnh Nhân Cũ</p>
+            </div>
+        </div>
+    </div>
+    <div class="patient-list">
+        <div class="patient">
+            <div class="avatar sm">SM</div>
+            <div class="details">
+                <p>Hà Bảo Đăng</p>
+                <p style="color: #ff0066;">Weekly Visit</p>
+            </div>
+            <div class="time">9:15 AM</div>
+        </div>
+
+        <div class="patient">
+            <div class="avatar ad">AD</div>
+            <div class="details">
+                <p>Đức</p>
+            </div>
+            <div class="time">9:30 AM</div>
+        </div>
+
+        <div class="patient">
+            <div class="avatar dj">DJ</div>
+            <div class="details">
+                <p>Hồng</p>
+            </div>
+            <div class="time">9:50 AM</div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block right %}
+<div class="calendar-container">
+    <div class="calendar-header">
+        <button id="prev-month">&#8592;</button>
+        <div class="month-year" id="monthYear"></div>
+        <button id="next-month">&#8594;</button>
+    </div>
+    <div class="calendar-grid" id="calendar">
+        <!-- Days and dates will be injected dynamically -->
+    </div>
+    <div class="view-details">
+        <a href="#">Xem Chi Tiết</a>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/home_nurse.js') }}"></script>
+<script src="{{ url_for('static', filename='js/nurse.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+{% endblock %}
