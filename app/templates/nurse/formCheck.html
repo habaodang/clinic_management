@@ -12,45 +12,49 @@
     <div class="header">Thông Tin Bệnh Nhân</div>
     <div class="form-group">
         <div class="form-label">Họ và tên:</div>
-        <div class="form-value">Lê Hồng Đức</div>
+        <div class="form-value">{{ lichkham.patient.name }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Ngày sinh:</div>
-        <div class="form-value">20/12/2004</div>
+        <div class="form-value">{{ lichkham.patient.birth }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Số CMND/CCCD:</div>
-        <div class="form-value">045204003235</div>
+        <div class="form-value">{{ lichkham.patient.cccd }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Địa chỉ:</div>
-        <div class="form-value">Thôn Mỹ Chánh, Xã Hải Chánh, Huyện Hải Lăng, Tỉnh Quảng Trị</div>
+        <div class="form-value">{{ lichkham.patient.address }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Số điện thoại:</div>
-        <div class="form-value">0399646729</div>
+        <div class="form-value">{{ lichkham.patient.phone }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Ngày Khám</div>
-        <div class="form-value">26-12-2024</div>
+        <div class="form-value">{{ lichkham.date }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Giờ Khám</div>
-        <div class="form-value">8:00</div>
+        <div class="form-value">{{ lichkham.time }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Cơ sở khám</div>
-        <div class="form-value">Cs. Quận 7</div>
+        <div class="form-value">{{ lichkham.location }}</div>
     </div>
     <div class="form-group">
         <div class="form-label">Khoa</div>
-        <div class="form-value">Tai-mũi-họng</div>
+        <div class="form-value">
+            {{ lichkham.department.name }}
+
+        </div>
     </div>
 
     <div class="form-group">
         <div class="form-label">Tình trạng</div>
         <div class="form-value">Có hạch ở cổ</div>
     </div>
+
     <div class="form-group">
         <div class="form-label d-flex align-items-center">
             <div>Bác sĩ khám (hoặc chỉ định)</div>
@@ -59,7 +63,11 @@
                 <i class="fas fa-search"></i>
             </button>
         </div>
-        <div class="form-value " contenteditable="true" id="editable-date"></div>
+        <input type="text" class="form-value " contenteditable="true" id="editable-date" name="doctor">
+            {% if lichkham.doctor %}
+                {{ lichkham.doctor.id }}
+            {% endif %}
+        </input>
 
     </div>
     <!-- Khối tìm kiếm bác sĩ (ẩn khi chưa được kích hoạt) -->
@@ -75,11 +83,16 @@
     {% endblock %}
     {% block right %}
     <div class="form-containers">
+        <a href="">
         <button class="confirm-btn danger">Cập nhật</button>
+        </a>
+        <a href="{{url_for('nurse.confirm_appointment', lich_id=lichkham.id) }}">
         <button class="confirm-btn">Xác Nhận</button>
+        </a>
     </div>
 
     {% endblock %}
+
 
     {% block javascript %}
     <script src="{{ url_for('static', filename='js/nurse/formCheck.js') }}"></script>

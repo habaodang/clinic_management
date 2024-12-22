@@ -116,7 +116,7 @@ class LichKham(db.Model):
     note = Column(String(150), nullable=False)
 
     doctor_id = Column(String(10), ForeignKey('doctor.id'))
-    doctor = relationship("Doctor", back_populates="lich_kham",lazy=False)
+    doctor = relationship("Doctor", back_populates="lich_kham")
 
     # Tham chiếu đến bảng y tá
     nurse_id = Column(String(10), ForeignKey('nurse.id'))

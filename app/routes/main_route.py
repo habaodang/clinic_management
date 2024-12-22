@@ -5,6 +5,7 @@ import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
 import app.controller.department_process as depp
+import app.controller.history as his
 
 main_bp = Blueprint('main', __name__)
 
@@ -19,7 +20,7 @@ def index():
 @login_required
 def medical_book():
 
-    return render_template('medicalBook.html',status_auth=current_user.user_id)
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
 
 @main_bp.route('/register')
 def register():
@@ -125,7 +126,8 @@ def base():
 
 @main_bp.route('/formDoctor')
 def form_doctor():
-    return render_template('doctor/formDoctor.html')
+    list_lichkham = his.get_appointmant_all()
+    return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham)
 
 @main_bp.route('/lookupDoctor')
 def look_doctor():
@@ -179,7 +181,8 @@ def schedule_nurse():
     return render_template('nurse/scheduleNurse.html')
 @main_bp.route('/formNurse')
 def form_nurse():
-    return render_template('nurse/formNurse.html')
+    list_lichkham = his.get_appointmant_all()
+    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham)
 
 @main_bp.route('/lookupNurse')
 def look_nurse():
@@ -192,7 +195,9 @@ def setting_nurse():
 
 @main_bp.route('/formCheck')
 def form_check():
-    return render_template('nurse/formCheck.html')
+    lich_id = request.args.get('lich_id')
+    lichkham=his.get_appointment_id(lich_id)
+    return render_template('nurse/formCheck.html',lichkham=lichkham)
 
 #cashier
 @main_bp.route('/cashier')

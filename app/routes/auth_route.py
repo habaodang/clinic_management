@@ -16,6 +16,8 @@ def user_signin():
             login_user(user)
             if user.role == mdl.UserRole.DOCTOR:
                 return redirect(url_for('main.doctor'))
+            if user.role == mdl.UserRole.NURSE:
+                return redirect(url_for('main.nurse'))
             if user.role == mdl.UserRole.USER:
                 return redirect(url_for('main.index_login'))
 
@@ -35,7 +37,7 @@ def user_register():
         re_en_password = request.form.get('re_en_password')
         email = request.form.get('email')
         if password == re_en_password:
-            account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.USER)
+            account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.DOCTOR)
             return redirect(url_for('main.index'))
         else:
             return 'khong dk'
