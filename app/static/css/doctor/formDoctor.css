@@ -6,6 +6,14 @@ main .container {
 .form_doctor {
    width:75rem !important;
 }
+.card {
+    display: none; /* Ẩn tất cả các thẻ mặc định */
+}
+
+.card.active {
+    display: block; /* Hiển thị các thẻ đang được lọc */
+}
+
 .appointment-card {
   background-color: #fff;
   border: 1px solid #ddd;

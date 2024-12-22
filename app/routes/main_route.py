@@ -124,13 +124,21 @@ def schedule_doctor():
 def theme_doctor():
     return render_template('doctor/themeDoctor.html')
 
-@main_bp.route('/package')
-def package_index():
-    return render_template('detailPackage/package.html')
+@main_bp.route('/packageNormal')
+def package_normal():
+    return render_template('detailPackage/packageNormal.html')
 
-@main_bp.route('/packageLogin1')
-def package_login1():
-    return render_template('detailPackage/packageLogin1.html')
+@main_bp.route('/packageVIP')
+def package_vip():
+    return render_template('detailPackage/packageVIP.html')
+
+@main_bp.route('/packageNormalLG')
+def package_normal_lg():
+    return render_template('detailPackage/pkNormalLogin.html')
+
+@main_bp.route('/packageVIPLG')
+def package_vip_lg():
+    return render_template('detailPackage/pkVIPLogin.html')
 
 @main_bp.route('/formMedicine')
 def form_medicine():
@@ -143,9 +151,6 @@ def form_confirm():
 @main_bp.route('/authenticate')
 def authenticate():
     return render_template('medicalbook/authenticate.html')
-
-
-
 
 # nurse
 @main_bp.route('/nurse')
@@ -165,8 +170,6 @@ def look_nurse():
 @main_bp.route('/settingNurse')
 def setting_nurse():
     return render_template('nurse/settingNurse.html')
-
-
 @main_bp.route('/formCheck')
 def form_check():
     return render_template('nurse/formCheck.html')

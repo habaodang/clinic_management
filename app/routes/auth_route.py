@@ -4,6 +4,7 @@ import app.controller.login as lg
 import app.controller.create_account as cra
 import app.models as mdl
 
+
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login/data', methods=['GET', 'POST'])
