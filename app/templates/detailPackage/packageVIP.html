@@ -1,0 +1,189 @@
+{% extends 'index.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/medicalPackage.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+{% endblock %}
+{% block content %}
+<main class="container my-5">
+    <div class="page-header text-center editA">
+        <h3>Gói khám</h3>
+        <a href = "/">Trang Chủ</a> /
+        <a href ="/medicalPackage">Gói Khám</a> /
+        <a href ="/packageVIP">Gói Khám VIP</a>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="list-title">DANH SÁCH GÓI KHÁM</h2>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end align-items-center">
+            <div class="custom-dropdown">
+                <div class="dropdown">
+                    <button class="btn dd-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Tất cả
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Gói Khám VIP</a></li>
+                        <li><a class="dropdown-item" href="#">Gói khám tổng quát</a></li>
+                        <li><a class="dropdown-item" href="#">Gói khám tim mạch</a></li>
+                        <li><a class="dropdown-item" href="#">Gói khám nhi khoa</a></li>
+                        <li><a class="dropdown-item" href="#">Gói khám sản phụ khoa</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 g-4 mt-4">
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/basic_uttpjr.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe tổng quát cơ bản">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe Tổng Quát Cơ Bản</h5>
+                        <p class="card-text"> Khám lâm sàng, đo chỉ số sinh hiệu, khám nội tổng quát, tư vấn sức khỏe, xét
+                            nghiệm máu (công thức máu, đường huyết, chức năng gan, thận), nước tiểu. </p>
+                        <p class="card-text text-danger fw-bold">1.200.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/vip_ugvl8w.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe VIP">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe VIP </h5>
+                        <p class="card-text">Khám chuyên khoa tiêu hóa, thần kinh, hô hấp (tùy chọn), Xét nghiệm tầm soát
+                            ung thư thêm các marker tumor (CA 125, CA 19-9,...).</p>
+                        <p class="card-text text-danger fw-bold">3.000.000 VNĐđ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/ad_jvsbqh.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe nâng cao">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe Nâng Cao</h5>
+                        <p class="card-text"> Khám mắt, tai mũi họng, răng hàm mặt, siêu âm tuyến giáp, xét nghiệm CEA, AFP
+                            (cho nữ) hoặc PSA (cho nam).</p>
+                        <p class="card-text text-danger fw-bold">4.550.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/th_dhnbnw.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe tổng hợp">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe Tổng Hợp</h5>
+                        <p class="card-text">Đo loãng xương, đo chức năng hô hấp, thử nghiệm dị ứng (tùy chọn), tư vấn chế
+                            độ dinh dưỡng, luyện tập, giảm stress..</p>
+                        <p class="card-text text-danger fw-bold">7.020.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+          <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/basic_uttpjr.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe tổng quát cơ bản">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe Tổng Quát Cơ Bản</h5>
+                        <p class="card-text"> Khám lâm sàng, đo chỉ số sinh hiệu, khám nội tổng quát, tư vấn sức khỏe, xét
+                            nghiệm máu (công thức máu, đường huyết, chức năng gan, thận), nước tiểu. </p>
+                        <p class="card-text text-danger fw-bold">1.200.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/vip_ugvl8w.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe VIP">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe VIP </h5>
+                        <p class="card-text">Khám chuyên khoa tiêu hóa, thần kinh, hô hấp (tùy chọn), Xét nghiệm tầm soát
+                            ung thư thêm các marker tumor (CA 125, CA 19-9,...).</p>
+                        <p class="card-text text-danger fw-bold">3.000.000 VNĐđ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/ad_jvsbqh.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe nâng cao">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe Nâng Cao</h5>
+                        <p class="card-text"> Khám mắt, tai mũi họng, răng hàm mặt, siêu âm tuyến giáp, xét nghiệm CEA, AFP
+                            (cho nữ) hoặc PSA (cho nam).</p>
+                        <p class="card-text text-danger fw-bold">4.550.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="split">
+        <div class="card">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1734108247/th_dhnbnw.jpg"
+                         class="img-fluid rounded-start stretched-link" alt="Gói khám sức khỏe tổng hợp">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Gói Khám Sức Khỏe Tổng Hợp</h5>
+                        <p class="card-text">Đo loãng xương, đo chức năng hô hấp, thử nghiệm dị ứng (tùy chọn), tư vấn chế
+                            độ dinh dưỡng, luyện tập, giảm stress..</p>
+                        <p class="card-text text-danger fw-bold">7.020.000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+        </div>
+</main>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/medicalBook.js') }}"></script>
+<script src="{{ url_for('static', filename='js/medicalPackage.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

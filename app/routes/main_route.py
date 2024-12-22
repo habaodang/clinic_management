@@ -152,10 +152,21 @@ def theme_doctor():
 @main_bp.route('/package')
 def package_index():
     return render_template('detailPackage/package.html')
+@main_bp.route('/packageNormal')
+def package_normal():
+    return render_template('detailPackage/packageNormal.html')
 
-@main_bp.route('/packageLogin1')
-def package_login1():
-    return render_template('detailPackage/packageLogin1.html')
+@main_bp.route('/packageVIP')
+def package_vip():
+    return render_template('detailPackage/packageVIP.html')
+
+@main_bp.route('/packageNormalLG')
+def package_normal_lg():
+    return render_template('detailPackage/pkNormalLogin.html')
+
+@main_bp.route('/packageVIPLG')
+def package_vip_lg():
+    return render_template('detailPackage/pkVIPLogin.html')
 
 @main_bp.route('/formMedicine')
 def form_medicine():
