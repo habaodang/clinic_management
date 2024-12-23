@@ -24,7 +24,12 @@ def user_signin():
         user = lg.check_login(username, password)
         if user:
             login_user(user)
-            return redirect(url_for('main.index_login'))
+            if user.role == mdl.UserRole.DOCTOR:
+                return redirect(url_for('main.doctor'))
+            if user.role == mdl.UserRole.NURSE:
+                return redirect(url_for('main.nurse'))
+            if user.role == mdl.UserRole.USER:
+                return redirect(url_for('main.index_login'))
 
         return 'Login failed'
     return render_template('login.html')
@@ -49,5 +54,6 @@ def user_register():
         else:
             return 'khong dk'
     return 'khong dk'
+
 
 

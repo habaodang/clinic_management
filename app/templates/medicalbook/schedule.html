@@ -42,17 +42,12 @@
         <div class="header-title">Lịch Hẹn Khám Bệnh</div>
 
         <div class="appointment-card">
+            {% for lichkham in list_lichkham %}
             <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hẹn Khám Bệnh Khoa Tổng Quát</div>
-            <p>Lịch hẹn vào 1:00 am ngày 20/12/2024</p>
-            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh Khoa Tổng Quát', '1:00 am ngày 20/12/2024', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
-        </div>
-
-        <div class="appointment-card">
-            <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hẹn Tái Khám</div>
-            <p>Lịch hẹn vào 10:00 am ngày 01/09/2024</p>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
+            <div class="appointment-title">Lịch khám {{name_department}}</div>
+            <p>Lịch hẹn vào {{ lichkham.time }}  ngày {{ lichkham.date }}</p>
+            <button class="details-btn" onclick="showDetails('Lịch khám {{name_department}}', '{{ lichkham.time }}  ngày {{ lichkham.date }}', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
+            {% endfor %}
         </div>
     </div>
 
@@ -65,7 +60,17 @@
                 <input type="text" id="nurseName" readonly>
                 <label for="appointmentDate">Ngày giờ hẹn</label>
                 <input type="text" id="appointmentDate" readonly>
-                <label for="appointmentReason">Hẹn khám về</label>
+                 <label for="nurseName">Ngày đặt lịch</label>
+                <input type="text" id="created_date" readonly>
+                 <label for="nurseName">Cơ sở</label>
+                <input type="text" id="co_so" readonly>
+                <label for="nurseName">Gói</label>
+                <input type="text" id="goi" readonly>
+                <label for="nurseName">Bác sĩ</label>
+                <input type="text" id="bacsi" readonly>
+                <label for="nurseName">Trạng thái</label>
+                <input type="text" id="trangthai" readonly>
+                <label for="appointmentReason">Ghi chú</label>
                 <textarea id="appointmentReason" rows="3" readonly></textarea>
             </form>
         </div>

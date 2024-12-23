@@ -232,7 +232,16 @@ appointment-note{
     padding: 3px 8px;
     border-radius: 5px;
 }
-
+.button-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.button-group a {
+    text-decoration:none;
+}
 .confirm-btn {
     margin-top: 15px;
     background-color: #4caf50;
@@ -242,6 +251,7 @@ appointment-note{
     font-size: 14px;
     cursor: pointer;
     border-radius: 5px;
+    display:flex;
 }
 
 .confirm-btn:hover {

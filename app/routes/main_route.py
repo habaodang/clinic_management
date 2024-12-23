@@ -9,6 +9,11 @@ import hashlib
 import hmac
 import urllib.parse
 
+import app.models as mdl
+import app.controller.department_process as depp
+import app.controller.notebook as nte
+import app.controller.department_process as depp
+import app.controller.history as his
 
 main_bp = Blueprint('main', __name__)
 
@@ -22,7 +27,8 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-    return render_template('medicalBook.html',status_auth=current_user.user_id)
+
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
 
 @main_bp.route('/register')
 def register():
@@ -44,7 +50,8 @@ def logout_process():
 
 @main_bp.route('/schedule')
 def medical_schedule():
-    return render_template('medicalbook/schedule.html')
+    list_lichkham = nte.get_examination_history()
+    return render_template('medicalbook/schedule.html',list_lichkham=list_lichkham,name_department='sdfsf')
 
 @main_bp.route('/bill', methods=["GET","POST"])
 def medical_bill():
@@ -73,7 +80,7 @@ def setting_theme():
 
 @main_bp.route('/passwd')
 def setting_passwd():
-    return render_template('setting/passwd.html')
+    return render_template('setting/passwd.html',name_user=current_user.name_account)
 
 @main_bp.route('/appointment')
 @login_required
@@ -83,11 +90,20 @@ def appointment():
 @main_bp.route('/appointmentLogin')
 @login_required
 def appointment_login():
-    return render_template('appointmentLogin.html')
+    return render_template('appointmentLogin.html',packages=mdl.PackageMedical)
+
 
 @main_bp.route('/appointment_body1')
 def appointment1():
-    return render_template('appointment/body1.html')
+    date = request.args.get('date')
+    time = request.args.get('time')
+    location = request.args.get('location')
+    package = request.args.get('package')
+
+    #lay cac khoa
+    list_khoa=depp.get_department()
+
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
@@ -117,13 +133,21 @@ def department_login():
 def doctor():
     return render_template('home_doctor.html')
 
+@main_bp.route('/base')
+def base():
+    return render_template('layout/base_doctor.html')
+
 @main_bp.route('/formDoctor')
 def form_doctor():
-    return render_template('doctor/formDoctor.html')
+    list_lichkham = his.get_appointmant_all()
+    return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham)
 
 @main_bp.route('/lookupDoctor')
 def look_doctor():
     return render_template('doctor/lookupDoctor.html')
+@main_bp.route('/tbDoctor')
+def tbDoctor():
+    return render_template('home_doctor.html')
 
 @main_bp.route('/settingDoctor')
 def setting_doctor():
@@ -132,6 +156,7 @@ def setting_doctor():
 @main_bp.route('/scheduleDoctor')
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html')
+
 @main_bp.route('/themeDoctor')
 def theme_doctor():
     return render_template('doctor/themeDoctor.html')
@@ -173,7 +198,8 @@ def schedule_nurse():
     return render_template('nurse/scheduleNurse.html')
 @main_bp.route('/formNurse')
 def form_nurse():
-    return render_template('nurse/formNurse.html')
+    list_lichkham = his.get_appointmant_all()
+    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham)
 
 @main_bp.route('/lookupNurse')
 def look_nurse():
@@ -184,7 +210,9 @@ def setting_nurse():
     return render_template('nurse/settingNurse.html')
 @main_bp.route('/formCheck')
 def form_check():
-    return render_template('nurse/formCheck.html')
+    lich_id = request.args.get('lich_id')
+    lichkham=his.get_appointment_id(lich_id)
+    return render_template('nurse/formCheck.html',lichkham=lichkham)
 
 #cashier
 @main_bp.route('/cashier')

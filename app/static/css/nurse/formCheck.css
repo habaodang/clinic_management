@@ -97,3 +97,74 @@
        .confirm-btn.danger:hover {
             background-color: #c82333; /* Màu đỏ đậm hơn khi hover */
         }
+               /* Nút biểu tượng tìm kiếm */
+       /* Đảm bảo form-value có thể chứa cả ô nhập và nút tìm kiếm trong cùng một dòng */
+        .form-value {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Nút biểu tượng tìm kiếm */
+        .search-icon-btn {
+            background-color: #007bff;  /* Màu nền */
+            border: none;
+            border-radius: 50%;         /* Bo tròn */
+            color: white;
+            font-size: 14px;            /* Giảm kích thước */
+            padding: 6px;               /* Giảm padding */
+            cursor: pointer;
+            margin-left: 10px;          /* Khoảng cách giữa ô nhập và nút */
+        }
+
+        .search-icon-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Khối tìm kiếm bác sĩ */
+        /* Phần div tìm kiếm nằm trong .right, giúp tạo khoảng cách và vị trí phù hợp */
+        .search-container {
+            margin-top: 20px;  /* Khoảng cách phía trên */
+            background: #fff;  /* Màu nền trắng */
+            padding: 15px;     /* Khoảng padding xung quanh */
+            border-radius: 10px; /* Bo tròn góc */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+            width: 100%; /* Chiếm đầy chiều rộng của phần tử cha */
+            right: 3rem;
+        }
+
+        /* Kết quả tìm kiếm (hiển thị khi có kết quả) */
+        .search-results {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: #fff;
+            z-index: 10;
+            position: absolute;
+            width: 100%;
+        }
+
+        /* Kết quả tìm kiếm khi hover */
+        .search-results div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .search-results div:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Ẩn phần tử khi không cần thiết */
+        .d-none {
+            display: none;
+        }
+
+        /* Hiệu ứng cho ô nhập tìm kiếm */
+        #search-doctor {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }

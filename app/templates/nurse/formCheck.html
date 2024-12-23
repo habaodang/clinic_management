@@ -5,44 +5,98 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_nurse.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nurse/formCheck.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
- {% endblock %}
+{% endblock %}
 
 {% block middle %}
- <div class="form-container">
-        <div class="header">Thông Tin Bệnh Nhân</div>
-        <div class="form-group">
-            <div class="form-label">Họ và tên:</div>
-            <div class="form-value">Lê Hồng Đức</div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Ngày sinh:</div>
-            <div class="form-value">20/12/2004</div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Số CMND/CCCD:</div>
-            <div class="form-value">045204003235</div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Địa chỉ:</div>
-            <div class="form-value">Thôn Mỹ Chánh, Xã Hải Chánh, Huyện Hải Lăng, Tỉnh Quảng Trị</div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Số điện thoại:</div>
-            <div class="form-value">0399646729</div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Nghề nghiệp:</div>
-            <div class="form-value">Sinh Viên</div>
-        </div>
-        <div class="form-group">
-            <div class="form-label">Tiền sử bệnh:</div>
-            <div class="form-value">Không Có</div>
+<div class="form-container">
+    <div class="header">Thông Tin Bệnh Nhân</div>
+    <div class="form-group">
+        <div class="form-label">Họ và tên:</div>
+        <div class="form-value">{{ lichkham.patient.name }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Ngày sinh:</div>
+        <div class="form-value">{{ lichkham.patient.birth }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Số CMND/CCCD:</div>
+        <div class="form-value">{{ lichkham.patient.cccd }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Địa chỉ:</div>
+        <div class="form-value">{{ lichkham.patient.address }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Số điện thoại:</div>
+        <div class="form-value">{{ lichkham.patient.phone }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Ngày Khám</div>
+        <div class="form-value">{{ lichkham.date }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Giờ Khám</div>
+        <div class="form-value">{{ lichkham.time }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Cơ sở khám</div>
+        <div class="form-value">{{ lichkham.location }}</div>
+    </div>
+    <div class="form-group">
+        <div class="form-label">Khoa</div>
+        <div class="form-value">
+            {{ lichkham.department.name }}
+
         </div>
     </div>
-{% endblock %}
-{% block right %}
- <div class="form-containers">
+
+    <div class="form-group">
+        <div class="form-label">Tình trạng</div>
+        <div class="form-value">Có hạch ở cổ</div>
+    </div>
+
+    <div class="form-group">
+        <div class="form-label d-flex align-items-center">
+            <div>Bác sĩ khám (hoặc chỉ định)</div>
+            <!-- Biểu tượng tìm kiếm nằm cuối dòng -->
+            <button class="search-icon-btn" id="search-icon-btn">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        <input type="text" class="form-value " contenteditable="true" id="editable-date" name="doctor">
+            {% if lichkham.doctor %}
+                {{ lichkham.doctor.id }}
+            {% endif %}
+        </input>
+
+    </div>
+    <!-- Khối tìm kiếm bác sĩ (ẩn khi chưa được kích hoạt) -->
+    <div class="search-container d-none" id="search-container">
+        <div class="form-group position-relative mb-4 ">
+            <label for="search-doctor" class="form-label">Tìm kiếm bác sĩ</label>
+            <input type="text" class="form-control" id="search-doctor" placeholder="Nhập tên bác sĩ...">
+            <div class="search-results d-none" id="search-results"></div>
+        </div>
+    </div>
+
+
+    {% endblock %}
+    {% block right %}
+    <div class="form-containers">
+        <a href="">
         <button class="confirm-btn danger">Cập nhật</button>
-         <button class="confirm-btn">Xác Nhận</button>
+        </a>
+        <a href="{{url_for('nurse.confirm_appointment', lich_id=lichkham.id) }}">
+        <button class="confirm-btn">Xác Nhận</button>
+        </a>
     </div>
-{% endblock %}
+
+    {% endblock %}
+
+
+    {% block javascript %}
+    <script src="{{ url_for('static', filename='js/nurse/formCheck.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/nurse/formNurse.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+    <script src="{{ url_for('static', filename='js/nurse.js') }}"></script>
+    {% endblock %}

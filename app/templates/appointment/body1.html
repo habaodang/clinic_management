@@ -4,34 +4,34 @@
     <div class="card shadow-lg">
         <div class="card-body">
             <h3 class="card-title text-center mb-4 text-primary">Thông Tin Đặt Lịch Hẹn</h3>
-            <form>
+            <form action="{{ url_for('booking.get_booking_second_form', date=date, package=package, location=location, time=time) }}" method="post">
+                <input type="hidden" name="date" value="{{ date }}">
+                <input type="hidden" name="time" value="{{ time }}">
+                <input type="hidden" name="location" value="{{ location }}">
+                <input type="hidden" name="package" value="{{ package }}">
                 <div class="row mb-3">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <label for="doctor" class="form-label">Gói Khám</label>
-                        <select id="doctor" class="form-select">
-                            <option value="bs0">Trống</option>
-                            <option value="bs1">Gói Khám Dành Cho Người Lớn</option>
-                            <option value="bs2">Gói Khám Dành Cho Trẻ Em</option>
-                            <option value="bs2">Gói Khám Dành Cho Sản Phụ</option>
+                    <div class="col-md-6">
+                        <label for="doctor" class="form-label">Chọn Bác Sĩ</label>
+                        <select id="doctor" class="form-select" name="doctor">
+                            <option value="">Chọn Bác Sĩ</option>
+                            <option value="bs1">Bác Sĩ 1</option>
+                            <option value="bs2">Bác Sĩ 2</option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label for="doctor" class="form-label">Chọn Khoa</label>
-                        <select id="doctor" class="form-select">
-                            <option value="bs1">   Trống</option>
-                            <option value="bs1">   Khoa Nội</option>
-                            <option value="bs2">   Khoa Mắt</option>
-                            <option value="bs1">   Khoa Sản phụ</option>
-                            <option value="bs2">   Khoa Nhi</option>
-                            <option value="bs1">   Răng - Hàm - Mặt</option>
-                            <option value="bs2">   Khoa Da Liễu</option>
+                        <select id="doctor" class="form-select" name="department">
+                            {% for khoa in list_khoa %}
+                            <option value="{{ khoa.id }}">{{ khoa.name }}</option>
+                            {% endfor %}
+
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3 mb-md-0">
                         <label for="clinic-room" class="form-label">Tình Trạng</label>
-                        <input type="text" class="form-control" id="clinic-room" placeholder="Ghi Chú"/>
+                        <input type="text" class="form-control" id="clinic-room" placeholder="Ghi Chú" name="note"/>
                     </div>
                 </div>
                 <div class="form-check mb-3 mleft-2">
@@ -44,14 +44,14 @@
         </div>
     </div>
 </div>
-<!-- Success Notification -->
-<div id="success-notification" class="position-fixed top-50 start-50 translate-middle-x bg-white p-4 shadow rounded-3 appointmentFinish">
-    <div class="d-flex justify-content-end">
-        <button id="close-notification" class="btn-close" aria-label="Close"></button>
-    </div>
-    <h3 class="mb-3 ">Đặt Lịch Thành Công</h3>
-    <button id="accept-notification" class="btn btn-primary">Chấp nhận</button>
-</div>
+<!--&lt;!&ndash; Success Notification &ndash;&gt;-->
+<!--<div id="success-notification" class="position-fixed top-50 start-50 translate-middle-x bg-white p-4 shadow rounded-3 appointmentFinish">-->
+<!--    <div class="d-flex justify-content-end">-->
+<!--        <button id="close-notification" class="btn-close" aria-label="Close"></button>-->
+<!--    </div>-->
+<!--    <h3 class="mb-3 ">Đặt Lịch Thành Công</h3>-->
+<!--    <button id="accept-notification" class="btn btn-primary">Chấp nhận</button>-->
+<!--</div>-->
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/appointment/appointmentFinish.js') }}"></script>
