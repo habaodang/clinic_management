@@ -3,7 +3,16 @@ from flask_login import login_user, logout_user,current_user
 import app.controller.login as lg
 import app.controller.create_account as cra
 import app.models as mdl
+import hashlib
+import hmac
+import datetime
+import urllib.parse
+import hmac
+import datetime
+import urllib.parse
+from flask import request
 
+from app import vnpay
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -25,6 +34,8 @@ def logout():
     logout_user()
     return redirect(url_for('auth.login'))
 
+
+
 @auth_bp.route('/register/data', methods=['GET', 'POST'])
 def user_register():
     if request.method.__eq__('POST'):
@@ -34,10 +45,9 @@ def user_register():
         email = request.form.get('email')
         if password == re_en_password:
             account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.USER)
-            return redirect(url_for('main.index'))
+            return redirect(url_for('main.login'))
         else:
             return 'khong dk'
     return 'khong dk'
-
 
 
