@@ -9,7 +9,6 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login/data', methods=['GET', 'POST'])
 def user_signin():
-
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')

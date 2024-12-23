@@ -1,6 +1,14 @@
+from datetime import datetime
+from app import vnpay
+from xml.etree.ElementTree import tostring
+
 from flask import Blueprint, render_template,redirect,request,url_for
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
+import hashlib
+import hmac
+import urllib.parse
+
 import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
@@ -46,8 +54,13 @@ def medical_schedule():
     list_lichkham = nte.get_examination_history()
     return render_template('medicalbook/schedule.html',list_lichkham=list_lichkham,name_department='sdfsf')
 
-@main_bp.route('/bill')
+@main_bp.route('/bill', methods=["GET","POST"])
 def medical_bill():
+    if request.method == "POST":
+        bill = int(request.form.get("appointmentMoney"))
+        order_id = str(current_user.id)+ datetime.now().__str__()
+        vnpay_url = vnpay.generate_payment_url(order_id,bill)
+        return redirect(vnpay_url)
     return render_template('medicalbook/bill.html')
 
 @main_bp.route('/history')
@@ -133,6 +146,9 @@ def form_doctor():
 @main_bp.route('/lookupDoctor')
 def look_doctor():
     return render_template('doctor/lookupDoctor.html')
+@main_bp.route('/tbDoctor')
+def tbDoctor():
+    return render_template('home_doctor.html')
 
 @main_bp.route('/settingDoctor')
 def setting_doctor():
@@ -145,7 +161,6 @@ def schedule_doctor():
 @main_bp.route('/themeDoctor')
 def theme_doctor():
     return render_template('doctor/themeDoctor.html')
-
 
 @main_bp.route('/package')
 def package_index():
@@ -230,7 +245,7 @@ def setting_cashier():
     return render_template('cashier/settingCashier.html')
 
 @main_bp.route('/formInvoice')
-def view_Invoice():
+def view_invoice():
     return render_template('cashier/formInvoice.html')
 
 #admin
@@ -250,4 +265,20 @@ def search_admin():
 @main_bp.route('/settingAdmin')
 def setting_admin():
     return render_template('admin/settingAdmin.html')
+
+@main_bp.route('/billSuccess')
+def payment_return():
+    query_params = request.args.to_dict()
+    vnp_secure_hash = query_params.pop("vnp_SecureHash", None)
+    sorted_params = sorted(query_params.items())
+    query_string = "&".join(f"{k}={urllib.parse.quote_plus(str(v))}" for k, v in sorted_params)
+    hmac_obj = hmac.new(vnpay.VNP_HASH_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha512)
+    expected_hash = hmac_obj.hexdigest()
+
+    is_success = True
+
+    if vnp_secure_hash == expected_hash and query_params.get("vnp_ResponseCode") == "00":
+        return render_template("bill_success.html", is_success=True)
+    else:
+        return render_template("bill_success.html", is_success=False)
 

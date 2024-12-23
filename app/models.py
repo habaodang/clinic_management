@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey,Enum,Time,DateTime
+from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, Enum, Time, DateTime, Float
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app import db
@@ -153,7 +153,7 @@ class HoaDon(db.Model):
 
     id = db.Column(Integer, primary_key=True)
     payment_date = Column(Date, nullable=False)
-
+    bill_money = Column(Float, nullable=False)
     # Foreign key
     phieu_kham_id = Column(Integer, ForeignKey('phieu_kham.id'))
 

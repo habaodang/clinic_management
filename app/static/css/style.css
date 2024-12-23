@@ -24,7 +24,11 @@ footer {
   font-size: 13px;
   line-height: 20px;
 }
+.padding-lr div{
+  padding-left:1rem;
+  padding-right:1rem;
 
+}
 .btnLogin {
       background-color: #cfc8c8 !important;
       border-radius: 2rem;
