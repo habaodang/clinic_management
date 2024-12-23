@@ -243,3 +243,10 @@ font-size: 3rem;
 .signin_name {
 
 }
+
+#mess_error {
+  font-size: 13px;
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}

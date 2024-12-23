@@ -6,6 +6,7 @@ import app.controller.department_process as depp
 import app.controller.notebook as nte
 import app.controller.department_process as depp
 import app.controller.history as his
+from app.models import LichKham
 
 main_bp = Blueprint('main', __name__)
 
@@ -132,9 +133,6 @@ def form_doctor():
 @main_bp.route('/lookupDoctor')
 def look_doctor():
     return render_template('doctor/lookupDoctor.html')
-@main_bp.route('/tbDoctor')
-def tbDoctor():
-    return render_template('home_doctor.html')
 
 @main_bp.route('/settingDoctor')
 def setting_doctor():
@@ -174,7 +172,9 @@ def form_medicine():
 
 @main_bp.route('/formConfirm')
 def form_confirm():
-    return render_template('doctor/formConfirm.html')
+    lich_id = request.args.get('lich_id')
+    lichkham = his.get_appointment_id(lich_id)
+    return render_template('doctor/formConfirm.html',lichkham=lichkham)
 
 @main_bp.route('/authenticate')
 def authenticate():

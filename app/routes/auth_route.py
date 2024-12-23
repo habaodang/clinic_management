@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request,session
+from flask import Blueprint, render_template, redirect, url_for, request,session,flash
 from flask_login import login_user, logout_user,current_user
 import app.controller.login as lg
 import app.controller.create_account as cra
@@ -9,6 +9,7 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login/data', methods=['GET', 'POST'])
 def user_signin():
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -19,11 +20,13 @@ def user_signin():
                 return redirect(url_for('main.doctor'))
             if user.role == mdl.UserRole.NURSE:
                 return redirect(url_for('main.nurse'))
-            if user.role == mdl.UserRole.USER:
+            if user.role == mdl.UserRole.PATIENT:
                 return redirect(url_for('main.index_login'))
 
-        return 'Login failed'
-    return render_template('login.html')
+        flash('Tài khoản hoặc mật khẩu không chính xác', 'error')
+
+        return redirect(url_for('main.login'))
+    return redirect(url_for('main.login'))
 
 @auth_bp.route('/logout')
 def logout():
@@ -39,7 +42,7 @@ def user_register():
         email = request.form.get('email')
         if password == re_en_password:
             account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.DOCTOR)
-            return redirect(url_for('main.index'))
+            return redirect(url_for('main.login'))
         else:
             return 'khong dk'
     return 'khong dk'

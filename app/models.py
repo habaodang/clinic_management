@@ -135,6 +135,8 @@ class PhieuKham(db.Model):
     __tablename__ = 'phieu_kham'
 
     id = Column(Integer, primary_key=True)
+    trieuchung=Column(String(300),nullable=False)
+    chandoan=Column(String(300),nullable=False)
 
     # Foreign keys
     patient_id = Column(String(10), ForeignKey('patient.id'))
