@@ -4,6 +4,7 @@ from sqlalchemy import func
 import hashlib
 from app.models import User,Account,Patient
 from app import db
+import re
 
 #tao ma user
 def create_id(role):
@@ -26,6 +27,24 @@ def add_infor_user(name,cccd,address,sex,birth,phone):
 def mapping_account_user(user_id):
     current_user.user_id=user_id
     db.session.commit()
+
+def is_format_password(password):
+    if len(password) < 8:
+        return False, "Mật khẩu phải có ít nhất 8 ký tự."
+
+    if not re.search(r'[A-Z]', password):
+        return False, "Mật khẩu phải chứa ít nhất một chữ cái viết hoa."
+
+    if not re.search(r'[a-z]', password):
+        return False, "Mật khẩu phải chứa ít nhất một chữ cái viết thường."
+
+    if not re.search(r'\d', password):
+        return False, "Mật khẩu phải chứa ít nhất một chữ số."
+
+    if not re.search(r'[!@#$%^&*()\-_=+]', password):
+        return False, "Mật khẩu phải chứa ít nhất một ký tự đặc biệt (!@#$%^&*()-_+=)."
+
+    return True, "Mật khẩu hợp lệ."
 
 def change_password(id,password):
     pass

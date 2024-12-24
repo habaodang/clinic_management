@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request,session
 from flask_login import login_user, logout_user,current_user
 import app.controller.login as lg
 import app.controller.create_account as cra
+import app.controller.infor_user as inf
 import app.models as mdl
 
 
@@ -39,12 +40,25 @@ def user_register():
         password = request.form.get('password')
         re_en_password = request.form.get('re_en_password')
         email = request.form.get('email')
+        # result,mess=inf.is_format_password(password)
+
         if password == re_en_password:
-            account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.PATIENT)
+            account = cra.create_account(name_account=user_name, password=password, email=email,
+                                         role=mdl.UserRole.PATIENT)
             return redirect(url_for('main.login'))
-        else:
-            return 'khong dk'
-    return 'khong dk'
+
+    #     if result:
+    #         if password == re_en_password:
+    #             account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.PATIENT)
+    #             return redirect(url_for('main.login'))
+    #         else:
+    #             flash('Mật khẩu không khớp', 'error')
+    #             return redirect(url_for('main.register'))
+    #     else:
+    #         flash(mess, 'error')
+    #         return redirect(url_for('main.register'))
+    # flash('Đăng ký thất bại không tìm thấy dữ liêu', 'error')
+    return redirect(url_for('main.register'))
 
 
 
