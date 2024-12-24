@@ -45,16 +45,16 @@
                 <form>
                     <div class="form-group">
                         <label for="employee-id">Căn Cước Công Dân </label>
-                        <input type="text" id="employee-id" name="employee-id" value="{{ user.cccd }}" readonly>
+                        <input type="text" id="employee-id" name="employee-id" value="{{ user.user.cccd }}" readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="full-name">Họ và Tên:  </label>
-                        <input type="text" id="full-name" name="full-name" value="{{ user.name  }}" readonly>
+                        <input type="text" id="full-name" name="full-name" value="{{ user.user.name }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="notes">Giới Tính: </label>
-                        <input type="text" id="sex_user" name="sex_user" value="{{ user.sex }}" readonly>
+                        <input type="text" id="sex_user" name="sex_user" value="{{ user.user.sex }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -63,11 +63,11 @@
 
                     <div class="form-group">
                         <label for="phone">Số Điện Thoại: </label>
-                        <input type="text" id="phone" name="phone" value="{{ user.phone }}" readonly>
+                        <input type="text" id="phone" name="phone" value="{{ user.user.phone }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="phone">Quê Quán </label>
-                        <input type="text" id="address_user" name="address_user" value ="{{ user.address }}" readonly>
+                        <input type="text" id="address_user" name="address_user" value ="{{ user.user.address }}" readonly>
                     </div>
                 </form>
             </div>
@@ -78,6 +78,15 @@
                     <div>
                         <strong>Thông Báo Xác Thực</strong>
                         <p class="mb-0">Vui Lòng Xác Thực Thông Tin</p>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            {% for category, message in messages %}
+                                <div id="mess_erro">{{ message }}</div>
+
+                            {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+
                     </div>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

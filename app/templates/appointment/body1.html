@@ -14,8 +14,10 @@
                         <label for="doctor" class="form-label">Chọn Bác Sĩ</label>
                         <select id="doctor" class="form-select" name="doctor">
                             <option value="">Chọn Bác Sĩ</option>
-                            <option value="bs1">Bác Sĩ 1</option>
-                            <option value="bs2">Bác Sĩ 2</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                            {% endfor %}
+
                         </select>
                     </div>
                     <div class="col-md-6">

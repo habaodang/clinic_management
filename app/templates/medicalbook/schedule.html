@@ -37,43 +37,42 @@
         </div>
         {% endblock %}
     {% block middle %}
+            {% for lichkham in list_lichkham %}
        <div class="appointment-wrapper">
         <div class="header-title">Lịch Hẹn Khám Bệnh</div>
 
         <div class="appointment-card">
-            {% for lichkham in list_lichkham %}
             <button class="close-btn">&times;</button>
             <div class="appointment-title">Lịch khám {{name_department}}</div>
             <p>Lịch hẹn vào {{ lichkham.time }}  ngày {{ lichkham.date }}</p>
             <button class="details-btn" onclick="showDetails('Lịch khám {{name_department}}', '{{ lichkham.time }}  ngày {{ lichkham.date }}', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
-            {% endfor %}
+
         </div>
     </div>
 
     <div class="modal" id="detailsModal">
         <div class="modal-content">
-            <h3>Lịch Hẹn Khám</h3>
+            <h3>Lịch Hẹn Khám {{ lichkham.department.name}}</h3>
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <form class="modal-form">
-                <label for="nurseName">Tên y tá</label>
-                <input type="text" id="nurseName" readonly>
                 <label for="appointmentDate">Ngày giờ hẹn</label>
-                <input type="text" id="appointmentDate" readonly>
+                <input type="text" id="appointmentDate"   readonly value="">
                  <label for="nurseName">Ngày đặt lịch</label>
-                <input type="text" id="created_date" readonly>
+                <input type="text" id="created_date"  value="{{ lichkham.created_date }}" readonly>
                  <label for="nurseName">Cơ sở</label>
-                <input type="text" id="co_so" readonly>
+                <input type="text" id="co_so" value="{{ lichkham.location}}" readonly>
                 <label for="nurseName">Gói</label>
-                <input type="text" id="goi" readonly>
+                <input type="text" id="goi" value="{{ lichkham.package.value }}" readonly>
                 <label for="nurseName">Bác sĩ</label>
-                <input type="text" id="bacsi" readonly>
+                <input type="text" id="bacsi" value="{{ lichkham.doctor.name}}" readonly>
                 <label for="nurseName">Trạng thái</label>
-                <input type="text" id="trangthai" readonly>
+                <input type="text" id="trangthai" value="{{ lichkham.status}}" readonly>
                 <label for="appointmentReason">Ghi chú</label>
                 <textarea id="appointmentReason" rows="3" readonly></textarea>
             </form>
         </div>
     </div>
+ {% endfor %}
         {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/medicalbook/schedule.js') }}"></script>
