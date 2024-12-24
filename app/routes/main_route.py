@@ -129,13 +129,13 @@ def package_login():
 def specialty_login():
     return render_template('specialty/specialtyLogin.html')
 
-@main_bp.route('/khoa')
-def department_khoa():
-    return render_template('department/khoa.html')
+@main_bp.route('/CDCH')
+def department_CDCH():
+    return render_template('department/CDCH.html')
 
-@main_bp.route('/khoaLogin')
-def department_login():
-    return render_template('department/khoaLogin.html')
+@main_bp.route('/CDCHLogin')
+def department_CDCHlogin():
+    return render_template('department/CDCHLogin.html')
 
 @main_bp.route('/doctor')
 def doctor():
