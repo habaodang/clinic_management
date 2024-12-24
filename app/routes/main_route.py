@@ -255,7 +255,7 @@ def home_admin():
 
 @main_bp.route('/addAdmin')
 def add_admin():
-    return render_template('admin/addAdmin.html')
+    return render_template('admin/addAdmin.html',roles=mdl.UserRole)
 
 @main_bp.route('/regulations')
 def regulation_admin():

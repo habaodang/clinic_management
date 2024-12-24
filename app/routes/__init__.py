@@ -4,6 +4,7 @@ from app.routes.notebook import note_book
 from app.routes.booking_route import booking
 from app.routes.nurse_route import nurse
 from app.routes.doctor_route import doctor
+from app.routes.admin_route import admin
 
 def register_routes(app):
     app.register_blueprint(auth_bp, url_prefix='/auth')
@@ -12,3 +13,4 @@ def register_routes(app):
     app.register_blueprint(booking, url_prefix='/booking')
     app.register_blueprint(nurse, url_prefix='/nurse')
     app.register_blueprint(doctor, url_prefix='/doctor')
+    app.register_blueprint(admin, url_prefix='/admin')

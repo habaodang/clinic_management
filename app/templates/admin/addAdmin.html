@@ -49,11 +49,11 @@
 {% block middle %}
 <div class="middle">
            <h2 class="mb-4">Thêm Tài Khoản</h2>
-        <form method="POST" action="/addAdmin" class="needs-validation" novalidate>
+        <form method="POST" action="{{ url_for('admin.add_user_ad') }}" class="needs-validation" novalidate>
             <!-- Tên tài khoản -->
             <div class="mb-3">
                 <label for="name_account" class="form-label margin-rg">Tài khoản:</label>
-                <input type="text" id="name_account" name="name_account" class="form-control" maxlength="50" required>
+                <input type="text" id="name_account" name="name_account" class="form-control" required>
                 <div class="invalid-feedback">Vui lòng nhập tên tài khoản.</div>
             </div>
             <!-- Mật khẩu -->
@@ -77,13 +77,21 @@
             <div class="mb-3 margin-rg">
                 <label for="role" class="form-label margin-rg-1 ">Vai trò:</label>
                 <select id="role" name="role" class="form-select" required>
-                    <option value="doctor">Doctor</option>
-                    <option value="cashier">Cashier</option>
-                    <option value="nurse">Nurse</option>
+                    {% for role in roles %}
+                    <option value="{{ role.name }}">{{ role.name }}</option>
+                    {% endfor %}
                 </select>
                 <div class="invalid-feedback">Vui lòng chọn vai trò.</div>
             </div>
             <!-- Nút gửi -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            {% for category, message in messages %}
+                                <div id="mess_erro">{{ message }}</div>
+
+                            {% endfor %}
+                          {% endif %}
+                        {% endwith %}
             <button type="submit" class="btn btn-primary w-100">Thêm Tài Khoản</button>
         </form>
     </div>
