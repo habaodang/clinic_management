@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, Enum, Time, DateTime, Float
+from sqlalchemy import Column, Integer, String, Date, Boolean, ForeignKey, Enum, Time, DateTime, Float, Text
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from app import db
@@ -40,7 +40,7 @@ class Account(db.Model,UserMixin):
 
     id = Column(Integer, primary_key=True,autoincrement=True)
     name_account = Column(String(50), nullable=False,unique=True)
-    password = Column(String(50), nullable=False)
+    password = Column(String(200), nullable=False)
     email = Column(db.String(150),nullable=False,unique=True)
     role = Column(Enum(UserRole), nullable=False)
     Status = Column(Boolean, nullable=False,default=False)
@@ -108,7 +108,7 @@ class LichKham(db.Model):
 
     id = Column(Integer, primary_key=True,autoincrement=True)
     time = Column(Time, nullable=False)
-    status = Column(Boolean,default=False)
+    status = Column(String(150),default=False)
     created_date = Column(DateTime, default=datetime.utcnow)
     date = Column(Date, nullable=False)
     location = Column(String(150), nullable=False)

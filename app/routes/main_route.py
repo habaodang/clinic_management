@@ -1,15 +1,18 @@
 from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
+
 from flask import Blueprint, render_template,redirect,request,url_for
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
 import hmac
 import urllib.parse
+
 import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
+import app.controller.department_process as depp
 import app.controller.history as his
 from app.models import LichKham
 
@@ -32,6 +35,10 @@ def medical_book():
 def register():
     return render_template('register.html')
 
+@main_bp.route('/verify')
+def verify():
+    return render_template('verify.html')
+
 @main_bp.route('/login')
 def login():
     return render_template('login.html')
@@ -47,9 +54,13 @@ def logout_process():
     return redirect(url_for('main.index'))
 
 @main_bp.route('/schedule')
+@login_required
 def medical_schedule():
-    list_lichkham = nte.get_examination_history()
-    return render_template('medicalbook/schedule.html',list_lichkham=list_lichkham,name_department='sdfsf')
+            list_lichkham = nte.get_examination_history()
+            return render_template(
+                'medicalbook/schedule.html',
+                list_lichkham=list_lichkham)
+
 
 @main_bp.route('/bill', methods=["GET","POST"])
 def medical_bill():
@@ -67,10 +78,6 @@ def medical_history():
 @main_bp.route('/setting')
 def setting():
     return render_template('setting.html')
-
-@main_bp.route('/info')
-def setting_info():
-    return render_template('setting/info.html')
 
 @main_bp.route('/theme')
 def setting_theme():
@@ -109,7 +116,7 @@ def medical_package():
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty.html')
+    return render_template('specialty/specialty.html')
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -159,9 +166,6 @@ def schedule_doctor():
 def theme_doctor():
     return render_template('doctor/themeDoctor.html')
 
-@main_bp.route('/package')
-def package_index():
-    return render_template('detailPackage/package.html')
 @main_bp.route('/packageNormal')
 def package_normal():
     return render_template('detailPackage/packageNormal.html')
@@ -248,6 +252,11 @@ def view_invoice():
 @main_bp.route('/admin')
 def home_admin():
     return render_template('home_admin.html')
+
+@main_bp.route('/addAdmin')
+def add_admin():
+    return render_template('admin/addAdmin.html')
+
 @main_bp.route('/regulations')
 def regulation_admin():
     return render_template('admin/regulations.html')
@@ -277,4 +286,6 @@ def payment_return():
         return render_template("bill_success.html", is_success=True)
     else:
         return render_template("bill_success.html", is_success=False)
+
+
 

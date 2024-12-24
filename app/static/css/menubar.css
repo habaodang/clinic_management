@@ -1,0 +1,67 @@
+.mt-4 a{
+    color:white;
+}
+.floating-menu-button {
+    display: none;
+    position: fixed;
+    bottom: 20rem;
+    right: 20px;
+    z-index: 1000;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.floating-menu-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .floating-menu-button {
+        display: flex;
+    }
+     #playVideoBtn {
+        margin-top: 10px;
+    }
+    .hero .mt-4 {
+         margin-top: 20px;
+    }
+    .hero .col-md-6 img {
+        margin-top: 20px;
+    }
+}
+
+.floating-menu {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    border-radius: 10px 0 0 10px;
+    background-color: white;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 300px;
+    width: auto;
+    min-width: 200px;
+}
+.floating-menu h4{
+    color:  #0056b3;
+}
+.list-unstyled>li>a{
+    color: black;
+}
+.floating-menu.active {
+    display: block;
+}
+
+

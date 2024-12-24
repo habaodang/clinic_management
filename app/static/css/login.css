@@ -70,10 +70,11 @@ font-size: 3rem;
   margin-left: 17rem
 }
 
-.heading {
+.heading h1 {
   font-size: 4.2rem;
   font-weight: 700;
   color: var(--text-dark);
+
 }
 
 .paragraph {

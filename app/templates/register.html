@@ -91,19 +91,59 @@
                                                         class="fa-sharp fa-solid fa-rotate-left"></i>Quay lại đăng nhập</a>
                                             </p>
                                         </div>
+                                </div>
+                                <div class="input-form-container">
+                                    <label for="password">Mật khẩu</label>
+                                    <div class="input-group">
+                                        <input type="password" name="password" id="passwordField"
+                                               title="Vui lòng không viết dưới 6 ký tự và phải sử dụng ký tự số"
+                                               required/>
+                                        <i class="fa-regular fa-eye" onclick="changeTypePassword()"></i>
+                                    </div>
+                                </div>
+                                <div class="input-form-container">
+                                    <label for="password">Nhập lại mật khẩu</label>
+                                    <div class="input-group">
+                                        <input type="password" name="re_en_password" id="passwordFields"
+                                               title="Vui lòng nhập lại mật khẩu" required/>
+                                        <i class="fa-solid fa-lock" onclick="cofirmPassword()"></i>
+                                    </div>
+                                </div>
+                                <div id="error-message" class="error-message"></div>
+                                <div class="input-form-container d-flex">
+                                    <div>
+                                        <input type="checkbox" name="remember" id="remember"/>
+                                        <label for="remember">Lưu mật khẩu</label>
+                                    </div>
+                                    <a href="#!" class="link">Quên mật khẩu?</a>
+                                </div>
+                                <div class="input-form-container">
+                                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                                </div>
+                                <div class="input-form-container">
+                                    <a href="#" class="btn btn-signup"><img
+                                            src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1733596412/google_ge0g0e.svg"
+                                            alt="Google"><span>Đăng nhập với Google</span></a>
+                                </div>
+                                <div class="input-form-container">
+                                    <p class="paragraph">
+                                        <a href="/login"><i
+                                                class="fa-sharp fa-solid fa-rotate-left"></i>Quay lại đăng nhập</a>
+                                    </p>
+                                </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    <div class="signin-image animate__animated animate__zoomInRight">
+    <div class="signin-image ">
         <div class="img-container">
             <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1733857575/image_33_ugmbkv.png"
                  alt="Main Image"/>
         </div>
     </div>
+
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

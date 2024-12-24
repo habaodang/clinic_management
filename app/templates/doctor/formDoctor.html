@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
  {% endblock %}
  {% block left %}
         <div class="left">
@@ -53,18 +54,13 @@
         <!-- Card 1 -->
          {% for lichkham in list_lichkham %}
     <!-- Card 1 -->
-    <article class="card">
-        <span class="card-badge pink">1</span>
+    <article class="card active" data-status = '{{ lichkham.status }}'>
+        <span class="card-badge teal">1</span>
         <span class="new-badge">NEW</span>
         <h3>{{ lichkham.patient.name }}</h3>
         <p><strong>Mã Bệnh Nhân:</strong> {{ lichkham.patient.id }}</p>
         <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
         <p><strong>Tình Trạng Phiếu:</strong>
-            {% if lichkham.status %}
-                Đã xác nhận
-            {% else %}
-                Chưa xác Nhận
-            {% endif %}
         </p>
         <div class="button-group">
             <button class="confirm-btn danger">Hủy</button>
@@ -74,8 +70,6 @@
         </div>
     </article>
 {% endfor %}
-
-        <!-- Thêm các thẻ article tương tự -->
     </section>
 {% endblock %}
 {% block right %}
