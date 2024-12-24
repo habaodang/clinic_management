@@ -35,6 +35,10 @@
         <div class="form-value">26-12-2024</div>
     </div>
     <div class="form-group">
+        <div class="form-label">Gói khám</div>
+        <div class="form-value">Cơ bản</div>
+    </div>
+    <div class="form-group">
         <div class="form-label">Giờ Khám</div>
         <div class="form-value">8:00</div>
     </div>
@@ -47,10 +51,7 @@
         <div class="form-value">Tai-mũi-họng</div>
     </div>
 
-    <div class="form-group">
-        <div class="form-label">Tình trạng</div>
-        <div class="form-value">Có hạch ở cổ</div>
-    </div>
+
     <div class="form-group">
         <div class="form-label d-flex align-items-center">
             <div>Bác sĩ khám (hoặc chỉ định)</div>
@@ -62,6 +63,10 @@
         <div class="form-value " contenteditable="true" id="editable-date"></div>
 
     </div>
+    <div class="form-group">
+        <div class="form-label">Tình trạng</div>
+        <div class="form-value">Có hạch ở cổ</div>
+    </div>
     <!-- Khối tìm kiếm bác sĩ (ẩn khi chưa được kích hoạt) -->
     <div class="search-container d-none" id="search-container">
         <div class="form-group position-relative mb-4 ">
@@ -70,15 +75,12 @@
             <div class="search-results d-none" id="search-results"></div>
         </div>
     </div>
-
+     <div class="form-containers">
+        <button class="confirm-btn" onclick="goBack()">Xác Nhận</button>
+    </div>
 
     {% endblock %}
     {% block right %}
-    <div class="form-containers">
-        <button class="confirm-btn danger">Cập nhật</button>
-        <button class="confirm-btn">Xác Nhận</button>
-    </div>
-
     {% endblock %}
 
     {% block javascript %}

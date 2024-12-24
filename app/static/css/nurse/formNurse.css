@@ -1,11 +1,17 @@
+/* Cập nhật bố cục khi không có phần right */
 main .container {
-    display: grid;
-    grid-template-columns: 15vw auto 20vw !important;
-    position: absolute;
-
+    grid-template-columns: 18vw auto; /* Chỉ để lại phần left và middle */
 }
-.middle{
-    margin: 0 2.5rem;
+
+/* Ẩn phần "right" */
+main .container .right {
+    display: none;
+}
+
+/* Tăng kích thước phần middle để chiếm luôn không gian của phần right */
+main .container .middle {
+    grid-column: span 2; /* Chiếm cả 2 cột lưới */
+    width: 100%; /* Tăng chiều rộng để phù hợp */
 }
 .form_doctor {
    width:75rem !important;

@@ -60,3 +60,6 @@ document.addEventListener('click', (event) => {
         searchContainer.classList.add('d-none'); // Ẩn khối tìm kiếm khi click ngoài
     }
 });
+function goBack() {
+    window.history.back();
+}
