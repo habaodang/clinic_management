@@ -78,10 +78,6 @@ def medical_history():
 def setting():
     return render_template('setting.html')
 
-@main_bp.route('/info')
-def setting_info():
-    return render_template('setting/info.html')
-
 @main_bp.route('/theme')
 def setting_theme():
     return render_template('setting/theme.html')
@@ -119,7 +115,7 @@ def medical_package():
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty.html')
+    return render_template('specialty/specialty.html')
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -249,6 +245,11 @@ def view_invoice():
 @main_bp.route('/admin')
 def home_admin():
     return render_template('home_admin.html')
+
+@main_bp.route('/addAdmin')
+def add_admin():
+    return render_template('admin/addAdmin.html')
+
 @main_bp.route('/regulations')
 def regulation_admin():
     return render_template('admin/regulations.html')
