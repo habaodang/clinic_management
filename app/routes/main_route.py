@@ -28,7 +28,7 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user,name_user=current_user.name_account)
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user,name_user=current_user.name_account)
 
 @main_bp.route('/register')
 def register():
