@@ -27,12 +27,15 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-
     return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
 
 @main_bp.route('/register')
 def register():
     return render_template('register.html')
+
+@main_bp.route('/verify')
+def verify():
+    return render_template('verify.html')
 
 @main_bp.route('/login')
 def login():
@@ -49,9 +52,14 @@ def logout_process():
     return redirect(url_for('main.index'))
 
 @main_bp.route('/schedule')
+@login_required
 def medical_schedule():
-    list_lichkham = nte.get_examination_history()
-    return render_template('medicalbook/schedule.html',list_lichkham=list_lichkham,name_department='sdfsf')
+            list_lichkham = nte.get_examination_history()
+            return render_template(
+                'medicalbook/schedule.html',
+                list_lichkham=list_lichkham,
+                name_department='Khoa Khám Bệnh')
+
 
 @main_bp.route('/bill', methods=["GET","POST"])
 def medical_bill():
@@ -270,4 +278,6 @@ def payment_return():
         return render_template("bill_success.html", is_success=True)
     else:
         return render_template("bill_success.html", is_success=False)
+
+
 

@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/nurse/formNurse.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_nurse.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
 {% endblock %}
 {% block left %}
 <div class="left">
-
     <div class="left col-md-3">
         <div class="sidebar" id="sidebar">
             <a class="menu-item " href="/nurse">
@@ -39,35 +39,28 @@
             </a>
         </div>
     </div>
-
 </div>
 {% endblock %}
 {% block middle %}
 <!-- Tabs Section -->
 <section class="tabs">
-    <button class="filter-btn active">All <span>50</span></button>
-    <button class="filter-btn">Started <span>20</span></button>
-    <button class="filter-btn">Finished <span>17</span></button>
-    <button id="exportButton" class="btn export-btn"><i class="fa-solid fa-file-export"></i> Xuất danh sách phiếu khám
-    </button>
+    <button class="filter-btn active" data-filter= "all" >All <span>50</span></button>
+    <button class="filter-btn" data-filter= "started" >Started <span>20</span></button>
+    <button class="filter-btn" data-filter= "finished" >Finished <span>17</span></button>
+    <button id="exportButton" class="btn export-btn"><i class="fa-solid fa-file-export"></i> Xuất danh sách phiếu khám</button>
 </section>
 
 <!-- Cards Container -->
 <section class="card-container">
     {% for lichkham in list_lichkham %}
     <!-- Card 1 -->
-    <article class="card">
-        <span class="card-badge pink">1</span>
+    <article class="card active" data-status = '{{ lichkham.status }}'>
+        <span class="card-badge teal">1</span>
         <span class="new-badge">NEW</span>
         <h3>{{ lichkham.patient.name }}</h3>
         <p><strong>Mã Bệnh Nhân:</strong> {{ lichkham.patient.id }}</p>
         <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
         <p><strong>Tình Trạng Phiếu:</strong>
-            {% if lichkham.status %}
-                Đã xác nhận
-            {% else %}
-                Chưa xác Nhận
-            {% endif %}
         </p>
         <div class="button-group">
             <button class="confirm-btn danger">Hủy</button>

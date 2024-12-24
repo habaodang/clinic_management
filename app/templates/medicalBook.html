@@ -35,7 +35,6 @@
                     <h3>Thoát</h3>
                 </a>
             </div>
-            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
         </div>
         {% endblock %}
         <div class="middle">
@@ -45,30 +44,33 @@
                 <h2>Thông Tin Người Dùng Đã Xác Thực</h2>
                 <form>
                     <div class="form-group">
-                        <label for="employee-id">Căn Cước Công Dân {{ user.cccd }}</label>
-                        <input type="text" id="employee-id" name="employee-id" value="QTV012" readonly>
+                        <label for="employee-id">Căn Cước Công Dân</label>
+                        <input type="text" id="employee-id" name="employee-id" value="{{ user.cccd }}" readonly>
                     </div>
 
                     <div class="form-group">
-                        <label for="full-name">Họ và Tên: {{ user.name }} </label>
-                        <input type="text" id="full-name" name="full-name" value="Hà Bảo Đăng" readonly>
+                        <label for="full-name">Họ và Tên</label>
+                        <input type="text" id="full-name" name="full-name" value="{{ user.name }}" readonly>
                     </div>
+
                     <div class="form-group">
-                        <label for="notes">Giới Tính: {{ user.sex }}</label>
-                        <input type="text" id="sex_user" name="sex_user" value="Nam" readonly>
+                        <label for="sex_user">Giới Tính</label>
+                        <input type="text" id="sex_user" name="sex_user" value="{{ user.sex }}" readonly>
                     </div>
+
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="habaodang@gmail.com" readonly>
+                        <input type="email" id="email" name="email" value="2251052021duc@ou.edu.vn" >
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Số Điện Thoại: {{ user.phone }}</label>
-                        <input type="text" id="phone" name="phone" value="+84 0399646729">
+                        <label for="phone">Số Điện Thoại</label>
+                        <input type="text" id="phone" name="phone" value="{{ user.phone }}" readonly>
                     </div>
+
                     <div class="form-group">
-                        <label for="phone">Quê Quán {{ user.address }}</label>
-                        <input type="text" id="address_user" name="address_user" value ="Quảng Trị" readonly>
+                        <label for="address_user">Quê Quán</label>
+                        <input type="text" id="address_user" name="address_user" value="{{ user.address }}" readonly>
                     </div>
 
                     <div class="button-container">
@@ -77,6 +79,7 @@
                     </div>
                 </form>
             </div>
+
             {% else %}
             <div class="alert alert-danger d-flex align-items-center justify-content-between" role="alert">
                 <div class="d-flex align-items-center">
