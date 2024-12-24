@@ -27,7 +27,7 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user,name_user=current_user.name_account)
 
 @main_bp.route('/register')
 def register():
@@ -58,7 +58,7 @@ def medical_schedule():
             return render_template(
                 'medicalbook/schedule.html',
                 list_lichkham=list_lichkham,
-                name_department='Khoa Khám Bệnh')
+                name_department='Khoa Khám Bệnh',name_user=current_user.name_account)
 
 
 @main_bp.route('/bill', methods=["GET","POST"])
@@ -68,19 +68,19 @@ def medical_bill():
         order_id = str(current_user.id)+ datetime.now().__str__()
         vnpay_url = vnpay.generate_payment_url(order_id,bill)
         return redirect(vnpay_url)
-    return render_template('medicalbook/bill.html')
+    return render_template('medicalbook/bill.html',name_user=current_user.name_account)
 
 @main_bp.route('/history')
 def medical_history():
-    return render_template('medicalbook/history.html')
+    return render_template('medicalbook/history.html',name_user=current_user.name_account)
 
 @main_bp.route('/setting')
 def setting():
-    return render_template('setting.html')
+    return render_template('setting.html',name_user=current_user.name_account)
 
 @main_bp.route('/theme')
 def setting_theme():
-    return render_template('setting/theme.html')
+    return render_template('setting/theme.html',name_user=current_user.name_account)
 
 @main_bp.route('/passwd')
 def setting_passwd():
@@ -94,7 +94,7 @@ def appointment():
 @main_bp.route('/appointmentLogin')
 @login_required
 def appointment_login():
-    return render_template('appointmentLogin.html',packages=mdl.PackageMedical)
+    return render_template('appointmentLogin.html',packages=mdl.PackageMedical,name_user=current_user.name_account)
 
 
 @main_bp.route('/appointment_body1')
@@ -107,15 +107,15 @@ def appointment1():
     #lay cac khoa
     list_khoa=depp.get_department()
 
-    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa)
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa,name_user=current_user.name_account)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
-    return render_template('medicalPackage/medicalPackage.html')
+    return render_template('medicalPackage/medicalPackage.html',name_user=current_user.name_account)
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty/specialty.html')
+    return render_template('specialty/specialty.html',name_user=current_user.name_account)
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -123,7 +123,7 @@ def package_login():
 
 @main_bp.route('/specialtyLogin')
 def specialty_login():
-    return render_template('specialty/specialtyLogin.html')
+    return render_template('specialty/specialtyLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/khoa')
 def department_khoa():
@@ -167,19 +167,19 @@ def theme_doctor():
 
 @main_bp.route('/packageNormal')
 def package_normal():
-    return render_template('detailPackage/packageNormal.html')
+    return render_template('detailPackage/packageNormal.html',name_user=current_user.name_account)
 
 @main_bp.route('/packageVIP')
 def package_vip():
-    return render_template('detailPackage/packageVIP.html')
+    return render_template('detailPackage/packageVIP.html',name_user=current_user.name_account)
 
 @main_bp.route('/packageNormalLG')
 def package_normal_lg():
-    return render_template('detailPackage/pkNormalLogin.html')
+    return render_template('detailPackage/pkNormalLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/packageVIPLG')
 def package_vip_lg():
-    return render_template('detailPackage/pkVIPLogin.html')
+    return render_template('detailPackage/pkVIPLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/formMedicine')
 def form_medicine():

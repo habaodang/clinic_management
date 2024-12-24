@@ -1,9 +1,9 @@
 {% extends 'layout/base.html' %}
-{% block header %}
-{% include 'layout/headerLogin.html' %}
-{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/menubar.css') }}"/>
+{% endblock %}
+{% block header %}
+{% include 'layout/headerLogin.html' %}
 {% endblock %}
 {% block content %}
 <!-- Nút bấm nổi -->
