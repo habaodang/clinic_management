@@ -1,18 +1,15 @@
 from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
-
 from flask import Blueprint, render_template,redirect,request,url_for
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
 import hmac
 import urllib.parse
-
 import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
-import app.controller.department_process as depp
 import app.controller.history as his
 from app.models import LichKham
 
@@ -29,7 +26,7 @@ def index():
 @login_required
 def medical_book():
 
-    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user)
 
 @main_bp.route('/register')
 def register():
@@ -196,8 +193,6 @@ def authenticate():
     return render_template('medicalbook/authenticate.html')
 
 
-
-
 # nurse
 @main_bp.route('/nurse')
 def nurse():
@@ -208,7 +203,8 @@ def schedule_nurse():
 @main_bp.route('/formNurse')
 def form_nurse():
     list_lichkham = his.get_appointmant_all()
-    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham)
+    count_lichkham_all=his.count_apointment_all()
+    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham,count_lichkham_all=count_lichkham_all)
 
 @main_bp.route('/lookupNurse')
 def look_nurse():

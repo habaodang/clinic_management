@@ -40,7 +40,7 @@ def user_register():
         re_en_password = request.form.get('re_en_password')
         email = request.form.get('email')
         if password == re_en_password:
-            account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.DOCTOR)
+            account = cra.create_account(name_account=user_name, password=password, email=email, role=mdl.UserRole.PATIENT)
             return redirect(url_for('main.login'))
         else:
             return 'khong dk'

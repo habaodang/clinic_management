@@ -37,12 +37,14 @@
     </div>
 {% endblock %}
 {% block right %}
- <div class="form-containers">
+<form action="{{ url_for ('doctor.sick_predict') }}" method="post">
+    <div class="form-containers">
         <div class="header">Phiếu Khám Bệnh</div>
         <div class="form-label">Triệu Chứng:</div>
-        <input type="text" class="doctor-input">
+        <input type="text" class="doctor-input" name="symptom">
         <div class="form-label">Chẩn Đoán Loại Bệnh:</div>
-        <input type="text" class="doctor-input">
-         <a href ="/formMedicine"><button class="confirm-btn">Xác Nhận</button></a>
+        <input type="text" class="doctor-input" name="predict">
+        <button type="submit" class="confirm-btn">Xác Nhận</button>
     </div>
+</form>
 {% endblock %}

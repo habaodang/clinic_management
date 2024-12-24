@@ -33,7 +33,7 @@ class User(db.Model):
 
 
     # Relationships
-    account = relationship('Account', uselist=False, back_populates='user',lazy=False)
+    account = relationship('Account', uselist=False, back_populates='user',lazy=True)
 
 class Account(db.Model,UserMixin):
     __tablename__ = 'account'
@@ -50,7 +50,7 @@ class Account(db.Model,UserMixin):
     user_id = db.Column(String(10), ForeignKey('user.id'))
 
     # Relationships
-    user = db.relationship('User', back_populates='account',lazy=False)
+    user = db.relationship('User', back_populates='account',lazy=True)
 
 class Nurse(User):
     __tablename__ = 'nurse'
@@ -58,8 +58,8 @@ class Nurse(User):
     id = Column(String(10), db.ForeignKey('user.id'), primary_key=True)
     id_department=Column(Integer, db.ForeignKey('department.id'))
     # Relationships
-    department = relationship('Department', back_populates='nurse',lazy=False)
-    lich_kham = relationship('LichKham', back_populates='nurse', lazy=False)
+    department = relationship('Department', back_populates='nurse',lazy=True)
+    lich_kham = relationship('LichKham', back_populates='nurse', lazy=True)
 
 
 class Department(db.Model):
@@ -69,9 +69,9 @@ class Department(db.Model):
     name = Column(String(50), nullable=False)
 
     # Relationships
-    nurse = relationship('Nurse', back_populates='department',lazy=False)
-    doctor = db.relationship('Doctor', back_populates='department', lazy=False)
-    lich_kham = relationship('LichKham', back_populates='department', lazy=False)
+    nurse = relationship('Nurse', back_populates='department',lazy=True)
+    doctor = db.relationship('Doctor', back_populates='department', lazy=True)
+    lich_kham = relationship('LichKham', back_populates='department', lazy=True)
 
 
 class Doctor(User):
@@ -84,8 +84,8 @@ class Doctor(User):
     department = db.relationship('Department', back_populates='doctor', lazy=False)
 
     # Relationships
-    phieu_kham = relationship('PhieuKham', back_populates='doctor',lazy=False)
-    lich_kham = relationship('LichKham', back_populates='doctor', lazy=False)
+    phieu_kham = relationship('PhieuKham', back_populates='doctor',lazy=True)
+    lich_kham = relationship('LichKham', back_populates='doctor', lazy=True)
 
 
 
@@ -100,8 +100,8 @@ class Patient(User):
     id = Column(String(10), ForeignKey('user.id'), primary_key=True)
 
     # Relationships
-    lich_kham = relationship('LichKham', back_populates='patient',lazy=False)
-    phieu_kham = relationship('PhieuKham', back_populates='patient',lazy=False)
+    lich_kham = relationship('LichKham', back_populates='patient',lazy=True)
+    phieu_kham = relationship('PhieuKham', back_populates='patient',lazy=True)
 
 class LichKham(db.Model):
     __tablename__ = 'lich_kham'
@@ -120,15 +120,15 @@ class LichKham(db.Model):
 
     # Tham chiếu đến bảng y tá
     nurse_id = Column(String(10), ForeignKey('nurse.id'))
-    nurse = relationship("Nurse", back_populates="lich_kham",lazy=False)
+    nurse = relationship("Nurse", back_populates="lich_kham",lazy=True)
 
     # Tham chiếu đến bảng bệnh nhân
     patient_id = Column(String(10), ForeignKey('patient.id'),nullable=False)
-    patient = relationship("Patient", back_populates="lich_kham",lazy=False)
+    patient = relationship("Patient", back_populates="lich_kham",lazy=True)
 
     # Tham chiếu đến bảng khoa
     department_id = Column(Integer, ForeignKey('department.id'))
-    department = relationship("Department", back_populates="lich_kham",lazy=False)
+    department = relationship("Department", back_populates="lich_kham",lazy=True)
 
 
 class PhieuKham(db.Model):
@@ -146,7 +146,7 @@ class PhieuKham(db.Model):
     patient = relationship('Patient', back_populates='phieu_kham')
     doctor = relationship('Doctor', back_populates='phieu_kham')
     hoa_don = relationship('HoaDon', back_populates='phieu_kham')
-    chi_tiet_don_thuoc = relationship('ChiTietDonThuoc', back_populates='phieu_kham',lazy=False)
+    chi_tiet_don_thuoc = relationship('ChiTietDonThuoc', back_populates='phieu_kham',lazy=True)
 
 class HoaDon(db.Model):
     __tablename__ = 'hoa_don'
@@ -158,7 +158,7 @@ class HoaDon(db.Model):
     phieu_kham_id = Column(Integer, ForeignKey('phieu_kham.id'))
 
     # Relationships
-    phieu_kham = relationship('PhieuKham', back_populates='hoa_don',lazy=False)
+    phieu_kham = relationship('PhieuKham', back_populates='hoa_don',lazy=True)
 
 class ChiTietDonThuoc(db.Model):
     __tablename__ = 'chi_tiet_don_thuoc'
@@ -172,20 +172,28 @@ class ChiTietDonThuoc(db.Model):
     thuoc_id = Column(Integer, ForeignKey('thuoc.id'))
 
     # Relationships
-    phieu_kham = relationship('PhieuKham', back_populates='chi_tiet_don_thuoc',lazy=False)
-    thuoc = relationship('Thuoc', back_populates='chi_tiet_don_thuoc',lazy=False)
+    phieu_kham = relationship('PhieuKham', back_populates='chi_tiet_don_thuoc',lazy=True)
+    thuoc = relationship('Thuoc', back_populates='chi_tiet_don_thuoc',lazy=True)
+
+class DanhMucThuoc(db.Model):
+    __tablename__ = 'danhmucthuoc'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    name = Column(String(150), nullable=False)
+
+    thuoc = relationship('Thuoc', back_populates='danh_muc_thuoc', lazy=True)
 
 class Thuoc(db.Model):
     __tablename__ = 'thuoc'
 
-    stt = Column(Integer, primary_key=True, autoincrement=True)  # STT tự tăng
-    id = Column(Integer, nullable=False, unique=True)
-    code = Column(String(10), nullable=False, unique=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(150), nullable=False)
     unit = Column(String(50), nullable=False)
     quantity = Column(Integer, nullable=False)
     effect = Column(String(200), nullable=False)
     usage = Column(String(200), nullable=False)
-
+    danhmuc_id=Column(Integer, ForeignKey('danhmucthuoc.id'))
     # Relationships
-    chi_tiet_don_thuoc = relationship('ChiTietDonThuoc', back_populates='thuoc',lazy=False)
+    chi_tiet_don_thuoc = relationship('ChiTietDonThuoc', back_populates='thuoc',lazy=True)
+    danh_muc_thuoc = relationship('DanhMucThuoc', back_populates='thuoc', lazy=True)
+

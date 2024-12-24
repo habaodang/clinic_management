@@ -13,7 +13,12 @@ def get_appointmant_all():
 def get_appointment_id(id):
     return LichKham.query.filter(LichKham.id.__eq__(id)).first()
 
+# y ta xac nhan don
 def confirm_appointment(id):
     lichkham=LichKham.query.filter(LichKham.id.__eq__(id)).first()
     lichkham.status=True
     db.session.commit()
+
+# so luong gon dat lich kham
+def count_apointment_all():
+    return db.session.query(func.count(LichKham.id)).scalar()

@@ -45,11 +45,13 @@
 {% block middle %}
 <!-- Tabs Section -->
 <section class="tabs">
-    <button class="filter-btn active">All <span>50</span></button>
+    <button class="filter-btn active">All <span>{{ count_lichkham_all }}</span></button>
     <button class="filter-btn">Started <span>20</span></button>
     <button class="filter-btn">Finished <span>17</span></button>
+    <a href="{{ url_for('nurse.export_pdf') }}">
     <button id="exportButton" class="btn export-btn"><i class="fa-solid fa-file-export"></i> Xuất danh sách phiếu khám
     </button>
+    </a>
 </section>
 
 <!-- Cards Container -->
