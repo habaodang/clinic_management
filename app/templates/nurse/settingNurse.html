@@ -1,0 +1,176 @@
+{% extends 'home_nurse.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/nurse/settingNurse.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_nurse.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+{% block left %}
+<div class="left">
+
+    <div class="left col-md-3">
+        <div class="sidebar" id="sidebar">
+            <a class="menu-item " href="/nurse">
+                <span><i class="fa-solid fa-house"></i></span>
+                <h3>Trang chủ</h3>
+            </a>
+            <a class="menu-item" href="/scheduleNurse">
+                <span><i class="fa-solid fa-calendar-days"></i></span>
+                <h3>Lịch làm việc</h3>
+            </a>
+            <a class="menu-item" href="/formNurse">
+                <span><i class="fas fa-user-md"></i></span>
+                <h3>Phiếu khám bệnh</h3>
+            </a>
+            <a class="menu-item" href="/lookupNurse">
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                <h3>Tra cứu</h3>
+            </a>
+            <a class="menu-item" id="theme" >
+                <span><i class="fa-solid fa-palette"></i></span>
+                <h3>Theme</h3>
+            </a>
+            <a class="menu-item active" href="/settingNurse">
+                <span><i class="fa-solid fa-gear"></i></span>
+                <h3>Cài Đặt</h3>
+            </a>
+            <a href="/" class="menu-item logout">
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                <h3>Đăng Xuất</h3>
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+{% block middle %}
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-3">
+
+        </div>
+
+        <div class="col-9">
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="nurse-info-tab" data-bs-toggle="tab" href="#nurse-info" role="tab" aria-controls="doctor-info" aria-selected="true">Thông tin y tá</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="password-tab" data-bs-toggle="tab" href="#password" role="tab" aria-controls="password" aria-selected="false">Mật khẩu</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="tab-content" id="myTabContent">
+
+                        <!-- Thông tin bác sĩ -->
+                        <div class="tab-pane fade show active" id="nurse-info" role="tabpanel" aria-labelledby="nurse-info-tab">
+
+                            <div class="form-group">
+                                <label for="idDoc" class="form-label">Mã Y Tá</label>
+                                <input type="text" class="form-control" id="idDoc" value="MB012" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specialty" class="form-label">Chuyên khoa</label>
+                                <input type="text" class="form-control" id="specialty" value="Điều dưỡng" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullname" class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control" id="fullname" placeholder="Nguyễn Thị Ánh Hồng">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="qualification" class="form-label">Trình độ</label>
+                                <input type="text" class="form-control" id="qualification" placeholder="Thạc sĩ">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="nguyenthihong112000@gmail.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Số Điện Thoại</label>
+                                <input type="text" id="phone" name="phone" placeholder="+84 0399646729">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes">Ghi Chú</label>
+                                <textarea id="notes" name="notes" rows="3" placeholder=""></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+
+                        </div>
+
+                        <!-- Mật khẩu -->
+                        <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+
+                            <div class="form-group">
+                                <label for="username" class="form-label">Tên tài khoản</label>
+                                <input type="text" class="form-control" id="username" placeholder="Tên tài khoản">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="old-password" class="form-label">Mật khẩu cũ</label>
+                                <input type="password" class="form-control" id="old-password" placeholder="Mật khẩu cũ">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new-password" class="form-label">Mật khẩu mới</label>
+                                <input type="password" class="form-control" id="new-password" placeholder="Mật khẩu mới">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm-password" class="form-label">Nhập lại mật khẩu mới</label>
+                                <input type="password" class="form-control" id="confirm-password" placeholder="Nhập lại mật khẩu mới">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+{% block right %}
+<div class="form-container">
+    <h2>Ảnh Đại Diện</h2>
+    <div class="form-group">
+        <label class="upload-box" id="upload-label" for="profile-picture">Upload your photo</label>
+        <input type="file" id="profile-picture" name="profile-picture" accept="image/*" style="display: none;">
+        <img id="avatar-preview" src="" alt="Avatar Preview">
+        <button type="button" id="change-avatar-btn">Thay đổi ảnh</button>
+    </div>
+    <div class="button-container">
+        <button type="submit" class="save-btn">Lưu</button>
+        <button type="button" class="back-btn">Quay Lại</button>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/nurse/settingNurse.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/nurse.js') }}"></script>
+{% endblock %}

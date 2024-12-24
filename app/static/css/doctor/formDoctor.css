@@ -6,6 +6,14 @@ main .container {
 .form_doctor {
    width:75rem !important;
 }
+.card {
+    display: none; /* Ẩn tất cả các thẻ mặc định */
+}
+
+.card.active {
+    display: block; /* Hiển thị các thẻ đang được lọc */
+}
+
 .appointment-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -163,10 +171,10 @@ appointment-note{
 .card {
     background-color: white;
     padding: 20px;
-    border: 1px solid #e1e5ee;
+    border: 1px solid #fdc189;
     border-radius: 10px;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px  #DC143C !important;
     width: 17rem;
     height: 14.5rem;
 }
@@ -175,7 +183,7 @@ appointment-note{
     position: absolute;
     top: -10px;
     left: -10px;
-    background-color: #ff5d8f;
+    background-color: #fdc189;
     color: white;
     padding: 5px 10px;
     border-radius: 50%;

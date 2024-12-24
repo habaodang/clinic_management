@@ -1,0 +1,84 @@
+{% extends 'home_cashier.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/cashier/scheduleCashier.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_cashier.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+{% block left %}
+        <div class="left">
+            <div class="left col-md-3">
+                <div class="sidebar" id="sidebar">
+                    <a class="menu-item" href="/cashier">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <h3>Trang chủ</h3>
+                    </a>
+                    <a class="menu-item active" href="/scheduleCashier">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>Lịch làm việc</h3>
+                    </a>
+                    <a class="menu-item" href="/paymentInvoice">
+                        <span><i class="fa-solid fa-receipt"></i></span>
+                        <h3>Hóa đơn</h3>
+                    </a>
+                    <a class="menu-item" href="/lookupCashier">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <h3>Tra cứu</h3>
+                    </a>
+                    <a class="menu-item" id="theme" >
+                        <span><i class="fa-solid fa-palette"></i></span>
+                        <h3>Theme</h3>
+                    </a>
+                    <a class="menu-item" href="/settingCashier">
+                        <span><i class="fa-solid fa-gear"></i></span>
+                        <h3>Cài Đặt</h3>
+                    </a>
+                    <a href="/" class="menu-item logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <h3>Đăng Xuất</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block middle %}
+<div class="appointment-card">
+    <div class="appointment-header">
+        <span class="time time-highlight"><i class="fa-regular fa-clock"></i> 6:00 AM</span>
+        <span class="options">...</span>
+    </div>
+    <div class="appointment-body">
+        <p class="appointment-title">Xác nhận 40 hóa đơn</p>
+        <p class="appointment-note">Vui lòng hoàn thành trước 23:59</p>
+        <div class="appointment-details">
+            <span class="date"> <i class="fa-solid fa-calendar-days dayappoint"></i> 23/12/2024</span>
+            <span class="time"> <i class="fa-regular fa-clock"></i> 6:00 AM</span>
+        </div>
+        <div class="text-center">
+            <button class="confirm-btn">Xác Nhận</button>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block right %}
+<div class="calendar-container">
+    <div class="calendar-header">
+        <button id="prev-month">&#8592;</button>
+        <div class="month-year" id="monthYear"></div>
+        <button id="next-month">&#8594;</button>
+    </div>
+    <div class="calendar-grid" id="calendar">
+        <!-- Days and dates will be injected dynamically -->
+    </div>
+    <div class="view-details">
+        <a href="#">Xem Chi Tiết</a>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/cashier/scheduleCashier.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/cashier.js') }}"></script>
+{% endblock %}

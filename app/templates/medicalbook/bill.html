@@ -32,7 +32,6 @@
                     <h3>Thoát</h3>
                 </a>
             </div>
-            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
         </div>
         {% endblock %}
         {% block middle %}
@@ -50,27 +49,27 @@
             <button class="close-btn">&times;</button>
             <div class="appointment-title">Hóa Đơn Tiền Khám Tổng Quát Đặt Trước Ngày 20/12/2024</div>
             <p>Tiền Khám : 100.000 Đồng </p>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Thanh Toán</button>
+            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', 100000, 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
+            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', 100000, 'Trần Văn Long', 'Kiểm tra huyết áp')">Thanh Toán</button>
         </div>
     </div>
-
     <div class="modal" id="detailsModal">
         <div class="modal-content">
             <h3>Hóa Đơn Thanh Toán</h3>
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <form class="modal-form">
+            <form class="modal-form" action ='/bill' method="post">
                 <label for="nurseName">Tên Thu Ngân</label>
                 <input type="text" id="nurseName" readonly>
-                <label for="appointmentDate">Tiền Khám</label>
-                <input type="text" id="appointmentDate" readonly>
+                <label for="appointmentMoney">Tiền Khám</label>
+                <input type="text" id="appointmentMoney" name = "appointmentMoney" value="100000" readonly>
                 <label for="appointmentReason">Tiền Thuốc</label>
                 <textarea id="appointmentReason" rows="3" readonly></textarea>
+                <button class="details-btn" type="submit">Thanh Toán</button>
             </form>
         </div>
     </div>
 {% endblock %}
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/medicalbook/schedule.js') }}"></script>
+<script src="{{ url_for('static', filename='js/medicalbook/bill.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

@@ -1,0 +1,116 @@
+
+
+.appointment-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment-body {
+  margin-top: 10px;
+  text-align: left;
+  padding: 10px;
+}
+
+.appointment-title {
+  font-weight: bold;
+  font-size: 30px;
+
+}
+appointment-note{
+    color: #D3D3D3;
+}
+
+.appointment-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  border-radius: 10px 10px;
+  padding: 1rem;
+  background-color: lightcyan;
+  margin-bottom: 1rem;
+}
+
+.confirm-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.time-highlight {
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+ .calendar-container {
+            max-width: 400px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header .month-year {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .calendar-header button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #555;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            gap: 10px;
+        }
+
+        .calendar-grid div {
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .calendar-grid .day {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .calendar-grid .date {
+            cursor: pointer;
+        }
+
+        .calendar-grid .active {
+            color: #fff;
+            background: #ff6666;
+            border-bottom: 3px solid red;
+        }
+
+        .view-details {
+            margin-top: 20px;
+            text-align: center;
+        }

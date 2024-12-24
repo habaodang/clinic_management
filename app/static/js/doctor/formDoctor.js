@@ -1,34 +1,36 @@
-// Wait for DOM content to load
-document.addEventListener("DOMContentLoaded", () => {
-    // Tab functionality
-    const tabs = document.querySelectorAll(".filter-btn");
-    const cards = document.querySelectorAll(".card");
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
 
-    // Function to filter cards based on tab selection
-    function filterCards(filter) {
-        cards.forEach((card) => {
-            if (filter === "all") {
-                card.style.display = "block";
-            } else if (card.classList.contains(filter)) {
-                card.style.display = "block";
+    // Hàm hiển thị thẻ theo filter
+    const filterCards = (filter) => {
+        cards.forEach(card => {
+            // Corrected: Use `card` instead of `article`
+            const status = card.getAttribute('data-status');
+
+            if (filter === 'all' ||
+                (filter === 'started' && status === true) ||
+                (filter === 'finished' && status === false)) {
+                card.classList.add('active'); // Hiển thị thẻ
             } else {
-                card.style.display = "none";
+                card.classList.remove('active'); // Ẩn thẻ
             }
         });
-    }
+    };
 
-    // Add click event listener for each tab
-    tabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            // Remove active class from all tabs
-            tabs.forEach((btn) => btn.classList.remove("active"));
-            tab.classList.add("active");
+    // Hiển thị mặc định tab "All" khi trang được tải
+    filterCards('all');
 
-            // Filter cards based on data-filter
-            const filter = tab.getAttribute("data-filter");
+    // Lắng nghe sự kiện nhấn nút tab
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Xóa class active khỏi tất cả các nút
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            // Lấy trạng thái cần lọc từ data-filter
+            const filter = button.getAttribute('data-filter');
             filterCards(filter);
         });
     });
-
-
 });
