@@ -7,15 +7,7 @@ main .container {
 main .container .right {
     display: none;
 }
-.form-label {
-    margin-right:53rem !important;
-}
-.margin-rg-3 {
-    margin-right:50rem !important;
-}
-.margin-rg-1 {
-    margin-right:54rem !important;
-}
+
 /* Tăng kích thước phần middle để chiếm luôn không gian của phần right */
 main .container .middle {
     grid-column: span 2; /* Chiếm cả 2 cột lưới */

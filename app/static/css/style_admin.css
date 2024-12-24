@@ -257,7 +257,7 @@ main .container{
 /* Đăng xuất */
 /* Mục Log Out */
 .menu-item.logout {
-    margin-top: 13rem; /* Đẩy mục Log Out xuống cuối */
+    margin-top: 8rem; /* Đẩy mục Log Out xuống cuối */
     position: fixed;
     background-color: #f4f4f4;
     border-top: 1px solid #ddd; /* Đường kẻ phân cách */
