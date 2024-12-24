@@ -55,13 +55,14 @@
         <div class="form-label d-flex align-items-center">
             <div>Bác sĩ khám (hoặc chỉ định)</div>
             <!-- Biểu tượng tìm kiếm nằm cuối dòng -->
+
             <button class="search-icon-btn" id="search-icon-btn">
                 <i class="fas fa-search"></i>
             </button>
         </div>
         <input type="text" class="form-value " contenteditable="true" id="editable-date" name="doctor">
             {% if lichkham.doctor %}
-                {{ lichkham.doctor.id }}
+                {{ lichkham.doctor.name }}
             {% endif %}
         </input>
 

@@ -2,7 +2,7 @@ from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
 
-from flask import Blueprint, render_template,redirect,request,url_for
+from flask import Blueprint, render_template,redirect,request,url_for,flash
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
@@ -56,10 +56,26 @@ def logout_process():
 @main_bp.route('/schedule')
 @login_required
 def medical_schedule():
-            list_lichkham = nte.get_examination_history()
-            return render_template(
-                'medicalbook/schedule.html',
-                list_lichkham=list_lichkham)
+    try:
+        # Kiểm tra người dùng đã đăng nhập và có thuộc tính user.id hay không
+        patient_id = current_user.user.id
+
+        if patient_id:
+            # Lấy lịch khám dựa trên patient_id
+            list_lichkham = nte.get_examination_history(patient_id)
+            return render_template('medicalbook/schedule.html', list_lichkham=list_lichkham)
+        else:
+
+            flash('Không tìm thấy thông tin bệnh nhân.', 'error')
+            return redirect(url_for('main.medical_book'))
+
+    except AttributeError as e:
+        flash('Bạn chưa xác thực thông tin không thể vào lịch hen', 'error')
+        return redirect(url_for('main.medical_book'))
+
+    except Exception as e:
+        flash(f'Đã xảy ra lỗi: {str(e)}', 'error')
+        return redirect(url_for('main.medical_book'))
 
 
 @main_bp.route('/bill', methods=["GET","POST"])
@@ -107,8 +123,9 @@ def appointment1():
 
     #lay cac khoa
     list_khoa=depp.get_department()
+    doctors=depp.get_doctor()
 
-    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa)
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa,doctors=doctors)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
@@ -134,37 +151,41 @@ def department_khoa():
 def department_login():
     return render_template('department/khoaLogin.html')
 
+
+
 @main_bp.route('/doctor')
 def doctor():
-    return render_template('home_doctor.html')
+    return render_template('home_doctor.html',user=current_user)
 
 @main_bp.route('/base')
 def base():
-    return render_template('layout/base_doctor.html')
+    return render_template('layout/base_doctor.html',user=current_user)
 
 @main_bp.route('/formDoctor')
 def form_doctor():
-    list_lichkham = his.get_appointmant_all()
-    return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham)
+    id=current_user.user.id
+    list_lichkham = his.get_appointment_present_id(id)
+    return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham,user=current_user)
 
 @main_bp.route('/lookupDoctor')
 def look_doctor():
-    return render_template('doctor/lookupDoctor.html')
+    return render_template('doctor/lookupDoctor.html',user=current_user)
 @main_bp.route('/tbDoctor')
 def tbDoctor():
-    return render_template('home_doctor.html')
+    return render_template('home_doctor.html',user=current_user)
 
 @main_bp.route('/settingDoctor')
 def setting_doctor():
-    return render_template('doctor/settingDoctor.html')
+    account=current_user
+    return render_template('doctor/settingDoctor.html',account=account,user=current_user)
 
 @main_bp.route('/scheduleDoctor')
 def schedule_doctor():
-    return render_template('doctor/scheduleDoctor.html')
+    return render_template('doctor/scheduleDoctor.html',user=current_user)
 
 @main_bp.route('/themeDoctor')
 def theme_doctor():
-    return render_template('doctor/themeDoctor.html')
+    return render_template('doctor/themeDoctor.html',user=current_user)
 
 @main_bp.route('/packageNormal')
 def package_normal():
@@ -200,23 +221,24 @@ def authenticate():
 # nurse
 @main_bp.route('/nurse')
 def nurse():
-    return render_template('home_nurse.html')
+    return render_template('home_nurse.html',user=current_user)
+
 @main_bp.route('/scheduleNurse')
 def schedule_nurse():
-    return render_template('nurse/scheduleNurse.html')
+    return render_template('nurse/scheduleNurse.html',user=current_user)
 @main_bp.route('/formNurse')
 def form_nurse():
     list_lichkham = his.get_appointmant_all()
     count_lichkham_all=his.count_apointment_all()
-    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham,count_lichkham_all=count_lichkham_all)
+    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham,count_lichkham_all=count_lichkham_all,user=current_user)
 
 @main_bp.route('/lookupNurse')
 def look_nurse():
-    return render_template('nurse/lookupNurse.html')
+    return render_template('nurse/lookupNurse.html',user=current_user)
 
 @main_bp.route('/settingNurse')
 def setting_nurse():
-    return render_template('nurse/settingNurse.html')
+    return render_template('nurse/settingNurse.html',user=current_user)
 
 
 @main_bp.route('/formCheck')
@@ -255,7 +277,8 @@ def home_admin():
 
 @main_bp.route('/addAdmin')
 def add_admin():
-    return render_template('admin/addAdmin.html',roles=mdl.UserRole)
+    list_khoa = depp.get_department()
+    return render_template('admin/addAdmin.html',roles=mdl.UserRole,list_khoa=list_khoa)
 
 @main_bp.route('/regulations')
 def regulation_admin():

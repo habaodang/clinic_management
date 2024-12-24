@@ -1,5 +1,5 @@
  function showDetails(title, time, nurse, reason) {
-            document.getElementById('nurseName').value = nurse;
+
             document.getElementById('appointmentDate').value = time;
             document.getElementById('appointmentReason').value = reason;
             document.getElementById('detailsModal').style.display = 'flex';
