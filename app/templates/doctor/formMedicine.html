@@ -17,13 +17,13 @@
 </div>
 
 <!-- Form Hiển Thị Giữa Màn Hình -->
-<div class="overlay" id="overlay">
-  <div class="form-container">
-    <h3>Tìm Kiếm Thuốc</h3>
-    <input type="text" id="medicineCode" placeholder="Nhập Mã Thuốc">
-    <button onclick="searchMedicine()" class="center">Tìm Kiếm</button>
-
-    <!-- Thông Tin Thuốc -->
+<div class="overlay-search" id="overlay">
+   <div class="form-container">
+      <h3>Tìm Kiếm Thuốc</h3>
+      <input type="text" id="medicineCode" placeholder="Nhập Mã Thuốc">
+      <button onclick="searchMedicine()">Tìm Kiếm</button>
+      <button onclick="closeForm()">Hủy</button>
+      <!-- Thông Tin Thuốc -->
     <div id="infoContainer" style="display: none;">
       <label>Tên Thuốc:</label>
       <input type="text" id="medicineName" readonly>
@@ -49,6 +49,7 @@
 <table>
   <thead>
     <tr>
+      <th>STT</th> <!-- Cột STT -->
       <th>Mã Thuốc</th>
       <th>Tên Thuốc</th>
       <th>Đơn Vị</th>
@@ -61,39 +62,53 @@
   <tbody id="medicineTable"></tbody>
 </table>
 
-<!-- Modal Xác Nhận Cập Nhật -->
-<div id="updateConfirmation" class="overlay">
-  <div class="form-container">
-    <h3>Bạn muốn làm gì với thuốc này?</h3>
-    <button onclick="confirmUpdate('update')">Cập Nhật lại</button>
-    <button onclick="confirmUpdate('delete')">Xóa đi</button>
-    <button onclick="closeUpdateConfirmation()">Hủy</button>
-  </div>
-</div>
-
-<!-- Overlay cho form cập nhật -->
-<div class="overlay" id="updateFormOverlay">
+<div class="overlay-update" id="updateConfirmation">
+   <div class="form-container">
+      <h3>Bạn muốn làm gì với thuốc này?</h3>
+   <button onclick="openUpdateForm()">Cập Nhật lại</button>
+<button onclick="confirmUpdate('delete')">Xóa đi</button>
+      <button onclick="closeUpdateConfirmation()">Hủy</button>
+   </div>
+  <!-- Overlay cho form cập nhật -->
+<div class="overlays" id="updateFormOverlay">
   <div class="form-container">
     <h2>Cập Nhật Thuốc</h2>
-    <form id="updateForm">
-      <label for="name">Tên Thuốc:</label>
-      <input type="text" id="name" name="name" placeholder="Tên thuốc">
-      <label for="effect">Tác Dụng:</label>
-      <input type="text" id="effect" name="effect" placeholder="Tác dụng">
-      <label for="usage">Cách Dùng:</label>
-      <input type="text" id="usage" name="usage" placeholder="Cách dùng">
-      <button type="submit">Xác Nhận</button>
-      <button type="button" id="cancelBtn">Hủy</button>
-    </form>
+<!--     <form id="updateForm" method="POST" action="{{ url_for('main.form_medicine') }}">-->
+        <div class="form-container">
+            <label>Mã Thuốc:</label>
+            <input type="text" id="medicineCode1" name="medicineCode" readonly>
 
+            <label>Tên Thuốc:</label>
+            <input type="text" id="medicineName2" name="medicineName" required>
+
+            <label>Đơn Vị:</label>
+            <input type="text" id="medicineUnit3" name="medicineUnit" required>
+
+            <label>Số Lượng:</label>
+            <input type="number" id="medicineQuantity4" name="medicineQuantity" min="1" value="1" required>
+
+            <label>Tác Dụng:</label>
+            <input type="text" id="medicineEffect5" name="medicineEffect" required>
+
+            <label>Cách Dùng:</label>
+            <input type="text" id="medicineUsage6" name="medicineUsage" required>
+
+            <button type="submit">Xác Nhận</button>
+            <button type="button" onclick="closeForm()">Hủy</button>
+        </div>
+<!--    </form>-->
   </div>
 </div>
 <button type="button" onclick="goBack()" class="btn btn-success rounded-pill mt-3" style="float: right;">Hoàn tất</button>
+</div>
+<button class="confirm-btn">Xác Nhận</button>
 {% endblock %}
 {% block right %}
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/doctor/formMedicine.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
 {% endblock %}

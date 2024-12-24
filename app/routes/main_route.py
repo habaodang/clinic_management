@@ -1,6 +1,19 @@
+from datetime import datetime
+from app import vnpay
+from xml.etree.ElementTree import tostring
+
 from flask import Blueprint, render_template,redirect,request,url_for
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
+import hashlib
+import hmac
+import urllib.parse
+
+import app.models as mdl
+import app.controller.department_process as depp
+import app.controller.notebook as nte
+import app.controller.department_process as depp
+import app.controller.history as his
 
 main_bp = Blueprint('main', __name__)
 
@@ -15,7 +28,7 @@ def index():
 @login_required
 def medical_book():
 
-    return render_template('medicalBook.html',status_auth=current_user.user_id)
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
 
 @main_bp.route('/register')
 def register():
@@ -25,7 +38,7 @@ def register():
 def login():
     return render_template('login.html')
 
-@main_bp.route('/index-login')
+@main_bp.route('/indexLogin')
 def index_login():
     name_user=request.args.get('name','Khách')
     return render_template('indexLogin.html',name_user=current_user.name_account,status_auth=current_user.user_id)
@@ -37,10 +50,16 @@ def logout_process():
 
 @main_bp.route('/schedule')
 def medical_schedule():
-    return render_template('medicalbook/schedule.html')
+    list_lichkham = nte.get_examination_history()
+    return render_template('medicalbook/schedule.html',list_lichkham=list_lichkham,name_department='sdfsf')
 
-@main_bp.route('/bill')
+@main_bp.route('/bill', methods=["GET","POST"])
 def medical_bill():
+    if request.method == "POST":
+        bill = int(request.form.get("appointmentMoney"))
+        order_id = str(current_user.id)+ datetime.now().__str__()
+        vnpay_url = vnpay.generate_payment_url(order_id,bill)
+        return redirect(vnpay_url)
     return render_template('medicalbook/bill.html')
 
 @main_bp.route('/history')
@@ -61,25 +80,38 @@ def setting_theme():
 
 @main_bp.route('/passwd')
 def setting_passwd():
-    return render_template('setting/passwd.html')
+    return render_template('setting/passwd.html',name_user=current_user.name_account)
 
 @main_bp.route('/appointment')
 @login_required
 def appointment():
     return render_template('appointment.html')
 
+@main_bp.route('/appointmentLogin')
+@login_required
+def appointment_login():
+    return render_template('appointmentLogin.html',packages=mdl.PackageMedical)
+
+
 @main_bp.route('/appointment_body1')
 def appointment1():
-    return render_template('appointment/body1.html')
+    date = request.args.get('date')
+    time = request.args.get('time')
+    location = request.args.get('location')
+    package = request.args.get('package')
+
+    #lay cac khoa
+    list_khoa=depp.get_department()
+
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
-    return render_template('medicalPackage.html')
+    return render_template('medicalPackage/medicalPackage.html')
 
 @main_bp.route('/specialty')
 def specialty():
     return render_template('specialty.html')
-    return render_template('specialty/specialty.html')
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -101,13 +133,21 @@ def department_login():
 def doctor():
     return render_template('home_doctor.html')
 
+@main_bp.route('/base')
+def base():
+    return render_template('layout/base_doctor.html')
+
 @main_bp.route('/formDoctor')
 def form_doctor():
-    return render_template('doctor/formDoctor.html')
+    list_lichkham = his.get_appointmant_all()
+    return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham)
 
 @main_bp.route('/lookupDoctor')
 def look_doctor():
     return render_template('doctor/lookupDoctor.html')
+@main_bp.route('/tbDoctor')
+def tbDoctor():
+    return render_template('home_doctor.html')
 
 @main_bp.route('/settingDoctor')
 def setting_doctor():
@@ -116,18 +156,26 @@ def setting_doctor():
 @main_bp.route('/scheduleDoctor')
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html')
+
 @main_bp.route('/themeDoctor')
 def theme_doctor():
     return render_template('doctor/themeDoctor.html')
 
-@main_bp.route('/package')
-def package_index():
-    return render_template('detailPackage/package.html')
+@main_bp.route('/packageNormal')
+def package_normal():
+    return render_template('detailPackage/packageNormal.html')
 
-@main_bp.route('/packageLogin1')
-def package_login1():
-    return render_template('detailPackage/packageLogin1.html')
+@main_bp.route('/packageVIP')
+def package_vip():
+    return render_template('detailPackage/packageVIP.html')
 
+@main_bp.route('/packageNormalLG')
+def package_normal_lg():
+    return render_template('detailPackage/pkNormalLogin.html')
+
+@main_bp.route('/packageVIPLG')
+def package_vip_lg():
+    return render_template('detailPackage/pkVIPLogin.html')
 
 @main_bp.route('/formMedicine')
 def form_medicine():
@@ -136,6 +184,10 @@ def form_medicine():
 @main_bp.route('/formConfirm')
 def form_confirm():
     return render_template('doctor/formConfirm.html')
+
+@main_bp.route('/authenticate')
+def authenticate():
+    return render_template('medicalbook/authenticate.html')
 
 # nurse
 @main_bp.route('/nurse')
@@ -146,7 +198,8 @@ def schedule_nurse():
     return render_template('nurse/scheduleNurse.html')
 @main_bp.route('/formNurse')
 def form_nurse():
-    return render_template('nurse/formNurse.html')
+    list_lichkham = his.get_appointmant_all()
+    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham)
 
 @main_bp.route('/lookupNurse')
 def look_nurse():
@@ -155,11 +208,11 @@ def look_nurse():
 @main_bp.route('/settingNurse')
 def setting_nurse():
     return render_template('nurse/settingNurse.html')
-
-
 @main_bp.route('/formCheck')
 def form_check():
-    return render_template('nurse/formCheck.html')
+    lich_id = request.args.get('lich_id')
+    lichkham=his.get_appointment_id(lich_id)
+    return render_template('nurse/formCheck.html',lichkham=lichkham)
 
 #cashier
 @main_bp.route('/cashier')
@@ -181,7 +234,7 @@ def setting_cashier():
     return render_template('cashier/settingCashier.html')
 
 @main_bp.route('/formInvoice')
-def view_Invoice():
+def view_invoice():
     return render_template('cashier/formInvoice.html')
 
 #admin
@@ -201,4 +254,20 @@ def search_admin():
 @main_bp.route('/settingAdmin')
 def setting_admin():
     return render_template('admin/settingAdmin.html')
+
+@main_bp.route('/billSuccess')
+def payment_return():
+    query_params = request.args.to_dict()
+    vnp_secure_hash = query_params.pop("vnp_SecureHash", None)
+    sorted_params = sorted(query_params.items())
+    query_string = "&".join(f"{k}={urllib.parse.quote_plus(str(v))}" for k, v in sorted_params)
+    hmac_obj = hmac.new(vnpay.VNP_HASH_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha512)
+    expected_hash = hmac_obj.hexdigest()
+
+    is_success = True
+
+    if vnp_secure_hash == expected_hash and query_params.get("vnp_ResponseCode") == "00":
+        return render_template("bill_success.html", is_success=True)
+    else:
+        return render_template("bill_success.html", is_success=False)
 

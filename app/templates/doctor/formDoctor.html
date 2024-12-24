@@ -41,89 +41,38 @@
         </div>
 {% endblock %}
 {% block middle %}
- <!-- Tabs Section -->
-    <section class="tabs">
-        <button class="filter-btn active">All <span>50</span></button>
-        <button class="filter-btn">Started <span>20</span></button>
-        <button class="filter-btn">Finished <span>17</span></button>
-    </section>
+<section class="tabs">
+    <button class="filter-btn active" data-filter="all">All <span>50</span></button>
+    <button class="filter-btn" data-filter="started">Started <span>20</span></button>
+    <button class="filter-btn" data-filter="finished">Finished <span>17</span></button>
+</section>
 
     <!-- Cards Container -->
     <section class="card-container">
         <!-- Card 1 -->
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-            <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formConfirm"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
+         {% for lichkham in list_lichkham %}
+    <!-- Card 1 -->
+    <article class="card">
+        <span class="card-badge pink">1</span>
+        <span class="new-badge">NEW</span>
+        <h3>{{ lichkham.patient.name }}</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> {{ lichkham.patient.id }}</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong>
+            {% if lichkham.status %}
+                Đã xác nhận
+            {% else %}
+                Chưa xác Nhận
+            {% endif %}
+        </p>
+        <div class="button-group">
+            <button class="confirm-btn danger">Hủy</button>
+            <a href="{{url_for('main.form_confirm', lich_id=lichkham.id) }}">
+                  <button class="confirm-btn">Xác Nhận</button>
+            </a>
+        </div>
+    </article>
+{% endfor %}
 
         <!-- Thêm các thẻ article tương tự -->
     </section>
