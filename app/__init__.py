@@ -11,7 +11,7 @@ login_manager = LoginManager()
 def create_app():
     app = Flask(__name__)
     # Cấu hình ứng dụng
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:%s@localhost/app?charset=utf8mb4' % quote('Totnghiep78@')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:rin2406@localhost/app?charset=utf8mb4'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # key dung de gia ma session
     # app.config["SECRET_KEY"] = "rinnn1510"

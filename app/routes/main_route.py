@@ -14,6 +14,7 @@ import app.controller.department_process as depp
 import app.controller.notebook as nte
 import app.controller.department_process as depp
 import app.controller.history as his
+from app.models import LichKham
 
 main_bp = Blueprint('main', __name__)
 
@@ -27,7 +28,8 @@ def index():
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
-    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user.user)
+
+    return render_template('medicalBook.html',status_auth=current_user.user_id,user=current_user)
 
 @main_bp.route('/register')
 def register():
@@ -57,8 +59,7 @@ def medical_schedule():
             list_lichkham = nte.get_examination_history()
             return render_template(
                 'medicalbook/schedule.html',
-                list_lichkham=list_lichkham,
-                name_department='Khoa Khám Bệnh')
+                list_lichkham=list_lichkham)
 
 
 @main_bp.route('/bill', methods=["GET","POST"])
@@ -77,10 +78,6 @@ def medical_history():
 @main_bp.route('/setting')
 def setting():
     return render_template('setting.html')
-
-@main_bp.route('/info')
-def setting_info():
-    return render_template('setting/info.html')
 
 @main_bp.route('/theme')
 def setting_theme():
@@ -191,11 +188,14 @@ def form_medicine():
 
 @main_bp.route('/formConfirm')
 def form_confirm():
-    return render_template('doctor/formConfirm.html')
+    lich_id = request.args.get('lich_id')
+    lichkham = his.get_appointment_id(lich_id)
+    return render_template('doctor/formConfirm.html',lichkham=lichkham)
 
 @main_bp.route('/authenticate')
 def authenticate():
     return render_template('medicalbook/authenticate.html')
+
 
 # nurse
 @main_bp.route('/nurse')
@@ -207,7 +207,8 @@ def schedule_nurse():
 @main_bp.route('/formNurse')
 def form_nurse():
     list_lichkham = his.get_appointmant_all()
-    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham)
+    count_lichkham_all=his.count_apointment_all()
+    return render_template('nurse/formNurse.html',list_lichkham=list_lichkham,count_lichkham_all=count_lichkham_all)
 
 @main_bp.route('/lookupNurse')
 def look_nurse():
@@ -216,6 +217,8 @@ def look_nurse():
 @main_bp.route('/settingNurse')
 def setting_nurse():
     return render_template('nurse/settingNurse.html')
+
+
 @main_bp.route('/formCheck')
 def form_check():
     lich_id = request.args.get('lich_id')
@@ -249,6 +252,11 @@ def view_invoice():
 @main_bp.route('/admin')
 def home_admin():
     return render_template('home_admin.html')
+
+@main_bp.route('/addAdmin')
+def add_admin():
+    return render_template('admin/addAdmin.html',roles=mdl.UserRole)
+
 @main_bp.route('/regulations')
 def regulation_admin():
     return render_template('admin/regulations.html')
