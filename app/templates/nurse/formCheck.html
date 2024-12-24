@@ -50,10 +50,6 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="form-label">Tình trạng</div>
-        <div class="form-value">Có hạch ở cổ</div>
-    </div>
 
     <div class="form-group">
         <div class="form-label d-flex align-items-center">
@@ -70,6 +66,10 @@
         </input>
 
     </div>
+    <div class="form-group">
+        <div class="form-label">Tình trạng</div>
+        <div class="form-value">Có hạch ở cổ</div>
+    </div>
     <!-- Khối tìm kiếm bác sĩ (ẩn khi chưa được kích hoạt) -->
     <div class="search-container d-none" id="search-container">
         <div class="form-group position-relative mb-4 ">
@@ -78,7 +78,9 @@
             <div class="search-results d-none" id="search-results"></div>
         </div>
     </div>
-
+     <div class="form-containers">
+        <button class="confirm-btn" onclick="goBack()">Xác Nhận</button>
+    </div>
 
     {% endblock %}
     {% block right %}

@@ -1,3 +1,40 @@
+document.addEventListener("DOMContentLoaded", function () {
+        const menuButton = document.getElementById("floatingMenuButton");
+        const floatingMenu = document.getElementById("floatingMenu");
+
+        // Toggle menu khi bấm nút
+        menuButton.addEventListener("click", function () {
+            floatingMenu.classList.toggle("active");
+        });
+
+        // Đóng menu khi click bên ngoài
+        document.addEventListener("click", function (event) {
+            if (!floatingMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                floatingMenu.classList.remove("active");
+            }
+        });
+    });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdowns = document.querySelectorAll('.dropdown-toggle');
+
+    dropdowns.forEach(function(dropdown) {
+        dropdown.addEventListener('click', function(event) {
+            const menu = dropdown.nextElementSibling; // Lấy menu con
+            const isActive = menu.classList.contains('active');
+
+            // Đóng tất cả các menu con
+            document.querySelectorAll('.dropdown-menu').forEach(function(item) {
+                item.classList.remove('active');
+            });
+
+            // Toggle menu hiện tại
+            if (!isActive) {
+                menu.classList.add('active');
+            }
+        });
+    });
+});
 
 const homeButton = document.getElementById('homeButton');
 const contactButton = document.getElementById('contactButton');

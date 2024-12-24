@@ -1,26 +1,28 @@
+          /* Cập nhật bố cục khi không có phần right */
+        main .container {
+            grid-template-columns: 18vw auto; /* Chỉ để lại phần left và middle */
+        }
+
+        /* Ẩn phần "right" */
+        main .container .right {
+            display: none;
+        }
+
+        /* Tăng kích thước phần middle để chiếm luôn không gian của phần right */
+        main .container .middle {
+            grid-column: span 2; /* Chiếm cả 2 cột lưới */
+            width: 100%; /* Tăng chiều rộng để phù hợp */
+        }
          body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            display: flex;
-
-
         }
-        main .right {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            position: fixed;
-            right: 13rem;
-            top: 8.5rem;
-            width: 25%;
-        }
+
         main .container {
             display: grid;
             grid-template-columns: 18vw auto 10vw;
             position: absolute;
-}
+        }
         .form_doctor {
         margin-top:2rem;
         width: 72rem !important;
@@ -31,15 +33,14 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 50rem;
+            width: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px 20px;
         }
          .form-containers {
             background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
             padding: 20px;
             width: 10rem;
             display: grid;
