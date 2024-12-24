@@ -106,7 +106,4 @@ ul .dropdown-item:hover {
     background-color: #007bff;
     color: #fff;
 }
- button .carousel-control-prev,
- button .carousel-control-next {
-    background-color:none;
-}
+
