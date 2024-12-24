@@ -49,6 +49,15 @@
                             </div>
                             <a href="#!" class="link">Quên mật khẩu?</a>
                         </div>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                          {% if messages %}
+                            {% for category, message in messages %}
+                                <div id="mess_erro">{{ message }}</div>
+
+                            {% endfor %}
+                          {% endif %}
+                        {% endwith %}
+
                         <div class="input-form-container">
                           <button type="submit" class="submit btn btn-primary">Đăng nhập</button>
                         </div>
