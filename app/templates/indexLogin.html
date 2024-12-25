@@ -41,9 +41,7 @@
                         <a href="{{url_for('main.appointment_login')}}">
                             <button class="btn btn-primary me-3">Đăt Lịch Ngay Bây Giờ</button>
                         </a>
-                        <a href="{{url_for('main.appointment_login')}}">
-                            <button class="btn btn-primary me-3">Tư vấn</button>
-                        </a>
+
                         {% else %}
                         <a href="{{url_for('main.medical_book')}}">
                             <button class="btn btn-primary me-3">Xác Thực Ngay Bây Giờ</button>
@@ -214,6 +212,31 @@
                 </p>
                 <a href="#" class="btn btn-primary px-4 py-2">Tìm Hiểu Về Đội Ngũ Bác Sĩ</a>
             </div>
+        </div>
+    </div>
+
+
+        <!-- Nút hỗ trợ tư vấn -->
+    <div id="chatButtonContainer">
+        <button id="chatButton" class="support-button">
+            <i class="fa-solid fa-comments"></i>
+        </button>
+    </div>
+
+    <!-- Hộp thoại chat -->
+    <div id="chatBox" class="chat-box hidden">
+        <div class="chat-header">
+            <h5>Hỗ trợ tư vấn</h5>
+            <button id="closeChat" class="close-button">&times;</button>
+        </div>
+        <div class="chat-body">
+            <p>Chào mừng bạn đến với hỗ trợ tư vấn! Hãy đặt câu hỏi của bạn.</p>
+            <!-- Tin nhắn sẽ hiển thị ở đây -->
+            <div id="chatMessages"></div>
+        </div>
+        <div class="chat-footer">
+            <input id="chatInput" type="text" placeholder="Nhập tin nhắn của bạn..." />
+            <button id="sendMessage" class="send-button">Gửi</button>
         </div>
     </div>
 </section>
