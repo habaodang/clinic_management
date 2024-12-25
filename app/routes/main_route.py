@@ -176,9 +176,9 @@ def department_nhikhoalogin():
 
 @main_bp.route('/RHM')
 def department_rhm():
-    return render_template('department/RHMRHM.html')
+    return render_template('department/RHM.html')
 
-@main_bp.route('/XNLogin')
+@main_bp.route('RHMLogin')
 def department_rhmlogin():
     return render_template('department/RHMLogin.html')
 
@@ -189,7 +189,6 @@ def department_spk():
 @main_bp.route('/SPKLogin')
 def department_spklogin():
     return render_template('department/SPKLogin.html')
-
 
 @main_bp.route('/doctor')
 def doctor():
@@ -227,11 +226,11 @@ def theme_doctor():
 
 @main_bp.route('/packageNormal')
 def package_normal():
-    return render_template('detailPackage/packageNormal.html',name_user=current_user.name_account)
+    return render_template('detailPackage/packageNormal.html')
 
 @main_bp.route('/packageVIP')
 def package_vip():
-    return render_template('detailPackage/packageVIP.html',name_user=current_user.name_account)
+    return render_template('detailPackage/packageVIP.html')
 
 @main_bp.route('/packageNormalLG')
 def package_normal_lg():

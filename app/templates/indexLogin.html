@@ -38,10 +38,16 @@
                     </p>
                     <div class="mt-4">
                         {% if status_auth%}
-                        <a href="{{url_for('main.appointment_login')}}"><button class="btn btn-primary me-3">Đăt Lịch Ngay Bây Giờ</button></a>
-                        <a href="{{url_for('main.appointment_login')}}"><button class="btn btn-primary me-3">Tư vấn</button></a>
+                        <a href="{{url_for('main.appointment_login')}}">
+                            <button class="btn btn-primary me-3">Đăt Lịch Ngay Bây Giờ</button>
+                        </a>
+                        <a href="{{url_for('main.appointment_login')}}">
+                            <button class="btn btn-primary me-3">Tư vấn</button>
+                        </a>
                         {% else %}
-                        <a href="{{url_for('main.medical_book')}}"><button class="btn btn-primary me-3">Xác Thực Ngay Bây Giờ</button></a>
+                        <a href="{{url_for('main.medical_book')}}">
+                            <button class="btn btn-primary me-3">Xác Thực Ngay Bây Giờ</button>
+                        </a>
                         {% endif %}
                     </div>
                 </div>
@@ -65,11 +71,13 @@
                                      class="d-block w-100" alt="Image 4">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel"
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel"
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -79,125 +87,135 @@
         </div>
     </section>
 </section>
-<section id= "gioithieuSection1">
+<section id="gioithieuSection1">
     <div style="width: 10%; height: 10%; min-height: 12vh; background-color: #e6f3ff;">
     </div>
-<div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h2 class="mb-4">Thông Tin Về Chúng Tôi</h2>
-        <hr class="my-2">
-        <p class="lead">
-          Chúng tôi có đội ngũ lên đến 50 thành viên. <br>
-          Phòng khám được thành lập với sứ mệnh cung cấp dịch vụ y tế chất lượng cao, đáp ứng nhu cầu chăm sóc sức khỏe của
-          cộng đồng. Với đội ngũ bác sĩ chuyên môn cao, thiết bị hiện đại và môi trường khám chữa bệnh thân thiện, chúng tôi cam
-          kết mang đến sự an tâm và hiệu quả cho người bệnh.
-        </p>
-        <hr class="my-2">
-      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-4">Thông Tin Về Chúng Tôi</h2>
+                <hr class="my-2">
+                <p class="lead">
+                    Chúng tôi có đội ngũ lên đến 50 thành viên. <br>
+                    Phòng khám được thành lập với sứ mệnh cung cấp dịch vụ y tế chất lượng cao, đáp ứng nhu cầu chăm sóc
+                    sức khỏe của
+                    cộng đồng. Với đội ngũ bác sĩ chuyên môn cao, thiết bị hiện đại và môi trường khám chữa bệnh thân
+                    thiện, chúng tôi cam
+                    kết mang đến sự an tâm và hiệu quả cho người bệnh.
+                </p>
+                <hr class="my-2">
+            </div>
+        </div>
     </div>
-  </div>
-<div class="col-md-12 text-center">
-    <div id="uniqueCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-content-wrapper">
-            <div class="carousel-item active">
-                <div class="d-flex justify-content-center my-unique-carousel-wrapper padding-lr">
-                    <div class="my-unique-carousel-card ">
-                        <h3>Khoa Chuẩn Hóa Hình Ảnh</h3>
-                        <p> Sử dụng X-quang, siêu âm, CT, MRI để chẩn đoán chính xác các bệnh lý</p>
-                        <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+    <div class="col-md-12 text-center">
+        <div id="uniqueCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-flex justify-content-center my-unique-carousel-wrapper">
+                        <div class="my-unique-carousel-card col-12 col-md-4">
+                            <h3>Khoa Chuẩn Hóa Hình Ảnh</h3>
+                            <p> Sử dụng X-quang, siêu âm, CT, MRI để chẩn đoán chính xác các bệnh lý</p>
+                            <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                        </div>
+                        <div class="my-unique-carousel-card col-12 col-md-4">
+                            <h3>Khoa Xương Khớp</h3>
+                            <p> Chẩn đoán và điều trị các bệnh lý về xương, khớp, cơ như thoái hóa, viêm khớp, thoát vị
+                                đĩa đệm</p>
+                            <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                        </div>
+                        <div class="my-unique-carousel-card col-12 col-md-4">
+                            <h3>Khoa sản - phụ khoa</h3>
+                            <p>Chăm sóc sức khỏe phụ nữ, bao gồm thai kỳ, sinh sản, các bệnh lý phụ khoa và tư vấn kế
+                                hoạch hóa gia đình</p>
+                            <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                        </div>
                     </div>
-                    <div class="my-unique-carousel-card">
-                        <h3>Khoa Xương Khớp</h3>
-                        <p> Chẩn đoán và điều trị các bệnh lý về xương, khớp, cơ như thoái hóa, viêm khớp, thoát vị đĩa đệm</p>
-                        <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
-                    </div>
-                    <div class="my-unique-carousel-card">
-                        <h3>Khoa sản - phụ khoa </h3>
-                        <p>Chăm sóc sức khỏe phụ nữ, bao gồm thai kỳ, sinh sản, các bệnh lý phụ khoa và tư vấn kế hoạch hóa gia đình</p>
-                        <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex justify-content-center my-unique-carousel-wrapper">
+                        <div class="my-unique-carousel-card col-12 col-md-4">
+                            <h3>Chuyên Khoa Nhi</h3>
+                            <p> Chăm sóc sức khỏe cho trẻ em, từ bệnh lý thông thường đến tư vấn phát triển và dinh
+                                dưỡng.</p>
+                            <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                        </div>
+                        <div class="my-unique-carousel-card col-12 col-md-4">
+                            <h3>Răng - Hàm - Mặt</h3>
+                            <p> Điều trị các bệnh lý răng miệng, chỉnh nha, thẩm mỹ răng và cấy ghép với bác sĩ chuyên
+                                nghiệp và công nghệ hiện đại.</p>
+                            <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                        </div>
+                        <div class="my-unique-carousel-card col-12 col-md-4">
+                            <h3>Chuyên Khoa da liễu</h3>
+                            <p> Chuyên chẩn đoán và điều trị các bệnh lý về da, tóc, móng như mụn, viêm da, nám, và rụng
+                                tóc, chăm sóc da toàn diện với công nghệ hiện đại và đội ngũ bác sĩ tận tâm.</p>
+                            <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="d-flex justify-content-center my-unique-carousel-wrapper">
-                    <div class="my-unique-carousel-card">
-                        <h3>Chuyên Khoa Nhi</h3>
-                        <p> Chăm sóc sức khỏe cho trẻ em, từ bệnh lý thông thường đến tư vấn phát triển và dinh dưỡng.</p>
-                        <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
-                    </div>
-                    <div class="my-unique-carousel-card">
-                        <h3>Răng - Hàm - Mặt</h3>
-                        <p> Điều trị các bệnh lý răng miệng, chỉnh nha, thẩm mỹ răng và cấy ghép với bác sĩ chuyên nghiệp và công nghệ hiện đại.</p>
-                        <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
-                    </div>
-                    <div class="my-unique-carousel-card">
-                        <h3>Chuyên Khoa da liễu</h3>
-                        <p> Chuyên chẩn đoán và điều trị các bệnh lý về da, tóc, móng như mụn, viêm da, nám, và rụng tóc, chăm sóc da toàn diện với công nghệ hiện đại và đội ngũ bác sĩ tận tâm.</p>
-                        <a href="/khoa" class="btn btn-primary">Tìm hiểu thêm</a>
-                    </div>
-                </div>
-                </div>
+            <!-- Nút điều hướng Previous -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#uniqueCarousel" data-bs-slide="prev"
+                    style="background-color: black; border: none; color: white;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <!-- Nút điều hướng Next -->
+            <button class="carousel-control-next" type="button" data-bs-target="#uniqueCarousel" data-bs-slide="next"
+                    style="background-color: black; border: none; color: white;">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <!-- Nút điều hướng Previous -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#uniqueCarousel" data-bs-slide="prev" style="background-color: black; border: none; color: white;">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <!-- Nút điều hướng Next -->
-        <button class="carousel-control-next" type="button" data-bs-target="#uniqueCarousel" data-bs-slide="next" style="background-color: black; border: none; color: white;">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
-</div>
-  <div class="statistics-container">
-    <h4 class="statistics-title">Số liệu hoạt động của phòng khám</h4>
-    <p class="statistics-subtitle">Cam kết chất lượng dịch vụ</p>
-    <div class="statistics-grid">
-      <div class="statistics-item">
-        <div class="statistics-icon">👥</div>
-        <div class="statistics-number">Hơn 10,000</div>
-        <div class="statistics-label">Bệnh Nhân Đã Khám</div>
-      </div>
-      <div class="statistics-item">
-        <div class="statistics-icon">🏢</div>
-        <div class="statistics-number">3</div>
-        <div class="statistics-label">Cơ Sở Phòng Khám</div>
-      </div>
-      <div class="statistics-item">
-        <div class="statistics-icon">🏆</div>
-        <div class="statistics-number">300</div>
-        <div class="statistics-label">Đạt kỷ lục lượt khám cao nhất trong 1 ngày</div>
-      </div>
-      <div class="statistics-item">
-        <div class="statistics-icon">💳</div>
-        <div class="statistics-number">11,214</div>
-        <div class="statistics-label">Giao Dịch Thanh Toán</div>
-      </div>
+    <div class="statistics-container">
+        <h4 class="statistics-title">Số liệu hoạt động của phòng khám</h4>
+        <p class="statistics-subtitle">Cam kết chất lượng dịch vụ</p>
+        <div class="statistics-grid">
+            <div class="statistics-item">
+                <div class="statistics-icon">👥</div>
+                <div class="statistics-number">Hơn 10,000</div>
+                <div class="statistics-label">Bệnh Nhân Đã Khám</div>
+            </div>
+            <div class="statistics-item">
+                <div class="statistics-icon">🏢</div>
+                <div class="statistics-number">3</div>
+                <div class="statistics-label">Cơ Sở Phòng Khám</div>
+            </div>
+            <div class="statistics-item">
+                <div class="statistics-icon">🏆</div>
+                <div class="statistics-number">300</div>
+                <div class="statistics-label">Đạt kỷ lục lượt khám cao nhất trong 1 ngày</div>
+            </div>
+            <div class="statistics-item">
+                <div class="statistics-icon">💳</div>
+                <div class="statistics-number">11,214</div>
+                <div class="statistics-label">Giao Dịch Thanh Toán</div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 <section class="team-section py-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Cột hình ảnh -->
-      <div class="col-md-6 text-center">
-        <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1733816985/pexels-gustavo-fring-8770713_npanma.jpg" alt="Đội ngũ bác sĩ" class="img-fluid rounded">
-      </div>
-      <!-- Cột nội dung -->
-      <div class="col-md-6">
-        <h2 class="fw-bold mb-3">Đội ngũ bác sĩ tại Healthy Care</h2>
-        <p class="text-muted">
-          Chúng tôi tự hào sở hữu một đội ngũ bác sĩ giàu kinh nghiệm, chuyên môn cao và tận tâm với nghề.
-          Được đào tạo tại các trường đại học y khoa uy tín trong và ngoài nước, các bác sĩ của chúng tôi
-          luôn cập nhật những kiến thức y khoa mới nhất để cung cấp dịch vụ chăm sóc sức khỏe chất lượng
-          và hiệu quả cho bệnh nhân.
-        </p>
-        <a href="#" class="btn btn-primary px-4 py-2">Tìm Hiểu Về Đội Ngũ Bác Sĩ</a>
-      </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Cột hình ảnh -->
+            <div class="col-md-6 text-center">
+                <img src="https://res.cloudinary.com/dudfmzv9d/image/upload/v1733816985/pexels-gustavo-fring-8770713_npanma.jpg"
+                     alt="Đội ngũ bác sĩ" class="img-fluid rounded">
+            </div>
+            <!-- Cột nội dung -->
+            <div class="col-md-6">
+                <h2 class="fw-bold mb-3">Đội ngũ bác sĩ tại Healthy Care</h2>
+                <p class="text-muted">
+                    Chúng tôi tự hào sở hữu một đội ngũ bác sĩ giàu kinh nghiệm, chuyên môn cao và tận tâm với nghề.
+                    Được đào tạo tại các trường đại học y khoa uy tín trong và ngoài nước, các bác sĩ của chúng tôi
+                    luôn cập nhật những kiến thức y khoa mới nhất để cung cấp dịch vụ chăm sóc sức khỏe chất lượng
+                    và hiệu quả cho bệnh nhân.
+                </p>
+                <a href="#" class="btn btn-primary px-4 py-2">Tìm Hiểu Về Đội Ngũ Bác Sĩ</a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 {% endblock %}
 {% block javascript %}
