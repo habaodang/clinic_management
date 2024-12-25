@@ -153,7 +153,7 @@ def appointment1():
     list_khoa=depp.get_department()
     doctors=depp.get_doctor()
 
-    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa,doctors=doctors)
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa,doctors=doctors,name_user=current_user.name_account)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
@@ -289,6 +289,7 @@ def nurse():
 @main_bp.route('/scheduleNurse')
 def schedule_nurse():
     return render_template('nurse/scheduleNurse.html',user=current_user)
+
 @main_bp.route('/formNurse')
 def form_nurse():
     list_lichkham = his.get_appointmant_all()

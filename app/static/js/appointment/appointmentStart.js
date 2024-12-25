@@ -104,3 +104,22 @@ document.addEventListener('DOMContentLoaded', function() {
         successNotification.style.display = 'none';
     });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Restrict date input to one day from today
+  const dateInput = document.getElementById('appointment-date');
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate());
+  dateInput.min = tomorrow.toISOString().split('T')[0];
+
+  // Form validation
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (event) => {
+    const date = dateInput.value;
+    const time = document.getElementById('appointment-time').value;
+    const location = document.getElementById('clinic-room').value;
+    const package = document.getElementById('doctor').value;
+    const captcha = document.getElementById('captcha').checked;
+  });
+});

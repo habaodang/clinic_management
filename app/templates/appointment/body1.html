@@ -10,23 +10,22 @@
                 <input type="hidden" name="location" value="{{ location }}">
                 <input type="hidden" name="package" value="{{ package }}">
                 <div class="row mb-3">
-                    <div class="col-md-6">
-                        <label for="doctor" class="form-label">Chọn Bác Sĩ</label>
-                        <select id="doctor" class="form-select" name="doctor">
-                            <option value="">Chọn Bác Sĩ</option>
-                            {% for doctor in doctors %}
-                            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
-                            {% endfor %}
-
-                        </select>
-                    </div>
-                    <div class="col-md-6">
+                     <div class="col-md-6">
                         <label for="doctor" class="form-label">Chọn Khoa</label>
-                        <select id="doctor" class="form-select" name="department">
+                        <select id="doctor" class="form-select" name="department" required>
+                            <option value="">Trống</option>
                             {% for khoa in list_khoa %}
                             <option value="{{ khoa.id }}">{{ khoa.name }}</option>
                             {% endfor %}
-
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="doctor" class="form-label">Chọn Bác Sĩ</label>
+                        <select id="doctor" class="form-select" name="doctor">
+                            <option value="">Trống</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -46,14 +45,22 @@
         </div>
     </div>
 </div>
-<!--&lt;!&ndash; Success Notification &ndash;&gt;-->
-<!--<div id="success-notification" class="position-fixed top-50 start-50 translate-middle-x bg-white p-4 shadow rounded-3 appointmentFinish">-->
-<!--    <div class="d-flex justify-content-end">-->
-<!--        <button id="close-notification" class="btn-close" aria-label="Close"></button>-->
-<!--    </div>-->
-<!--    <h3 class="mb-3 ">Đặt Lịch Thành Công</h3>-->
-<!--    <button id="accept-notification" class="btn btn-primary">Chấp nhận</button>-->
-<!--</div>-->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="successModalLabel">Đặt Lịch Thành Công</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Cảm ơn bạn đã đặt lịch. Chúng tôi sẽ liên hệ với bạn sớm!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/appointment/appointmentFinish.js') }}"></script>

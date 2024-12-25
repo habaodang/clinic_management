@@ -7,7 +7,6 @@
 {% endblock %}
 {% block left %}
 <div class="left">
-
     <div class="left col-md-3">
         <div class="sidebar" id="sidebar">
             <a class="menu-item " href="/nurse">
@@ -57,7 +56,6 @@
 <!-- Cards Container -->
 <section class="card-container">
     {% for lichkham in list_lichkham %}
-    <!-- Card 1 -->
     <article class="card active" data-status = '{{ lichkham.status }}'>
         <span class="card-badge teal">1</span>
         <span class="new-badge">NEW</span>
@@ -82,7 +80,6 @@
 </section>
 {% endblock %}
 {% block right %}
-
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/nurse/formNurse.js') }}"></script>
