@@ -3,6 +3,7 @@ from flask_login import current_user
 from sqlalchemy import func
 from app.models import User,Account,LichKham
 from app import db
+from datetime import datetime
 
 def get_appointment_date(date):
     return LichKham.query.filter(LichKham.date==date).all()
@@ -22,3 +23,13 @@ def confirm_appointment(id):
 # so luong gon dat lich kham
 def count_apointment_all():
     return db.session.query(func.count(LichKham.id)).scalar()
+
+
+def get_appointment_present_id(id):
+    now = datetime.now().date()
+
+    lichkham = LichKham.query.filter(
+        LichKham.doctor_id == id,
+        LichKham.date == now
+    ).all()
+    return lichkham

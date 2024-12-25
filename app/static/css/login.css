@@ -176,6 +176,9 @@ font-size: 3rem;
   border-radius: 2rem;
 }
 @media (max-width: 767px) {
+  .container {
+  margin-top: 10rem;
+}
   .signin-container {
     grid-template-columns: 1fr;
   }

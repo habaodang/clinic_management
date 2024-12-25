@@ -1,8 +1,28 @@
 {% extends 'layout/base.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menubar.css') }}"/>
+{% endblock %}
 {% block header %}
 {% include 'layout/headerLogin.html' %}
 {% endblock %}
 {% block content %}
+<!-- Nút bấm nổi -->
+<button id="floatingMenuButton" class="floating-menu-button">
+    <i class="fa-solid fa-bars"></i>
+</button>
+<!-- Menu hiển thị -->
+<!-- Menu hiển thị -->
+<div id="floatingMenu" class="floating-menu">
+    <h4 class="mb-3">Menu</h4>
+    <ul class="list-unstyled">
+        <li><a href="/">Trang Chủ</a></li>
+        <li><a href="/#gioithieuSection" id="introButtonLink">Giới Thiệu</a></li>
+        <li><a href="/specialty" id="specialty">Chuyên Khoa</a></li>
+        <li><a href="/medicalPackage" id="medicalPackage">Gói Khám</a></li>
+        <li><a href="#section2" id="contactButton">Liên Hệ</a></li>
+    </ul>
+</div>
+
 <section class="container">
     <section class="hero py-5">
         <div class="container">

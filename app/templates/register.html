@@ -48,15 +48,17 @@
                                         <label for="password">Mật khẩu</label>
                                         <div class="input-group">
                                             <input type="password" name="password" id="passwordField"
-                                                   title="Vui lòng không viết dưới 6 ký tự và phải sử dụng ký tự số"
-                                                   required/>
+                                                   title="Mật khẩu phải có ít nhất một chữ cái viết hoa, một chữ số và một ký tự đặc biệt"
+                                                   pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?\" required/>
                                             <i class="fa-regular fa-eye" onclick="changeTypePassword()"></i>
                                         </div>
                                         <div class="input-form-container">
                                             <label for="password">Nhập lại mật khẩu</label>
                                             <div class="input-group">
                                                 <input type="password" name="re_en_password" id="passwordFields"
-                                                       title="Vui lòng nhập lại mật khẩu" required/>
+                                                       title="Mật khẩu phải có ít nhất một chữ cái viết hoa, một chữ số và một ký tự đặc biệt"
+                                                       pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?\"
+                                                required/>
                                                 <i class="fa-solid fa-lock" onclick="cofirmPassword()"></i>
                                             </div>
                                         </div>
@@ -68,14 +70,14 @@
                                             </div>
                                             <a href="#!" class="link">Quên mật khẩu?</a>
                                         </div>
-                                         {% with messages = get_flashed_messages(with_categories=true) %}
-                          {% if messages %}
-                            {% for category, message in messages %}
-                                <div id="mess_erro">{{ message }}</div>
+                                        {% with messages = get_flashed_messages(with_categories=true) %}
+                                        {% if messages %}
+                                        {% for category, message in messages %}
+                                        <div id="mess_erro">{{ message }}</div>
 
-                            {% endfor %}
-                          {% endif %}
-                        {% endwith %}
+                                        {% endfor %}
+                                        {% endif %}
+                                        {% endwith %}
 
                                         <div class="input-form-container">
                                             <button type="submit" class="btn btn-primary">Đăng ký</button>
@@ -91,9 +93,8 @@
                                                         class="fa-sharp fa-solid fa-rotate-left"></i>Quay lại đăng nhập</a>
                                             </p>
                                         </div>
+                                    </div>
                                 </div>
-
-
                     </form>
                 </div>
             </div>

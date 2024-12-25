@@ -35,7 +35,6 @@
                     <h3>Thoát</h3>
                 </a>
             </div>
-            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
         </div>
         {% endblock %}
         <div class="middle">
@@ -45,8 +44,8 @@
                 <h2>Thông Tin Người Dùng Đã Xác Thực</h2>
                 <form>
                     <div class="form-group">
-                        <label for="employee-id">Căn Cước Công Dân {{ user.cccd }}</label>
-                        <input type="text" id="employee-id" name="employee-id" value="QTV012" readonly>
+                        <label for="employee-id">Căn Cước Công Dân </label>
+                        <input type="text" id="employee-id" name="employee-id" value="{{ user.user.cccd }}" readonly>
                     </div>
 
                     <div class="form-group">

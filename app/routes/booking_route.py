@@ -33,6 +33,7 @@ def get_booking_second_form():
         #xu ly du lieu chuyen du lieu thoi gian
         time_conv=cnv.convert_to_time(time)
 
+        print(doctor)
         mess=med.add_booking(date=date,time=time_conv,location=location,package=package,doctor_id=doctor,department_id=department,note=note)
 
 
