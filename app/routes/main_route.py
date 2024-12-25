@@ -132,7 +132,7 @@ def medical_package():
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty/specialty.html',name_user=current_user.name_account)
+    return render_template('specialty/specialty.html')
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -148,7 +148,7 @@ def department_cdch():
 
 @main_bp.route('/CDCHLogin')
 def department_chchlogin():
-    return render_template('department/CDCHLogin.html')
+    return render_template('department/CDCHLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/CXK')
 def department_cxk():
@@ -156,7 +156,7 @@ def department_cxk():
 
 @main_bp.route('/CXKLogin')
 def department_cxklogin():
-    return render_template('department/CXKLogin.html')
+    return render_template('department/CXKLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/DaLieu')
 def department_dalieu():
@@ -164,7 +164,7 @@ def department_dalieu():
 
 @main_bp.route('/DaLieuLogin')
 def department_dalieulogin():
-    return render_template('department/DaLieuLogin.html')
+    return render_template('department/DaLieuLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/NhiKhoa')
 def department_nhikhoa():
@@ -172,7 +172,7 @@ def department_nhikhoa():
 
 @main_bp.route('/NhiKhoaLogin')
 def department_nhikhoalogin():
-    return render_template('department/NhiKhoaLogin.html')
+    return render_template('department/NhiKhoaLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/RHM')
 def department_rhm():
@@ -180,7 +180,7 @@ def department_rhm():
 
 @main_bp.route('RHMLogin')
 def department_rhmlogin():
-    return render_template('department/RHMLogin.html')
+    return render_template('department/RHMLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/SPK')
 def department_spk():
@@ -188,7 +188,7 @@ def department_spk():
 
 @main_bp.route('/SPKLogin')
 def department_spklogin():
-    return render_template('department/SPKLogin.html')
+    return render_template('department/SPKLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/doctor')
 def doctor():
