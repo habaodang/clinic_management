@@ -243,7 +243,7 @@ def setting_nurse():
 def form_check():
     lich_id = request.args.get('lich_id')
     lichkham=his.get_appointment_id(lich_id)
-    return render_template('nurse/formCheck.html',lichkham=lichkham)
+    return render_template('nurse/formCheck.html',lichkham=lichkham,user=current_user)
 
 #cashier
 @main_bp.route('/cashier')
