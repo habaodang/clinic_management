@@ -30,6 +30,6 @@ def get_appointment_present_id(id):
 
     lichkham = LichKham.query.filter(
         LichKham.doctor_id == id,
-        LichKham.date == now
+        # LichKham.date == now
     ).all()
     return lichkham

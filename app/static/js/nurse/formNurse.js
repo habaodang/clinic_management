@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const status = card.getAttribute('data-status');
 
             if (filter === 'all' ||
-                (filter === 'started' && status === 'pending') ||
-                (filter === 'finished' && status === 'finished')) {
+                (filter === 'started' && status === true) ||
+                (filter === 'finished' && status === false)) {
                 card.classList.add('active'); // Hiển thị thẻ
             } else {
                 card.classList.remove('active'); // Ẩn thẻ

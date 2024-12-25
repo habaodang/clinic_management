@@ -1,6 +1,7 @@
 {% extends 'indexLogin.html' %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/setting/info.css') }}"/>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/medicalBook.css') }}"/>
 {% endblock %}
 {% block content %}
@@ -49,7 +50,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="full-name">Họ và Tên:  </label>
+                        <label for="full-name">Họ và Tên: </label>
                         <input type="text" id="full-name" name="full-name" value="{{ user.user.name }}" readonly>
                     </div>
                     <div class="form-group">
@@ -67,7 +68,8 @@
                     </div>
                     <div class="form-group">
                         <label for="phone">Quê Quán </label>
-                        <input type="text" id="address_user" name="address_user" value ="{{ user.user.address }}" readonly>
+                        <input type="text" id="address_user" name="address_user" value="{{ user.user.address }}"
+                               readonly>
                     </div>
                 </form>
             </div>
@@ -88,43 +90,20 @@
             {% endif %}
             {% endblock %}
         </div>
-        <div class="right">
-            <h5 class="text-primary">Các Gói Khám</h5>
-            <div class="list-group">
-                <!-- Gói khám 1 -->
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">Gói Khám Tổng Quát</h6>
-                        <small class="text-muted">3,000,000 VNĐ</small>
-                    </div>
-                    <p class="mb-1 text-muted">Khám sức khỏe tổng quát, xét nghiệm máu, siêu âm.</p>
-                </a>
-                <!-- Gói khám 2 -->
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">Gói Khám Tim Mạch</h6>
-                        <small class="text-muted">1,500,000 VNĐ</small>
-                    </div>
-                    <p class="mb-1 text-muted">Khám tim mạch chuyên sâu, ECG, siêu âm Doppler.</p>
-                </a>
-                <!-- Gói khám 3 -->
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">Gói Khám Cho Sản Phụ</h6>
-                        <small class="text-muted">800,000 VNĐ</small>
-                    </div>
-                    <p class="mb-1 text-muted">Xét nghiệm đường huyết, kiểm tra HbA1c.</p>
-                </a>
-                <!-- Gói khám 4 -->
-                <a href="#" class="list-group-item list-group-item-action">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">Gói Khám Nhi Khoa</h6>
-                        <small class="text-muted">500,000 VNĐ</small>
-                    </div>
-                    <p class="mb-1 text-muted">Khám sức khỏe định kỳ cho trẻ em.</p>
-                </a>
+            <div class="form-container">
+                <h2>Ảnh Đại Diện</h2>
+                <div class="form-group">
+                    <label class="upload-box" id="upload-label" for="profile-picture">Upload your photo</label>
+                    <input type="file" id="profile-picture" name="profile-picture" accept="image/*"
+                           style="display: none;">
+                    <img id="avatar-preview" src="" alt="Avatar Preview">
+                    <button type="button" id="change-avatar-btn">Thay đổi ảnh</button>
+                </div>
+                <div class="button-container">
+                    <button type="submit" class="save-btn">Lưu</button>
+                    <button type="button" class="back-btn">Quay Lại</button>
+                </div>
             </div>
-        </div>
     </div>
 </main>
 <div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModalLabel"
@@ -204,5 +183,6 @@
 {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/medicalBook.js') }}"></script>
+<script src="{{ url_for('static', filename='js/setting.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
