@@ -17,3 +17,11 @@ main .container .middle {
     padding:0;
     margin:0;
 }
+.flex {
+  display:block !important;
+
+}
+#chartCanvas {
+    width: 50rem !important;  /* Chiều rộng nhỏ hơn */
+    height: 40rem !important; /* Chiều cao nhỏ hơn */
+}

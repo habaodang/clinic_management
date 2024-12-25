@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request,session,flash
+from flask import Blueprint, render_template, redirect, url_for, request,session,flash, jsonify
 from flask_login import login_user, logout_user,current_user,login_required
 from datetime import datetime
 import app.controller.infor_user as inf
@@ -65,3 +65,14 @@ def add_user_ad():
     flash('Đăng ký thất bại không tìm thấy dữ liêu', 'error')
     # Hiển thị trang đăng ký
     return redirect(url_for('main.add_admin'))
+@admin.route('/report')
+def report():
+    return render_template('report.html')
+
+@admin.route('/api/revenue')
+def get_revenue_data():
+    data = {
+        "labels": ["01/09", "02/09", "03/09", "04/09"],
+        "revenues": [10322000, 10020000, 10322000, 10322000]
+    }
+    return jsonify(data)
