@@ -1,0 +1,26 @@
+{% extends 'indexLogin.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="page-header text-center editA">
+        <h3>Chuyên Khoa</h3>
+        <a href="/"> Trang chủ</a> /
+        <a href="/specialtyLogin"> Chuyên khoa </a> /
+        <a> Nhi Khoa</a>
+    </div>
+    <p>
+        Khoa Nhi thuộc Phòng khám Bệnh viện Đại học Y Dược 1 được trang thiết bị y khoa hiện đại cùng đội ngũ Bác sĩ giàu kinh nghiệm, có ý thức cao về y đức nghê nghiệp, luôn tận tâm, không ngừng học hỏi nâng cao trình độ chuyên môn và luôn đặt lợi ích của bệnh nhi lên hàng đầu trong mọi điều trị.
+    </p>
+    <p>Các dịch vụ được thực hiện tại Khoa Nhi của Phòng khám Bệnh viện Đại học Y Dược 1:</p>
+
+    <p><strong>Khám và chữa bệnh cho trẻ sơ sinh đến 16 tuổi:</strong>  Các bệnh về hô hấp, tim mạch, tiêu hóa, bệnh truyền nhiễm và các bệnh của trẻ sơ sinh khác…</p>
+    <p>Khám định kỳ và theo dõi phát triển thể chất, tâm thần vận động</p>
+    <p>Tư vấn dinh dưỡng và cách chăm sóc trẻ</p>
+    <p>Dịch vụ tiêm ngừa</p>
+    <p>Khám sức khoẻ tổng quát cho trẻ và một số dịch vụ chuyên sâu khác…</p>
+</div>
+{% endblock %}

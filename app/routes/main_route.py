@@ -143,13 +143,52 @@ def specialty_login():
     return render_template('specialty/specialtyLogin.html',name_user=current_user.name_account)
 
 @main_bp.route('/CDCH')
-def department_CDCH():
+def department_cdch():
     return render_template('department/CDCH.html')
 
 @main_bp.route('/CDCHLogin')
-def department_CDCHlogin():
+def department_chchlogin():
     return render_template('department/CDCHLogin.html')
 
+@main_bp.route('/CXK')
+def department_cxk():
+    return render_template('department/CXK.html')
+
+@main_bp.route('/CXKLogin')
+def department_cxklogin():
+    return render_template('department/CXKLogin.html')
+
+@main_bp.route('/DaLieu')
+def department_dalieu():
+    return render_template('department/DaLieu.html')
+
+@main_bp.route('/DaLieuLogin')
+def department_dalieulogin():
+    return render_template('department/DaLieuLogin.html')
+
+@main_bp.route('/NhiKhoa')
+def department_nhikhoa():
+    return render_template('department/NhiKhoa.html')
+
+@main_bp.route('/NhiKhoaLogin')
+def department_nhikhoalogin():
+    return render_template('department/NhiKhoaLogin.html')
+
+@main_bp.route('/RHM')
+def department_rhm():
+    return render_template('department/RHMRHM.html')
+
+@main_bp.route('/XNLogin')
+def department_rhmlogin():
+    return render_template('department/RHMLogin.html')
+
+@main_bp.route('/SPK')
+def department_spk():
+    return render_template('department/SPK.html')
+
+@main_bp.route('/SPKLogin')
+def department_spklogin():
+    return render_template('department/SPKLogin.html')
 
 
 @main_bp.route('/doctor')

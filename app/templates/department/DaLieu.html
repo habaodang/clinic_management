@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="page-header text-center editA">
+        <h3>Chuyên Khoa</h3>
+        <a href="/"> Trang chủ</a> /
+        <a href="/specialty"> Chuyên khoa </a> /
+        <a> Da liễu</a>
+    </div>
+    <div class="specialty-content">
+        <h2>I. Giới thiệu chung</h2>
+        <p>
+            Khoa Da liễu chuyên cung cấp dịch vụ khám, chẩn đoán và điều trị các bệnh lý về da, tóc, móng và các bệnh
+            lây truyền qua đường tình dục. Đội ngũ y bác sĩ giàu kinh nghiệm cam kết đem lại dịch vụ chăm sóc sức khỏe
+            toàn diện và chất lượng cao.
+        </p>
+        <p>
+            Thực hiện các chương trình tư vấn và điều trị cá nhân hóa, phù hợp với từng loại bệnh lý và nhu cầu của
+            bệnh nhân. Khoa còn tích cực tham gia nghiên cứu khoa học, ứng dụng công nghệ hiện đại trong điều trị và
+            chăm sóc da.
+        </p>
+
+        <h2>II. Các dịch vụ nổi bật:</h2>
+        <p><strong>Khám và điều trị các bệnh lý về da:</strong> Mụn trứng cá, viêm da cơ địa, vảy nến, chàm, dị ứng da, và các bệnh nhiễm trùng da.</p>
+        <p><strong>Điều trị các bệnh lý về tóc và móng:</strong> Rụng tóc, nấm móng, viêm quanh móng.</p>
+        <p><strong>Điều trị các bệnh lây truyền qua đường tình dục:</strong> Sùi mào gà, giang mai, herpes sinh dục, nấm candida.</p>
+        <p><strong>Liệu pháp thẩm mỹ:</strong> Điều trị sẹo rỗ, laser trị nám, trẻ hóa da, tiêm filler, botox.</p>
+        <p><strong>Tư vấn và chăm sóc da:</strong> Xây dựng phác đồ chăm sóc da cá nhân hóa, hướng dẫn bảo vệ da trước tác hại của môi trường.</p>
+
+        <h2>III. Cơ sở vật chất – Trang thiết bị</h2>
+        <p>
+            Khoa Da liễu được trang bị đầy đủ các thiết bị y tế hiện đại, bao gồm hệ thống laser, máy chăm sóc da công nghệ cao, máy phân tích da, và các thiết bị hỗ trợ điều trị chuyên sâu.
+        </p>
+        <p>
+            Quy trình khám và điều trị được tối ưu hóa và quản lý bằng hệ thống công nghệ thông tin, đảm bảo hiệu quả và sự hài lòng của bệnh nhân. Kết quả điều trị được lưu trữ và theo dõi qua hệ thống mạng nội bộ của bệnh viện.
+        </p>
+    </div>
+</div>
+{% endblock %}

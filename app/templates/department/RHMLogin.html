@@ -1,0 +1,55 @@
+{% extends 'indexLogin.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <div class="page-header text-center editA">
+        <h3>Chuyên Khoa</h3>
+        <a href="/"> Trang chủ</a> /
+        <a href="/specialty"> Chuyên khoa </a> /
+        <a> Răng hàm mặt</a>
+    </div>
+    <div class="specialty-content">
+        <h2>I. Giới thiệu chung</h2>
+        <p>
+            Phục vụ các dịch vụ xét nghiệm và tư vấn theo yêu cầu, các hợp đồng khám sức khỏe ngoại viện cho các cơ
+            quan, xí nghiệp…
+        </p>
+        <p>
+            Tổ chức quản lý chuyên môn và quản lý hành chánh các hoạt động xét nghiệm theo tiêu chí của ngành và chỉ đạo
+            của Trung tâm Kiểm chuẩn xét nghiệm, từng bước thực hiện và hoàn chỉnh các bộ Quy trình chuẩn (SOP).
+        </p>
+        Nội kiểm tra chất lượng thường xuyên và tham gia các chương trình Ngoại kiểm tra chất lượng quốc tế: Sinh Hóa,
+        Miễn dịch, Huyết học, Đông máu, Nước tiểu, Định nhóm máu…
+        </p>
+
+        <h2>II.Thực hiện các xét nghiệm:</h2>
+        <p>
+            Tất cả các chỉ số sinh hóa trong máu; xét nghiệm sinh hóa, tế bào nước tiểu, các dịch chất; xét nghiệm điện
+            di, khí máu động mạch…
+        </p>
+        <p>Các xét nghiệm huyết học – truyền máu, cung cấp máu và các chế phẩm máu… Xét nghiệm đông cầm máu, ký sinh
+            trùng sốt rét…</p>
+        <p><strong>Tất cả các xét nghiệm miễn dịch:</strong>huyết thanh chẩn đoán vi sinh -Virus, xét nghiệm về hormon,
+            chất chuyển hóa, tim mạch, chất chỉ thị ung thư, thuốc gây nghiện, thuốc điều trị…</p>
+        <p><strong>Các xét nghiệm Vi – ký sinh: </strong> cấy máu, kháng sinh đồ, huyết thanh chẩn đoán KST
+            (E.histolytica, Cysticercus Cellulosae, Fasciola sp., Toxocara canis, Strongyloides stercoralis, Paragonimus
+            sp., Angiostrongylus cantonensis…)</p>
+        <p><strong>Các xét nghiệm sinh học phân tử :</strong>Khoa xét nghiệm là một trong những cơ sở đầu tiên trong cả
+            nước ứng dụng hệ thống chẩn đoán sinh học phân tử hiện đại và đạt chuẩn quốc tế. Khoa thực hiện xét nghiệm
+            chẩn đoán các tác nhân vi sinh vật gây bệnh thường gặp: HBV CAP T48, HCV CAP T48, HBV-DNA, HBV genotype, HBV
+            đột biến kháng Lamivudine, HCV-RNA, HCV genotype, PCR lao, HPV genotype, …</p>
+        <p>Xét nghiệm miễn dịch huỳnh quang, phát hiện tự kháng thể một số bệnh tự miễn (ANA, AMA, SMA, KLM, )…</p>
+        <p> Test hơi thở dùng 13C</p>
+         <h2>III.Cơ sở vật chất – Trang thiết bị</h2>
+        <p>
+           Khoa được trang bị đầy đủ các hệ thống trang thiết bị xét nghiệm hiện đại về sinh hóa, miễn dịch, nước tiểu, huyết học, đông máu, truyền máu, sinh học phân tử…
+        </p>
+        <p>Toàn bộ qui trình hoạt động xét nghiệm đã được hoàn toàn tự động hóa, vi tính hóa: Nối mạng toàn bộ từ thu ngân – tiếp nhận – phòng xét nghiệm – phòng khám – lầu trại. Kết quả xét nghiệm được trả cho bệnh nhân và lưu trữ qua mạng bệnh viện.</p>
+
+    </div>
+</div>
+{% endblock %}
