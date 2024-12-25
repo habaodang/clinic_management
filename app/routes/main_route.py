@@ -55,18 +55,11 @@ def logout_process():
 @main_bp.route('/schedule')
 @login_required
 def medical_schedule():
+    # Xóa tất cả thông báo flash
+    session.pop('_flashes', None)
     try:
         # Kiểm tra người dùng đã đăng nhập và có thuộc tính user.id hay không
         patient_id = current_user.user.id
-
-        if patient_id:
-            # Lấy lịch khám dựa trên patient_id
-            list_lichkham = nte.get_examination_history(patient_id)
-            return render_template('medicalbook/schedule.html', list_lichkham=list_lichkham)
-        else:
-
-            flash('Không tìm thấy thông tin bệnh nhân.', 'error')
-            return redirect(url_for('main.medical_book'))
 
     except AttributeError as e:
         flash('Bạn chưa xác thực thông tin không thể vào lịch hen', 'error')
@@ -75,7 +68,14 @@ def medical_schedule():
     except Exception as e:
         flash(f'Đã xảy ra lỗi: {str(e)}', 'error')
         return redirect(url_for('main.medical_book'))
-
+    else:
+        if patient_id:
+            # Lấy lịch khám dựa trên patient_id
+            list_lichkham = nte.get_examination_history(id=patient_id)
+            return render_template('medicalbook/schedule.html', list_lichkham=list_lichkham)
+        else:
+            flash('Không tìm thấy thông tin bệnh nhân.', 'error')
+            return redirect(url_for('main.medical_book'))
 
 @main_bp.route('/bill', methods=["GET","POST"])
 def medical_bill():
@@ -242,17 +242,17 @@ def package_vip_lg():
 
 @main_bp.route('/formMedicine')
 def form_medicine():
-    return render_template('doctor/formMedicine.html')
+    return render_template('doctor/formMedicine.html',user=current_user)
 
 @main_bp.route('/formConfirm')
 def form_confirm():
     lich_id = request.args.get('lich_id')
     lichkham = his.get_appointment_id(lich_id)
-    return render_template('doctor/formConfirm.html',lichkham=lichkham)
+    return render_template('doctor/formConfirm.html',lichkham=lichkham,user=current_user)
 
 @main_bp.route('/authenticate')
 def authenticate():
-    return render_template('medicalbook/authenticate.html')
+    return render_template('medicalbook/authenticate.html,user=current_user')
 
 # nurse
 @main_bp.route('/nurse')

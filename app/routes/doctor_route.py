@@ -13,7 +13,22 @@ def sick_predict():
         symptom = request.form.get('symptom')
         predict = request.form.get('predict')
 
-        return redirect(url_for('main.form_medicine'))
+        return redirect(url_for('main.form_medicine',symptom=symptom,predict=predict))
+
+@doctor.route('/doctor/add-medicine', methods=['GET', 'POST'])
+def sick_predict():
+    if request.method == 'POST':
+
+        symptom = request.form.get('symptom')
+        predict = request.form.get('predict')
+
+        medicineCode = request.form.get('medicineCode')
+        medicineName = request.form.get('medicineName')
+        medicineUnit = request.form.get('medicineUnit')
+        medicineQuantity = request.form.get('medicineQuantity')
+        medicineEffect = request.form.get('medicineEffect')
+        medicineUsage = request.form.get('medicineUsage')
+
 
 @doctor.route('/infor-doctor', methods=['GET', 'POST'])
 def infor_doctor():

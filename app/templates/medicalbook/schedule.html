@@ -37,15 +37,16 @@
         </div>
         {% endblock %}
     {% block middle %}
+<div class="header-title">Lịch Hẹn Khám Bệnh</div>
             {% for lichkham in list_lichkham %}
        <div class="appointment-wrapper">
-        <div class="header-title">Lịch Hẹn Khám Bệnh</div>
+
 
         <div class="appointment-card">
             <button class="close-btn">&times;</button>
             <div class="appointment-title">Lịch khám {{name_department}}</div>
             <p>Lịch hẹn vào {{ lichkham.time }}  ngày {{ lichkham.date }}</p>
-            <button class="details-btn" onclick="showDetails('Lịch khám {{name_department}}', '{{ lichkham.time }}  ngày {{ lichkham.date }}', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
+            <button class="details-btn" onclick="showDetails('Lịch khám {{name_department}}', '{{ lichkham.time }}  ngày {{ lichkham.date }}',)">Xem Chi Tiết</button>
 
         </div>
     </div>

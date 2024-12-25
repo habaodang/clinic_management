@@ -5,4 +5,4 @@ from app import db
 
 def get_examination_history(id):
     if id:
-        return LichKham.query.filter(LichKham.patient_id.__eq__(patient_id.strip())).all()
+        return LichKham.query.filter(LichKham.patient_id.__eq__(id.strip())).all()

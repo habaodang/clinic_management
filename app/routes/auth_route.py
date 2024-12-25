@@ -13,6 +13,8 @@ auth_bp = Blueprint('auth', __name__)
 # Route đăng nhập
 @auth_bp.route('/login/data', methods=['GET', 'POST'])
 def user_signin():
+    # Xóa tất cả thông báo flash
+    session.pop('_flashes', None)
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -38,6 +40,8 @@ def logout():
 
 @auth_bp.route('/register/data', methods=['GET', 'POST'])
 def user_register():
+    # Xóa tất cả thông báo flash
+    session.pop('_flashes', None)
     if request.method.__eq__('POST'):
         user_name = request.form.get('name_user')
         password = request.form.get('password')
