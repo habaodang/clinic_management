@@ -24,7 +24,9 @@ login_manager.login_view = 'main.login'
 @main_bp.route('/')
 def index():
     return render_template('index.html')
-
+@main_bp.route('/support')
+def support():
+    return render_template('support.html')
 @main_bp.route('/medicalBook')
 @login_required
 def medical_book():
@@ -72,7 +74,7 @@ def medical_schedule():
         if patient_id:
             # Lấy lịch khám dựa trên patient_id
             list_lichkham = nte.get_examination_history(id=patient_id)
-            return render_template('medicalbook/schedule.html', list_lichkham=list_lichkham)
+            return render_template('medicalbook/schedule.html', list_lichkham=list_lichkham,name_user=current_user.name_account)
         else:
             flash('Không tìm thấy thông tin bệnh nhân.', 'error')
             return redirect(url_for('main.medical_book'))
@@ -94,9 +96,7 @@ def medical_history():
 def setting():
     return render_template('setting.html',name_user=current_user.name_account)
 
-@main_bp.route('/theme')
-def setting_theme():
-    return render_template('setting/theme.html',name_user=current_user.name_account)
+
 
 @main_bp.route('/passwd')
 def setting_passwd():
@@ -220,9 +220,7 @@ def setting_doctor():
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html',user=current_user)
 
-@main_bp.route('/themeDoctor')
-def theme_doctor():
-    return render_template('doctor/themeDoctor.html',user=current_user)
+
 
 @main_bp.route('/packageNormal')
 def package_normal():

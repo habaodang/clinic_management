@@ -1,171 +1,183 @@
-
-
-
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("collapsed");
 }
 
-//SIDEBAR
-const menuItems= document.querySelectorAll('.menu-item');
+// SIDEBAR
+const menuItems = document.querySelectorAll('.menu-item');
 
-//THEME
-// const theme = document.querySelector('#theme');
-// const themeModal = document.querySelector('.customize-theme');
+// THEME
 const theme = document.querySelector('#theme');
 const themeModal = document.querySelector('.customize-theme');
-
 const fontSizes = document.querySelectorAll('.choose-size span');
-var root = document.querySelector(':root');
+const root = document.querySelector(':root');
 const colorPalette = document.querySelectorAll('.choose-color span');
-
 const Bg1 = document.querySelector('.bg-1');
 const Bg2 = document.querySelector('.bg-2');
 const Bg3 = document.querySelector('.bg-3');
 
-//SIDEBAR
-// remove active class from all menu items
+// SIDEBAR
+// Remove active class from all menu items
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.menu-item').forEach(item => {
+    menuItems.forEach(item => {
         item.addEventListener('click', () => {
-            document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+            menuItems.forEach(i => i.classList.remove('active'));
             item.classList.add('active');
         });
     });
+
+    // Apply saved font size
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        document.querySelector('html').style.fontSize = savedFontSize;
+    }
+
+    // Apply saved primary color
+    const savedPrimaryHue = localStorage.getItem('primaryHue');
+    if (savedPrimaryHue) {
+        root.style.setProperty('--primary-color-hue', savedPrimaryHue);
+    }
+
+    // Apply saved background
+    const savedBackground = localStorage.getItem('background');
+    if (savedBackground === 'bg1') {
+        Bg1.classList.add('active');
+    } else if (savedBackground === 'bg2') {
+        Bg2.classList.add('active');
+        root.style.setProperty('--dark-color-lightness', localStorage.getItem('darkColorLightness'));
+        root.style.setProperty('--white-color-lightness', localStorage.getItem('whiteColorLightness'));
+        root.style.setProperty('--light-color-lightness', localStorage.getItem('lightColorLightness'));
+    } else if (savedBackground === 'bg3') {
+        Bg3.classList.add('active');
+        root.style.setProperty('--dark-color-lightness', localStorage.getItem('darkColorLightness'));
+        root.style.setProperty('--white-color-lightness', localStorage.getItem('whiteColorLightness'));
+        root.style.setProperty('--light-color-lightness', localStorage.getItem('lightColorLightness'));
+    }
 });
 
-//THEME CUSTOMIZATION
-
-//opens modal
+// THEME CUSTOMIZATION
+// Opens modal
 function openThemeModal() {
     themeModal.style.display = 'grid';
 }
-//close modal
-const closeThemeModal= (e) =>{
-    if(e.target.classList.contains('customize-theme')){
-        themeModal.style.display='none';
 
+// Close modal
+const closeThemeModal = (e) => {
+    if (e.target.classList.contains('customize-theme')) {
+        themeModal.style.display = 'none';
     }
-}
-themeModal.addEventListener('click', closeThemeModal);
+};
 
+themeModal.addEventListener('click', closeThemeModal);
 theme.addEventListener('click', openThemeModal);
 
-
 // --------FONTS-----------
-// remove active class from span or font size selectors
+// Remove active class from span or font size selectors
 const removeSizeSelector = () => {
     fontSizes.forEach(size => {
         size.classList.remove('active');
-    })
-}
-fontSizes.forEach(size => {
+    });
+};
 
-    size.addEventListener('click', () =>{
+fontSizes.forEach(size => {
+    size.addEventListener('click', () => {
         removeSizeSelector();
         let fontSize;
-        size.classList.toggle('active');
-        if(size.classList.contains('font-size-1')){
+        size.classList.add('active');
+        if (size.classList.contains('font-size-1')) {
             fontSize = '10px';
-            root.style.setProperty ('----sticky-top-left', '5.4rem');
-            root.style.setProperty ('----sticky-top-right', '5.4rem');
-        }else if(size.classList.contains('font-size-2')){
+        } else if (size.classList.contains('font-size-2')) {
             fontSize = '13px';
-            root.style.setProperty ('----sticky-top-left', '5.4rem');
-            root.style.setProperty ('----sticky-top-right', '-7rem');
-        }
-        else if(size.classList.contains('font-size-3')){
+        } else if (size.classList.contains('font-size-3')) {
             fontSize = '16px';
-            root.style.setProperty ('----sticky-top-left', '-2rem');
-            root.style.setProperty ('----sticky-top-right', '-17rem');
-        }
-        else if(size.classList.contains('font-size-4')){
+        } else if (size.classList.contains('font-size-4')) {
             fontSize = '19px';
-            root.style.setProperty ('----sticky-top-left', '-5rem');
-            root.style.setProperty ('----sticky-top-right', '-25rem');
-        }
-        else if(size.classList.contains('font-size-5')){
+        } else if (size.classList.contains('font-size-5')) {
             fontSize = '22px';
-            root.style.setProperty ('----sticky-top-left', '-12rem');
-            root.style.setProperty ('----sticky-top-right', '-35rem');
         }
-        // thay doi font size cua root html
         document.querySelector('html').style.fontSize = fontSize;
-    })
-})
+        localStorage.setItem('fontSize', fontSize); // Save to localStorage
+    });
+});
+
 // -------------COLOR---------------
-//remove active class from colors
-const changeActiveColorClass=()=>{
-    colorPalette.forEach(colorPicker =>{
+// Remove active class from colors
+const changeActiveColorClass = () => {
+    colorPalette.forEach(colorPicker => {
         colorPicker.classList.remove('active');
-    })
-}
-// changes colors
+    });
+};
+
+// Changes colors
 colorPalette.forEach(color => {
     color.addEventListener('click', () => {
-        let primary;
-        //remove active class from colors
+        let primaryHue;
         changeActiveColorClass();
-        if(color.classList.contains('color-1')){
+        if (color.classList.contains('color-1')) {
             primaryHue = 252;
-
-        }else if(color.classList.contains('color-2')){
+        } else if (color.classList.contains('color-2')) {
             primaryHue = 52;
-        }
-        else if(color.classList.contains('color-3')){
+        } else if (color.classList.contains('color-3')) {
             primaryHue = 352;
-        }
-        else if(color.classList.contains('color-4')){
+        } else if (color.classList.contains('color-4')) {
             primaryHue = 152;
-        }else if(color.classList.contains('color-5')){
+        } else if (color.classList.contains('color-5')) {
             primaryHue = 202;
         }
         color.classList.add('active');
         root.style.setProperty('--primary-color-hue', primaryHue);
+        localStorage.setItem('primaryHue', primaryHue); // Save to localStorage
+    });
+});
 
-    })
-})
-//----------------BACKGROUND----------------
+// ----------------BACKGROUND----------------
 let lightColorLightness;
 let whiteColorLightness;
 let darkColorLightness;
-// change background color
-const changeBG =() =>{
-    root.style.setProperty('--light-color-lightness',lightColorLightness);
-    root.style.setProperty('--white-color-lightness',whiteColorLightness);
-    root.style.setProperty('--dark-color-lightness',darkColorLightness);
-}
-Bg1.addEventListener('click', () => {
 
-    // add active class
+// Change background color
+const changeBG = () => {
+    root.style.setProperty('--light-color-lightness', lightColorLightness);
+    root.style.setProperty('--white-color-lightness', whiteColorLightness);
+    root.style.setProperty('--dark-color-lightness', darkColorLightness);
+};
+
+Bg1.addEventListener('click', () => {
     Bg1.classList.add('active');
-    // remove active class from the others
     Bg2.classList.remove('active');
     Bg3.classList.remove('active');
+    localStorage.setItem('background', 'bg1');
     window.location.reload();
 });
+
 Bg2.addEventListener('click', () => {
     darkColorLightness = '95%';
-    whiteColorLightness ='20%';
+    whiteColorLightness = '20%';
     lightColorLightness = '15%';
-    // add active class
     Bg2.classList.add('active');
-    // remove active class from the others
     Bg1.classList.remove('active');
     Bg3.classList.remove('active');
+    localStorage.setItem('background', 'bg2');
+    localStorage.setItem('darkColorLightness', darkColorLightness);
+    localStorage.setItem('whiteColorLightness', whiteColorLightness);
+    localStorage.setItem('lightColorLightness', lightColorLightness);
     changeBG();
 });
+
 Bg3.addEventListener('click', () => {
     darkColorLightness = '95%';
-    whiteColorLightness ='10%';
+    whiteColorLightness = '10%';
     lightColorLightness = '0%';
-    // add active class
     Bg3.classList.add('active');
-    // remove active class from the others
     Bg1.classList.remove('active');
     Bg2.classList.remove('active');
+    localStorage.setItem('background', 'bg3');
+    localStorage.setItem('darkColorLightness', darkColorLightness);
+    localStorage.setItem('whiteColorLightness', whiteColorLightness);
+    localStorage.setItem('lightColorLightness', lightColorLightness);
     changeBG();
-})
+});
+
 
 document.addEventListener('DOMContentLoaded', function () {
   var calendarEl = document.getElementById('calendar');

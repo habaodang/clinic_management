@@ -64,4 +64,112 @@
     display: block;
 }
 
+/* CSS cho nút hỗ trợ tư vấn */
+.support-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.support-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Hộp thoại chat */
+.chat-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+/* Ẩn hộp chat khi không dùng */
+.hidden {
+    display: none;
+}
+
+/* Header của hộp thoại */
+.chat-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h5 {
+    margin: 0;
+}
+
+/* Body của hộp thoại */
+.chat-body {
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+/* Footer của hộp thoại */
+.chat-footer {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 5px;
+}
+
+.chat-footer input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-footer .send-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.chat-footer .send-button:hover {
+    background: #0056b3;
+}
+
+/* Nút đóng chat */
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+.chat-box {
+    z-index: 1001; /* Cao hơn header */
+}
 

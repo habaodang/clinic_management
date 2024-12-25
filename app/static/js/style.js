@@ -95,10 +95,6 @@ document.querySelectorAll(".toggle-form").forEach((btn) => {
   });
 });
 
-
-
-
-
  window.addEventListener('scroll', function () {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
@@ -107,3 +103,41 @@ document.querySelectorAll(".toggle-form").forEach((btn) => {
       header.classList.remove('scrolled');
     }
   });
+
+  // JavaScript để xử lý hiển thị/ẩn hộp chat
+document.addEventListener("DOMContentLoaded", function () {
+    const chatButton = document.getElementById("chatButton");
+    const chatBox = document.getElementById("chatBox");
+    const closeChat = document.getElementById("closeChat");
+    const sendMessage = document.getElementById("sendMessage");
+    const chatInput = document.getElementById("chatInput");
+    const chatMessages = document.getElementById("chatMessages");
+
+    // Hiển thị hoặc ẩn hộp chat khi ấn nút hỗ trợ tư vấn
+    chatButton.addEventListener("click", () => {
+        chatBox.classList.toggle("hidden"); // Chuyển trạng thái hiển thị/ẩn hộp chat
+    });
+
+    // Đóng hộp chat khi ấn nút đóng
+    closeChat.addEventListener("click", () => {
+        chatBox.classList.add("hidden"); // Ẩn hộp chat
+    });
+
+    // Gửi tin nhắn
+    sendMessage.addEventListener("click", () => {
+        const message = chatInput.value.trim();
+        if (message) {
+            const userMessage = document.createElement("p");
+            userMessage.textContent = `Bạn: ${message}`;
+            chatMessages.appendChild(userMessage);
+            chatInput.value = "";
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Phản hồi tự động
+            const botMessage = document.createElement("p");
+            botMessage.textContent = "Bot: Cảm ơn bạn đã đặt câu hỏi. Chúng tôi sẽ trả lời sớm nhất!";
+            chatMessages.appendChild(botMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    });
+});
