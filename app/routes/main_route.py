@@ -2,7 +2,7 @@ from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
 
-from flask import Blueprint, render_template, redirect, request, url_for, flash, session
+from flask import Blueprint, render_template, redirect, request, url_for, flash, session, jsonify
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
@@ -18,6 +18,19 @@ from app.models import LichKham
 
 main_bp = Blueprint('main', __name__)
 
+symptom_database = {
+    "ho": "Tai Mũi Họng",
+    "sốt": "Nội tổng quát",
+    "đau họng": "Tai Mũi Họng",
+    "khó thở": "Tim mạch",
+    "đau ngực": "Tim mạch",
+    "đau bụng": "Tiêu hóa",
+    "tiêu chảy": "Tiêu hóa",
+    "đau đầu": "Thần kinh",
+    "chóng mặt": "Thần kinh",
+    "ngứa": "Da liễu",
+    "đau khớp": "Cơ xương khớp",
+}
 # Cấu hình trang đăng nhập
 login_manager.login_view = 'main.login'
 
@@ -43,6 +56,22 @@ def verify():
 @main_bp.route('/login')
 def login():
     return render_template('login.html')
+# Cơ sở dữ liệu triệu chứng và khoa khám bệnh
+
+
+@main_bp.route('/chat', methods=["GET", "POST"])
+def chat():
+    if request.method == "POST":
+        user_input = request.json.get("message", "").lower()  # Lấy tin nhắn và chuyển về chữ thường
+
+        # Kiểm tra nếu tin nhắn của người dùng có chứa triệu chứng
+        for symptom, department in symptom_database.items():
+            if symptom in user_input:  # Kiểm tra nếu triệu chứng có trong tin nhắn
+                return jsonify({"reply": f"Dựa trên triệu chứng của bạn, bạn nên khám ở khoa {department}.", "user_input": user_input})
+
+        # Nếu không có triệu chứng phù hợp
+        return jsonify({"reply": "Xin lỗi, tôi không xác định được khoa phù hợp. Bạn nên đến khoa Nội tổng quát để được kiểm tra chi tiết.", "user_input": user_input})
+
 
 @main_bp.route('/indexLogin')
 def index_login():

@@ -104,40 +104,70 @@ document.querySelectorAll(".toggle-form").forEach((btn) => {
     }
   });
 
-  // JavaScript để xử lý hiển thị/ẩn hộp chat
 document.addEventListener("DOMContentLoaded", function () {
+    const chatForm = document.getElementById("chatForm");
     const chatButton = document.getElementById("chatButton");
     const chatBox = document.getElementById("chatBox");
     const closeChat = document.getElementById("closeChat");
-    const sendMessage = document.getElementById("sendMessage");
     const chatInput = document.getElementById("chatInput");
     const chatMessages = document.getElementById("chatMessages");
 
     // Hiển thị hoặc ẩn hộp chat khi ấn nút hỗ trợ tư vấn
     chatButton.addEventListener("click", () => {
-        chatBox.classList.toggle("hidden"); // Chuyển trạng thái hiển thị/ẩn hộp chat
+        chatBox.classList.toggle("hidden");
     });
 
     // Đóng hộp chat khi ấn nút đóng
     closeChat.addEventListener("click", () => {
-        chatBox.classList.add("hidden"); // Ẩn hộp chat
+        chatBox.classList.add("hidden");
     });
 
-    // Gửi tin nhắn
-    sendMessage.addEventListener("click", () => {
-        const message = chatInput.value.trim();
-        if (message) {
-            const userMessage = document.createElement("p");
-            userMessage.textContent = `Bạn: ${message}`;
-            chatMessages.appendChild(userMessage);
-            chatInput.value = "";
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Ngăn chặn hành động gửi form mặc định khi bấm nút gửi
+    chatForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Ngăn chặn việc gửi form
 
-            // Phản hồi tự động
-            const botMessage = document.createElement("p");
-            botMessage.textContent = "Bot: Cảm ơn bạn đã đặt câu hỏi. Chúng tôi sẽ trả lời sớm nhất!";
-            chatMessages.appendChild(botMessage);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+        const userInput = chatInput.value.trim(); // Lấy giá trị người dùng nhập vào
+        if (userInput) {
+            // Hiển thị tin nhắn của người dùng trong chatbox
+            const userMessage = document.createElement("p");
+            userMessage.textContent = `Bạn: ${userInput}`;
+            chatMessages.appendChild(userMessage);
+
+            // Gửi tin nhắn đến server qua AJAX
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput })  // Gửi tin nhắn dưới dạng JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hiển thị phản hồi từ server
+                const botReply = document.createElement("p");
+                botReply.textContent = `Bot: ${data.reply}`;  // Hiển thị câu trả lời từ server
+                chatMessages.appendChild(botReply);
+            })
+            .catch(error => {
+                console.error('Có lỗi xảy ra:', error);
+            });
+
+            // Xóa nội dung ô input sau khi gửi
+            chatInput.value = "";
         }
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuButton = document.getElementById("menuButton");
+    const menuOptions = document.getElementById("menuOptions");
+
+    menuButton.addEventListener("click", function () {
+        menuOptions.classList.toggle("hidden");
+    });
+});
+
+
+
+

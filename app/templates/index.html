@@ -208,30 +208,7 @@
             </div>
         </div>
     </div>
-
-        <!-- Nút hỗ trợ tư vấn -->
-    <div id="chatButtonContainer">
-        <button id="chatButton" class="support-button">
-            <i class="fa-solid fa-comments"></i>
-        </button>
-    </div>
-
-    <!-- Hộp thoại chat -->
-    <div id="chatBox" class="chat-box hidden">
-        <div class="chat-header">
-            <h5>Hỗ trợ tư vấn</h5>
-            <button id="closeChat" class="close-button">&times;</button>
-        </div>
-        <div class="chat-body">
-            <p>Chào mừng bạn đến với hỗ trợ tư vấn! Hãy đặt câu hỏi của bạn.</p>
-            <!-- Tin nhắn sẽ hiển thị ở đây -->
-            <div id="chatMessages"></div>
-        </div>
-        <div class="chat-footer">
-            <input id="chatInput" type="text" placeholder="Nhập tin nhắn của bạn..." />
-            <button id="sendMessage" class="send-button">Gửi</button>
-        </div>
-    </div>
+    {% include 'chat.html' %}
 </section>
 {% endblock %}
 {% block javascript %}
