@@ -47,7 +47,6 @@ def add_medicine():
 @doctor.route('/doctor/search-medicine', methods=['POST'])
 def search_medicine():
     if request.method == 'POST':
-        print('vo ham')
         # Nhận chuỗi tìm kiếm từ JavaScript
         search_query = request.form.get('medicineName')
 
