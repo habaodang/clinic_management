@@ -15,6 +15,7 @@ nurse = Blueprint('nurse', __name__)
 def confirm_appointment():
     lich_id = request.args.get('lich_id')
     his.confirm_appointment(lich_id)
+    print(lich_id)
     return redirect(url_for('main.form_nurse'))
 
 @nurse.route('/export-pdf')

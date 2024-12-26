@@ -16,24 +16,37 @@
     <button onclick="clearTable()" style="background-color: #dc3545;">Xóa Tất Cả</button>
 </div>
 
+<!-- Form Hiển Thị Giữa Màn Hình -->
 <div class="overlay-search" id="overlay">
     <div class="form-container" id="overlay1">
+<!--        <form action="{{ url_for('doctor.search_medicine') }}" method="post">-->
         <h3>Tìm Kiếm Thuốc</h3>
         <input type="text" id="medicineCode" placeholder="Nhập Mã Thuốc">
         <table id="medicineTable-test">
             <thead>
             <tr>
-                <th>STT</th> <!-- Cột STT -->
                 <th>Mã Thuốc</th>
                 <th>Tên Thuốc</th>
                 <th>Đơn Vị</th>
                 <th>Số Lượng</th>
             </tr>
+
+
+<!--            {% for medicene_search in list_medicene_search%}-->
+<!--             <tr>-->
+<!--                <td>{{ medicene_search.id }}</td>-->
+<!--                <td>{{ medicene_search,name }}</td>-->
+<!--                <td>{{ medicene_search.unit }}</td>-->
+<!--                <td>{{ medicene_search.quantity }}</td>-->
+<!--            </tr>-->
+
+<!--            {% endfor %}-->
             </thead>
             <tbody id="medicineTable-test-body"></tbody>
         </table>
-        <button onclick="searchMedicine()">Tìm Kiếm</button>
+        <button onclick="searchMedicine()" >Tìm Kiếm</button>
         <button onclick="closeForm()">Hủy</button>
+<!--            </form>-->
         <!-- Thông Tin Thuốc -->
         <div id="infoContainer" style="display: none;">
             <label>Tên Thuốc:</label>
@@ -58,7 +71,7 @@
 </div>
 <!-- Bảng Hiển Thị Thuốc -->
 <table>
-    <thead>
+  <thead>
     <tr>
         <th>STT</th> <!-- Cột STT -->
         <th>Mã Thuốc</th>
@@ -121,4 +134,44 @@
 <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
 <script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+<script>
+    const searchMedicineUrl = "{{ url_for('doctor.search_medicine') }}";
+
+    function searchMedicine() {
+        const inputCode = document.getElementById("medicineCode").value.trim().toUpperCase();
+
+        fetch(searchMedicineUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ search_medicine: inputCode })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const table = document.getElementById("medicineTable-test-body");
+            table.innerHTML = ""; // Xóa các kết quả cũ
+
+            if (data.length === 0) {
+                alert("Không tìm thấy thuốc!");
+            } else {
+                data.forEach((medicine, index) => {
+                    const row = table.insertRow();
+                    row.innerHTML = `
+                        <td>${medicine.id}</
+                        <td>${index + 1}</td>td>
+                        <td>${medicine.name}</td>
+                        <td>${medicine.unit}</td>
+                        <td><button onclick="selectMedicine('${medicine.id}')">Xác Nhận</button></td>
+                    `;
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Lỗi:", error);
+            alert("Đã xảy ra lỗi khi tìm kiếm thuốc!");
+        });
+    }
+
+</script>
 {% endblock %}

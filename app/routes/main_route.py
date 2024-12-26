@@ -2,7 +2,7 @@ from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
 
-from flask import Blueprint, render_template, redirect, request, url_for, flash, session, jsonify
+from flask import Blueprint, render_template,redirect,request,url_for,flash
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
@@ -126,7 +126,9 @@ def medical_history():
 def setting():
     return render_template('setting.html',name_user=current_user.name_account)
 
-
+@main_bp.route('/theme')
+def setting_theme():
+    return render_template('setting/theme.html',name_user=current_user.name_account)
 
 @main_bp.route('/passwd')
 def setting_passwd():
@@ -154,7 +156,7 @@ def appointment1():
     list_khoa=depp.get_department()
     doctors=depp.get_doctor()
 
-    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa,doctors=doctors,name_user=current_user.name_account)
+    return render_template('appointment/body1.html',date=date, time=time, location=location, package=package,list_khoa=list_khoa,doctors=doctors)
 
 @main_bp.route('/medicalPackage')
 def medical_package():
@@ -162,7 +164,7 @@ def medical_package():
 
 @main_bp.route('/specialty')
 def specialty():
-    return render_template('specialty/specialty.html')
+    return render_template('specialty/specialty.html',name_user=current_user.name_account)
 
 @main_bp.route('/medicalPackageLogin')
 def package_login():
@@ -250,15 +252,17 @@ def setting_doctor():
 def schedule_doctor():
     return render_template('doctor/scheduleDoctor.html',user=current_user)
 
-
+@main_bp.route('/themeDoctor')
+def theme_doctor():
+    return render_template('doctor/themeDoctor.html',user=current_user)
 
 @main_bp.route('/packageNormal')
 def package_normal():
-    return render_template('detailPackage/packageNormal.html')
+    return render_template('detailPackage/packageNormal.html',name_user=current_user.name_account)
 
 @main_bp.route('/packageVIP')
 def package_vip():
-    return render_template('detailPackage/packageVIP.html')
+    return render_template('detailPackage/packageVIP.html',name_user=current_user.name_account)
 
 @main_bp.route('/packageNormalLG')
 def package_normal_lg():
@@ -270,6 +274,7 @@ def package_vip_lg():
 
 @main_bp.route('/formMedicine')
 def form_medicine():
+
     return render_template('doctor/formMedicine.html',user=current_user)
 
 @main_bp.route('/formConfirm')
@@ -290,7 +295,6 @@ def nurse():
 @main_bp.route('/scheduleNurse')
 def schedule_nurse():
     return render_template('nurse/scheduleNurse.html',user=current_user)
-
 @main_bp.route('/formNurse')
 def form_nurse():
     list_lichkham = his.get_appointmant_all()
