@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request,session
 from flask_login import login_user, logout_user,current_user,login_required
 import app.controller.infor_user as in_u
 import app.controller.notebook as nte
+import app.controller.hoadon as hdon
 
 import app.models as mdl
 
@@ -27,3 +28,8 @@ def authenticate():
 # def examination_history():
 #
 #     return f'{lichkham}'
+
+# @note_book.route('/bill')
+# def notebook_bill():
+
+

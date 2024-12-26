@@ -40,30 +40,31 @@
 
         <div class="appointment-card">
             <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hóa Đơn Thanh Toán Khám Nội Soi Ngày 01/09/2024</div>
-            <p>Tiền Khám : 100.000 Đồng </p>
-            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh Khoa Tổng Quát', '100000', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '100000', 'Trần Văn Long', 'Kiểm tra huyết áp')">Đã Thanh Toán</button>
+            {% for hoadon in ds_hoadon %}
+            <div class="appointment-title">Hóa Đơn Thanh Toán Khám  Ngày {{ hoadon.ngay_lap }} </div>
+            <p>Tiền Khám : {{ hoadon.tong_tien }} VND </p>
+            {% if hoadon.trangthai   %}
+            <p>Đã thanh toán </p>
+            {% else %}
+             <p>Chưa thanh toán </p>
+            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh ', '{{ hoadon.tong_tien }}', '{{ hoadon.phieu_kham.patient.name }}', '{{ hoadon.id}}')">Thanh Toán</button>
+             {% endif %}
+
+            {% endfor %}
         </div>
-        <div class="appointment-card">
-            <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hóa Đơn Tiền Khám Tổng Quát Đặt Trước Ngày 20/12/2024</div>
-            <p>Tiền Khám : 100.000 Đồng </p>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', 100000, 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', 100000, 'Trần Văn Long', 'Kiểm tra huyết áp')">Thanh Toán</button>
-        </div>
+
     </div>
     <div class="modal" id="detailsModal">
         <div class="modal-content">
             <h3>Hóa Đơn Thanh Toán</h3>
             <button class="modal-close" onclick="closeModal()">&times;</button>
             <form class="modal-form" action ='/bill' method="post">
-                <label for="nurseName">Tên Thu Ngân</label>
+                <label for="nurseName">Tên bệnh nhân</label>
                 <input type="text" id="nurseName" readonly>
-                <label for="appointmentMoney">Tiền Khám</label>
+                <label for="appointmentMoney">Tổng tiền </label>
                 <input type="text" id="appointmentMoney" name = "appointmentMoney" value="100000" readonly>
-                <label for="appointmentReason">Tiền Thuốc</label>
-                <textarea id="appointmentReason" rows="3" readonly></textarea>
+
+                <input id="appointmentID" name="appointmentID" type="hidden" readonly >
                 <button class="details-btn" type="submit">Thanh Toán</button>
             </form>
         </div>

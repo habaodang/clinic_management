@@ -47,6 +47,11 @@ def add_user_ad():
                     in_u.mapping_account(name_account=name_account, user_id=id)
                     return redirect(url_for('main.add_admin'))
 
+                if role == 'CASHIER':
+                    id = in_u.add_infor_cashier(name, cccd, address, sex, birth, phone, role=role)
+                    in_u.mapping_account(name_account=name_account, user_id=id)
+                    return redirect(url_for('main.add_admin'))
+
                 if role == 'PATIENT':
                     id = in_u.add_infor_user(name, cccd, address, sex, birth, phone)
                     in_u.mapping_account_user(id)

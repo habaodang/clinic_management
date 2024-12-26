@@ -1,7 +1,7 @@
- function showDetails(title, time, nurse, reason) {
+ function showDetails(title, time, nurse, id) {
             document.getElementById('nurseName').value = nurse;
             document.getElementById('appointmentMoney').value = time;
-            document.getElementById('appointmentReason').value = reason;
+            document.getElementById('appointmentID').value = id;
             document.getElementById('detailsModal').style.display = 'flex';
         }
 

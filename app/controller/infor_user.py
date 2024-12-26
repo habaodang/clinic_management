@@ -39,10 +39,18 @@ def add_infor_nurse(name,cccd,address,sex,birth,phone,role,id_department):
         db.session.commit()
         return id
 
+
+def add_infor_cashier(name,cccd,address,sex,birth,phone,role):
+    if name and cccd and address and sex and birth and phone:
+        id=create_id(role)
+        cashier = Nurse(id=id,name=name,cccd=cccd,address=address,phone=phone,sex=sex,birth=birth)
+        db.session.add(cashier)
+        db.session.commit()
+        return id
+
 def mapping_account(name_account,user_id):
     account=Account.query.filter(Account.name_account.__eq__(name_account.strip())).first()
     account.user_id=user_id
-    print ('da gan')
     db.session.commit()
 
 
