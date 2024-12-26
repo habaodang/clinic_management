@@ -5,7 +5,9 @@
             padding: 0;
             background-color: #f5f5f5;
         }
-
+.menu-item.logout {
+    margin-top: 5rem !important;
+    }
         .dashboard {
             max-width: 800px;
             margin: 20px auto;

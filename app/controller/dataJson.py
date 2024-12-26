@@ -39,6 +39,5 @@ def get_drug_data():
             {"name": "Aspirin2", "quantity": 66, "rate": 21},
             {"name": "Aspirin3", "quantity": 155, "rate": 25},
             {"name": "Aspirin4", "quantity": 152, "rate": 18},
-
         ]
     }

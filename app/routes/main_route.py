@@ -350,6 +350,15 @@ def add_admin():
     list_khoa = depp.get_department()
     return render_template('admin/addAdmin.html',roles=mdl.UserRole,list_khoa=list_khoa)
 
+@main_bp.route('/addMedicine')
+def add_medicine():
+    return render_template('admin/addMedicine.html')
+
+@main_bp.route('/addDepartment')
+def add_department():
+    return render_template('admin/addDepartment.html')
+
+
 @main_bp.route('/regulations')
 def regulation_admin():
     return render_template('admin/regulations.html')
