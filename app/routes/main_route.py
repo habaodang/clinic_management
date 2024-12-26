@@ -2,7 +2,7 @@ from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
 
-from flask import Blueprint, render_template,redirect,request,url_for,flash
+from flask import Blueprint, render_template,redirect,request,url_for,flash,session
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
@@ -12,7 +12,6 @@ import app.controller.medicine as medicine
 import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
-import app.controller.department_process as depp
 import app.controller.history as his
 import app.controller.dataJson as test
 from app.models import LichKham
@@ -280,6 +279,8 @@ def form_medicine():
 @main_bp.route('/formConfirm')
 def form_confirm():
     lich_id = request.args.get('lich_id')
+    session['id_patient'] = request.args.get('id_patient')
+
     lichkham = his.get_appointment_id(lich_id)
     return render_template('doctor/formConfirm.html',lichkham=lichkham,user=current_user)
 

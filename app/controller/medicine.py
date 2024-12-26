@@ -6,6 +6,5 @@ from app import db
 def search_medicine_name(search_medicine):
     # return Thuoc.query.filter(Thuoc.name.like(f"%{search_medicine}%")).all()
     result = Thuoc.query.filter(Thuoc.name.like(f"%{search_medicine}%")).all()
-    for item in result:
-        print(item.name)
+
     return result

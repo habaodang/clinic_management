@@ -62,7 +62,7 @@
         </p>
         <div class="button-group">
             <button class="confirm-btn danger">Hủy</button>
-            <a href="{{url_for('main.form_confirm', lich_id=lichkham.id) }}">
+            <a href="{{url_for('main.form_confirm', lich_id=lichkham.id, id_patient=lichkham.patient.id)}}">
                   <button class="confirm-btn">Xác Nhận</button>
             </a>
         </div>

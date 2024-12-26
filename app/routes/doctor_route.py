@@ -4,6 +4,7 @@ from datetime import datetime
 import app.controller.history as his
 import app.controller.PDF as pdf
 import app.controller.medicine as medicine
+import app.controller.doctor as dct
 doctor = Blueprint('doctor', __name__)
 
 @doctor.route('/doctor/sick-predict', methods=['GET', 'POST'])
@@ -21,11 +22,26 @@ def sick_predict():
 def add_medicine():
     if request.method == 'POST':
         medicineCode = request.form.get('medicineCode')
-        medicineName = request.form.get('medicineName')
-        medicineUnit = request.form.get('medicineUnit')
-        medicineQuantity = request.form.get('medicineQuantity')
-        medicineEffect = request.form.get('medicineEffect')
-        medicineUsage = request.form.get('medicineUsage')
+        medicineUsage = request.form.get('medicinequan')
+
+        symptom=session['symptom']
+        predict = session['predict']
+        id_patient= session['id_patient']
+
+        id_phieukham=dct.them_phieu_kham(trieuchung=symptom, chandoan=predict, patient_id=id_patient, doctor_id=current_user.user.id)
+        id_hoadon=dct.them_hoadon(id_phieukham)
+        id_chitietdon=dct.them_chitietdonthuoc(  hoa_don_id=id_hoadon,
+            thuoc_id=medicineCode,
+            so_luong=medicineUsage,
+            don_gia=40)
+
+        tongtien=dct.tinh_tong_tien_hoa_don(id_hoadon)
+        return redirect(url_for('main.form_doctor'))
+
+
+
+
+
 
 
 @doctor.route('/doctor/search-medicine', methods=['POST'])
