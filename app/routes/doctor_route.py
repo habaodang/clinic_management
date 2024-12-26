@@ -4,6 +4,8 @@ from datetime import datetime
 import app.controller.history as his
 import app.controller.PDF as pdf
 import app.controller.medicine as medicine
+from app.models import Thuoc
+
 doctor = Blueprint('doctor', __name__)
 
 @doctor.route('/doctor/sick-predict', methods=['GET', 'POST'])
@@ -27,21 +29,33 @@ def add_medicine():
         medicineEffect = request.form.get('medicineEffect')
         medicineUsage = request.form.get('medicineUsage')
 
-@doctor.route('/doctor/search-medicien', methods=['GET', 'POST'])
+
+@doctor.route('/doctor/search-medicine', methods=['POST'])
 def search_medicine():
     if request.method == 'POST':
-        search_medicine = request.form.get('search_medicine')
-        list_medicene_search = medicine.search_medicine_name(search_medicine)
-        result = [
+        # Lấy tên thuốc từ request
+        search_medicine_name = request.json.get('search_medicine', '').strip()  # Lấy tên thuốc từ frontend
+
+        if not search_medicine_name:
+            return jsonify([])  # Nếu không có tên thuốc, trả về danh sách rỗng
+
+        # Sử dụng SQLAlchemy để tìm kiếm thuốc theo tên
+        results = Thuoc.query.filter(Thuoc.name.ilike(f"%{search_medicine_name}%")).all()
+
+        # Tạo danh sách kết quả trả về dưới dạng JSON
+        result_list = [
             {
                 "id": med.id,
                 "name": med.name,
                 "unit": med.unit,
                 "quantity": med.quantity
             }
-            for med in list_medicene_search
+            for med in results
         ]
-        return jsonify(result)
+
+        # Trả về kết quả dưới dạng JSON
+        return jsonify(result_list)
+
 
 @doctor.route('/infor-doctor', methods=['GET', 'POST'])
 def infor_doctor():

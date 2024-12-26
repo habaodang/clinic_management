@@ -233,6 +233,7 @@ def base():
 @main_bp.route('/formDoctor')
 def form_doctor():
     id=current_user.user.id
+    print(id)
     list_lichkham = his.get_appointment_present_id(id)
     return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham,user=current_user)
 
@@ -276,6 +277,10 @@ def package_vip_lg():
 def form_medicine():
 
     return render_template('doctor/formMedicine.html',user=current_user)
+@main_bp.route('/formFind')
+def form_find():
+
+    return render_template('doctor/formFind.html',user=current_user)
 
 @main_bp.route('/formConfirm')
 def form_confirm():
@@ -295,9 +300,16 @@ def nurse():
 @main_bp.route('/scheduleNurse')
 def schedule_nurse():
     return render_template('nurse/scheduleNurse.html',user=current_user)
+
 @main_bp.route('/formNurse')
 def form_nurse():
+    print("duc222")
     list_lichkham = his.get_appointmant_all()
+    print(list_lichkham)
+
+    for list in list_lichkham:
+        print(list.status)
+        print(list.id)
     count_lichkham_all=his.count_apointment_all()
     return render_template('nurse/formNurse.html',list_lichkham=list_lichkham,count_lichkham_all=count_lichkham_all,user=current_user)
 
