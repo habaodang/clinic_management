@@ -22,15 +22,25 @@
         <input type="text" id="medicineCode" placeholder="Nhập Mã Thuốc">
         <table id="medicineTable-test">
             <thead>
-            <tr>
-                <th>STT</th> <!-- Cột STT -->
-                <th>Mã Thuốc</th>
-                <th>Tên Thuốc</th>
-                <th>Đơn Vị</th>
-                <th>Số Lượng</th>
-            </tr>
+                <tr>
+                    <th>STT</th> <!-- Cột STT -->
+                    <th>Mã Thuốc</th>
+                    <th>Tên Thuốc</th>
+                    <th>Đơn Vị</th>
+                    <th>Số Lượng</th>
+                </tr>
             </thead>
-            <tbody id="medicineTable-test-body"></tbody>
+            <tbody id="medicineTable-test-body">
+                {% for medicine in medicines %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ medicine.id }}</td>
+                    <td>{{ medicine.name }}</td>
+                    <td>{{ medicine.unit }}</td>
+                    <td><button onclick="selectMedicine('{{ medicine.id }}')">Xác Nhận</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
         <button onclick="searchMedicine()">Tìm Kiếm</button>
         <button onclick="closeForm()">Hủy</button>
@@ -56,6 +66,7 @@
         </div>
     </div>
 </div>
+
 <!-- Bảng Hiển Thị Thuốc -->
 <table>
     <thead>

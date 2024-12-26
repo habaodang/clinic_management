@@ -382,6 +382,7 @@ def search_admin():
 def setting_admin():
     return render_template('admin/settingAdmin.html')
 
+
 @main_bp.route('/billSuccess')
 def payment_return():
     query_params = request.args.to_dict()
@@ -391,12 +392,12 @@ def payment_return():
     hmac_obj = hmac.new(vnpay.VNP_HASH_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha512)
     expected_hash = hmac_obj.hexdigest()
 
-    is_success = True
+    payment_status = "Chưa Thanh Toán"  # Mặc định là chưa thanh toán
 
     if vnp_secure_hash == expected_hash and query_params.get("vnp_ResponseCode") == "00":
-        return render_template("bill_success.html", is_success=True)
-    else:
-        return render_template("bill_success.html", is_success=False)
+        payment_status = "Đã Thanh Toán"
+
+    return render_template("medicalbook/bill.html", payment_status=payment_status)
 
 
 

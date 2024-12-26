@@ -151,14 +151,15 @@ class PhieuKham(db.Model):
 class HoaDon(db.Model):
     __tablename__ = 'hoa_don'
 
-    id = db.Column(Integer, primary_key=True)
-    payment_date = Column(Date, nullable=False)
-    bill_money = Column(Float, nullable=False)
-    # Foreign key
-    phieu_kham_id = Column(Integer, ForeignKey('phieu_kham.id'))
+    id = db.Column(Integer, primary_key=True)  # ID hóa đơn
+    payment_date = db.Column(Date, nullable=True)  # Ngày thanh toán (có thể NULL)
+    status = db.Column(Boolean, nullable=False, default=False)  # False: chưa thanh toán, True: đã thanh toán
+    bill_money = db.Column(Float, nullable=False)  # Số tiền hóa đơn
+    phieu_kham_id = db.Column(Integer, ForeignKey('phieu_kham.id'))  # Khóa ngoại tới bảng phiếu khám
 
     # Relationships
-    phieu_kham = relationship('PhieuKham', back_populates='hoa_don',lazy=True)
+    phieu_kham = relationship('PhieuKham', back_populates='hoa_don', lazy=True)
+
 
 class ChiTietDonThuoc(db.Model):
     __tablename__ = 'chi_tiet_don_thuoc'
