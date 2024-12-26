@@ -1,7 +1,6 @@
 from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
-
 from flask import Blueprint, render_template, redirect, request, url_for, flash, session, jsonify
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
@@ -12,7 +11,6 @@ import app.controller.medicine as medicine
 import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
-import app.controller.department_process as depp
 import app.controller.history as his
 import app.controller.dataJson as test
 from app.models import LichKham
@@ -222,7 +220,6 @@ def base():
 @main_bp.route('/formDoctor')
 def form_doctor():
     id=current_user.user.id
-    print(id)
     list_lichkham = his.get_appointment_present_id(id)
     return render_template('doctor/formDoctor.html',list_lichkham=list_lichkham,user=current_user)
 
@@ -269,6 +266,8 @@ def form_medicine():
 @main_bp.route('/formConfirm')
 def form_confirm():
     lich_id = request.args.get('lich_id')
+    session['id_patient'] = request.args.get('id_patient')
+
     lichkham = his.get_appointment_id(lich_id)
     return render_template('doctor/formConfirm.html',lichkham=lichkham,user=current_user)
 
@@ -297,16 +296,9 @@ def nurse():
 @main_bp.route('/scheduleNurse')
 def schedule_nurse():
     return render_template('nurse/scheduleNurse.html',user=current_user)
-
 @main_bp.route('/formNurse')
 def form_nurse():
-    print("duc222")
     list_lichkham = his.get_appointmant_all()
-    print(list_lichkham)
-
-    for list in list_lichkham:
-        print(list.status)
-        print(list.id)
     count_lichkham_all=his.count_apointment_all()
     return render_template('nurse/formNurse.html',list_lichkham=list_lichkham,count_lichkham_all=count_lichkham_all,user=current_user)
 
@@ -413,12 +405,12 @@ def payment_return():
     hmac_obj = hmac.new(vnpay.VNP_HASH_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha512)
     expected_hash = hmac_obj.hexdigest()
 
-    payment_status = "Chưa Thanh Toán"  # Mặc định là chưa thanh toán
+    is_success = True
 
     if vnp_secure_hash == expected_hash and query_params.get("vnp_ResponseCode") == "00":
-        payment_status = "Đã Thanh Toán"
-
-    return render_template("medicalbook/bill.html", payment_status=payment_status)
+        return render_template("bill_success.html", is_success=True)
+    else:
+        return render_template("bill_success.html", is_success=False)
 
 
 
