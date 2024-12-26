@@ -358,37 +358,23 @@ def add_medicine():
 def add_department():
     return render_template('admin/addDepartment.html')
 
-
 @main_bp.route('/regulations')
 def regulation_admin():
     return render_template('admin/regulations.html')
 
+
 @main_bp.route('/report', methods=['GET', 'POST'])
-def report_admin():
-    report_type = None
-    report_what = None
-    data = {}  # Default empty data
+def report():
+    report_type = request.form.get('searchType')
+    report_what = request.form.get('searchWhat')
 
-    if request.method == 'POST':
-        # Get the selected report type and category
-        report_type = request.form.get('searchType')
-        report_what = request.form.get('searchWhat')
+    data = {}
+    if report_what == 'revenue':
+        data = test.get_revenue_data()
+    elif report_what == 'drug':
+        data = test.get_drug_data()
 
-        # Fetch data based on selected category
-        if report_what == 'revenue':
-            data = test.get_revenue_data()  # Assuming this function fetches the data
-        elif report_what == 'drug':
-            data = test.get_drug_data()  # Assuming this function fetches dru   g data
-
-    # Ensure data is always passed to the template
-    return render_template(
-        'admin/report.html',  # Template for displaying the result
-        report_type=report_type,
-        report_what=report_what,
-        data=data  # Always pass data, even if it's empty
-    )
-
-
+    return render_template('admin/report.html', report_type=report_type, report_what=report_what, data=data)
 @main_bp.route('/searchAdmin')
 def search_admin():
     return render_template('admin/search.html')

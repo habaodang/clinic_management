@@ -136,15 +136,11 @@ class PhieuKham(db.Model):
 
 class HoaDon(db.Model):
     __tablename__ = 'hoa_don'
-
     id = Column(Integer, primary_key=True, autoincrement=True)
-    ngay_lap = Column(Date, nullable=False,default=datetime.utcnow)
+    ngay_lap = Column(Date, nullable=False, default=datetime.utcnow)
     tong_tien = Column(Float, nullable=True)
-    trangthai=Column(Boolean,default=False)
-    # Foreign key
+    trangthai = Column(Boolean, default=False)
     phieu_kham_id = Column(Integer, ForeignKey('phieu_kham.id'), nullable=False)
-
-    # Relationships
     phieu_kham = relationship('PhieuKham', back_populates='hoa_don')
     chi_tiet_hoa_don = relationship('ChiTietHoaDon', back_populates='hoa_don', cascade='all, delete-orphan')
 

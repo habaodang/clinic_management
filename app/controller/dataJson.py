@@ -1,43 +1,42 @@
+from datetime import timedelta, datetime
+from sqlalchemy import func
+from app import db
+from app.models import ChiTietHoaDon, Thuoc, HoaDon
+
+
 def get_revenue_data():
+    today = datetime.utcnow().date()
+    start_date = today - timedelta(days=30)  # Adjust the date range as needed
+
+    # Querying the database
+    revenue_data = db.session.query(
+        func.date(HoaDon.ngay_lap).label('date'),
+        func.count(HoaDon.id).label('patients'),
+        func.sum(HoaDon.tong_tien).label('revenue')
+    ).filter(HoaDon.ngay_lap >= start_date).group_by(func.date(HoaDon.ngay_lap)).all()
+
+    labels = [str(record.date) for record in revenue_data]
+    revenues = [record.revenue for record in revenue_data]
+    details = [{"date": str(record.date), "patients": record.patients, "revenue": record.revenue, "rate": 0, "kpi": 0}
+               for record in revenue_data]
+
     return {
-        "labels": ["2024-01-01", "2024-01-02", "2024-01-03","2024-01-01", "2024-01-02", "2024-01-03","2024-01-01", "2024-01-02", "2024-01-02", "2024-01-03", "2024-01-03","2024-01-01", "2024-01-02", "2024-01-03"],
-        "revenues": [1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, 900,1000, 1200, ],
-        "details": [
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-            {"date": "2024-01-01", "patients": 10, "revenue": 1000, "rate": 10, "kpi": 95},
-            {"date": "2024-01-02", "patients": 12, "revenue": 1200, "rate": 12, "kpi": 97},
-            {"date": "2024-01-03", "patients": 8, "revenue": 900, "rate": 8, "kpi": 92},
-        ]
+        "labels": labels,
+        "revenues": revenues,
+        "details": details
     }
 
 def get_drug_data():
+    # Querying the database
+    drug_data = db.session.query(
+        Thuoc.name.label('name'),
+        func.sum(ChiTietHoaDon.so_luong).label('quantity')
+    ).join(ChiTietHoaDon, Thuoc.id == ChiTietHoaDon.thuoc_id).group_by(Thuoc.name).all()
+    labels = [record.name for record in drug_data]
+    values = [record.quantity for record in drug_data]
+    details = [{"name": record.name, "quantity": record.quantity, "rate": 0} for record in drug_data]
     return {
-        "labels": ["Aspirin", "Ibuprofen", "Paracetamol","Aspirin1","Aspirin2","Aspirin3","Aspirin4"],
-        "values": [150, 200, 180,60,70,32,53,23],
-        "details": [
-            {"name": "Aspirin", "quantity": 150, "rate": 20},
-            {"name": "Ibuprofen", "quantity": 200, "rate": 30},
-            {"name": "Paracetamol", "quantity": 180, "rate": 25},
-            {"name": "Aspirin1", "quantity": 60, "rate": 45},
-            {"name": "Aspirin2", "quantity": 66, "rate": 21},
-            {"name": "Aspirin3", "quantity": 155, "rate": 25},
-            {"name": "Aspirin4", "quantity": 152, "rate": 18},
-        ]
+        "labels": labels,
+        "values": values,
+        "details": details
     }

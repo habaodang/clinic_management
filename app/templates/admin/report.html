@@ -17,7 +17,7 @@
                 <span><i class="fa-solid fa-briefcase"></i></span>
                 <h3>Thay đổi quy định</h3>
             </a>
-            <a class="menu-item  active" href="/report">
+            <a class="menu-item active" href="/report">
                 <span><i class="fa-regular fa-flag"></i></span>
                 <h3>Thống kê báo cáo</h3>
             </a>
@@ -52,7 +52,6 @@
             </a>
         </div>
     </div>
-
 </div>
 {% endblock %}
 {% block middle %}
@@ -77,12 +76,10 @@
                             <button class="btn btn-danger" type="submit">Thống kê</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-
     {% if report_type == 'table' %}
     <!-- Display table when report type is 'table' -->
     <h5 class="text-center">
@@ -137,7 +134,7 @@
         Biểu đồ Thuốc
         {% endif %}
     </h5>
-     <canvas id="chartCanvas" width="400" height="400"></canvas>  <!-- Cập nhật kích thước ở đây -->
+    <canvas id="chartCanvas" width="400" height="400"></canvas>
     <script>
         const data = {{ data | tojson }};
         const ctx = document.getElementById('chartCanvas').getContext('2d');
