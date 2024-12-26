@@ -98,7 +98,6 @@
             <th>Số bệnh nhân</th>
             <th>Doanh thu</th>
             <th>Tỷ lệ</th>
-            <th>KPI</th>
             {% elif report_what == 'drug' %}
             <th>Tên thuốc</th>
             <th>Số lượng</th>
@@ -114,7 +113,6 @@
             <td>{{ item.patients }}</td>
             <td>{{ item.revenue }}</td>
             <td>{{ item.rate }}%</td>
-            <td>{{ item.kpi }}</td>
             {% elif report_what == 'drug' %}
             <td>{{ item.name }}</td>
             <td>{{ item.quantity }}</td>

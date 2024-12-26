@@ -397,6 +397,12 @@ def search_admin():
 def setting_admin():
     return render_template('admin/settingAdmin.html')
 
+@main_bp.route('/addDepartment')
+def add_department():
+    return render_template('admin/addDepartment.html')
+@main_bp.route('/addMedicine')
+def add_medicine():
+    return render_template('admin/addMedicine.html')
 
 # File: routes.py
 @main_bp.route('/billSuccess')
