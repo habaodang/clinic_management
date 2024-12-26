@@ -8,7 +8,7 @@ from flask_login import login_required,logout_user,current_user
 import hashlib
 import hmac
 import urllib.parse
-
+import app.controller.medicine as medicine
 import app.models as mdl
 import app.controller.department_process as depp
 import app.controller.notebook as nte
@@ -287,6 +287,19 @@ def form_confirm():
     lich_id = request.args.get('lich_id')
     lichkham = his.get_appointment_id(lich_id)
     return render_template('doctor/formConfirm.html',lichkham=lichkham,user=current_user)
+
+@main_bp.route('/formFind', methods=['GET', 'POST'])
+def form_find():
+    if request.method == 'POST':
+        print('vo ham')
+        # Nhận chuỗi tìm kiếm từ JavaScript
+        search_query = request.form.get('medicineName')
+
+        # Sử dụng hàm tìm kiếm của bạn để lấy danh sách thuốc
+        list_medicene_search = medicine.search_medicine_name(search_query)
+        print(list_medicene_search)
+        return render_template('doctor/formFind.html', user=current_user,list_medicene_search=list_medicene_search)
+    return render_template('doctor/formFind.html', user=current_user)
 
 @main_bp.route('/authenticate')
 def authenticate():

@@ -1,4 +1,7 @@
 
+
+
+// Mở form tìm kiếm thuốc
 function openForm() {
   document.getElementById("overlay").style.display = "flex"; // Mở overlay
   document.getElementById("medicineTable-test").style.display = "table";  // Hiển thị bảng thuốc tìm kiếm (bao gồm tiêu đề)
@@ -10,48 +13,38 @@ function closeForm() {
   document.getElementById("overlay").style.display = "none";  // Ẩn overlay
   document.getElementById("medicineTable-test").style.display = "none";  // Ẩn bảng thuốc tìm kiếm (bao gồm tiêu đề và dữ liệu)
 }
+
+
+// Tìm kiếm thuốc và hiển thị trong bảng tạm thời
 function searchMedicine() {
-    const inputCode = document.getElementById("medicineCode").value.trim().toUpperCase();  // Lấy mã thuốc từ input
+  const inputCode = document.getElementById("medicineCode").value.trim().toUpperCase();
+  const codePrefix = inputCode.slice(0, 2); // Lấy phần đầu mã (ví dụ: "PA" từ "PA01")
 
-    // Kiểm tra xem có nhập tên thuốc không
-    if (inputCode === "") {
-        alert("Vui lòng nhập tên thuốc!");
-        return;
+  const table = document.getElementById("medicineTable-test-body");
+  table.innerHTML = ""; // Xóa các kết quả tìm kiếm trước đó
+
+  let found = false;
+
+  // Duyệt qua tất cả thuốc và tìm mã có cùng tiền tố
+  for (const [code, medicine] of Object.entries(medicineData)) {
+    if (code.startsWith(codePrefix)) {
+      found = true;
+      const row = table.insertRow();
+      const stt = table.rows.length;
+
+      row.innerHTML =
+        `<td>${stt}</td>
+         <td>${code}</td>
+         <td>${medicine.name}</td>
+         <td>${medicine.unit}</td>
+         <td><button onclick="selectMedicine('${code}')">Xác Nhận</button></td>`;
     }
+  }
 
-    const table = document.getElementById("medicineTable-test-body");
-    table.innerHTML = ""; // Clear previous results
-
-    // Gửi yêu cầu tìm kiếm đến backend
-    fetch('/doctor/search-medicine', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ search_medicine: inputCode })  // Gửi tên thuốc tìm kiếm
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Search results:', data);  // Kiểm tra kết quả trả về từ backend
-        if (data.length > 0) {
-            data.forEach((medicine, index) => {
-                const row = table.insertRow();
-                row.innerHTML =
-                    `<td>${index + 1}</td>
-                     <td>${medicine.id}</td>
-                     <td>${medicine.name}</td>
-                     <td>${medicine.unit}</td>
-                     <td><button onclick="selectMedicine('${medicine.id}')">Xác Nhận</button></td>`;
-            });
-        } else {
-            alert("Không tìm thấy thuốc!");
-        }
-    })
-    .catch(err => {
-        console.error("Error fetching data:", err);
-    });
+  if (!found) {
+    alert("Không tìm thấy thuốc!");
+  }
 }
-
 
 // Chọn thuốc từ bảng tạm thời và hiển thị thông tin chi tiết
 function selectMedicine(code) {
@@ -176,3 +169,4 @@ function closeUpdateConfirmation() {
   document.getElementById("updateConfirmation").style.display = "none";  // Ẩn modal cập nhật
   document.getElementById("overlay").style.display = "none"; // Đảm bảo overlay không ảnh hưởng đến các phần tử khác
 }
+

@@ -13,8 +13,10 @@
 <div  id="overlay">
     <div class="form-container" id="overlay1">
         <h3>Tìm Kiếm Thuốc</h3>
-        <input type="text" id="medicineName" placeholder="Nhập tên Thuốc">
-         <button onclick="searchMedicine()">Tìm Kiếm</button>
+       <form action="{{ url_for('main.form_find') }}" method="post">
+        <input type="text" id="medicineName" name="medicineName" placeholder="Nhập tên Thuốc">
+
+         <button type="submit">Tìm Kiếm</button>
         <button onclick="closeForm()">Hủy</button>
     </div>
 </div>
@@ -23,17 +25,31 @@
 <table>
     <thead>
     <tr>
-        <th>STT</th>
         <th>Mã Thuốc</th>
         <th>Tên Thuốc</th>
         <th>Đơn Vị</th>
-        <th>Số Lượng</th>
-        <th>Tác Dụng</th>
-        <th>Cách Dùng</th>
-        <th>Cập Nhật</th>
+        <th>công dụng</th>
+        <th>cách dùng</th>
+
     </tr>
     </thead>
-    <tbody id="medicineTable"></tbody>
+    <tbody id="medicineTable">
+    {% if list_medicene_search %}
+            {% for medicene_search in list_medicene_search %}
+             <tr>
+                <td>{{ medicene_search.id }}</td>
+                <td>{{ medicene_search.name }}</td>
+                <td>{{ medicene_search.unit }}</td>
+                <td>{{ medicene_search.effect }}</td>
+                <td>{{ medicene_search.usage }}</td>
+                 <td><input type="checkbox" name="" id=""> </td>
+
+            </tr>
+
+            {% endfor %}
+            {% endif %}
+    </tbody>
+    </form>
 </table>
 
 <div class="overlay-update" id="updateConfirmation">
