@@ -2,7 +2,7 @@ from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
 
-from flask import Blueprint, render_template,redirect,request,url_for,flash
+from flask import Blueprint, render_template, redirect, request, url_for, flash, session, jsonify
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
@@ -151,8 +151,6 @@ def appointment1():
     time = request.args.get('time')
     location = request.args.get('location')
     package = request.args.get('package')
-
-    #lay cac khoa
     list_khoa=depp.get_department()
     doctors=depp.get_doctor()
 
@@ -277,11 +275,6 @@ def package_vip_lg():
 def form_medicine():
 
     return render_template('doctor/formMedicine.html',user=current_user)
-@main_bp.route('/formFind')
-def form_find():
-
-    return render_template('doctor/formFind.html',user=current_user)
-
 @main_bp.route('/formConfirm')
 def form_confirm():
     lich_id = request.args.get('lich_id')

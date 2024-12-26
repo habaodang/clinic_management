@@ -151,7 +151,7 @@ class PhieuKham(db.Model):
 class HoaDon(db.Model):
     __tablename__ = 'hoa_don'
 
-    id = db.Column(Integer, primary_key=True)  # ID hóa đơn
+    id = db.Column(Integer, primary_key=True,autoincrement=True)  # ID hóa đơn
     payment_date = db.Column(Date, nullable=True)  # Ngày thanh toán (có thể NULL)
     status = db.Column(Boolean, nullable=False, default=False)  # False: chưa thanh toán, True: đã thanh toán
     bill_money = db.Column(Float, nullable=False)  # Số tiền hóa đơn
