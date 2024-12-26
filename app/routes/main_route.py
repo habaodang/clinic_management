@@ -1,7 +1,7 @@
 from datetime import datetime
 from app import vnpay
 from xml.etree.ElementTree import tostring
-from flask import Blueprint, render_template, redirect, request, url_for, flash, session, jsonify
+from flask import Blueprint, render_template,redirect,request,url_for,flash,session
 from app import login_manager
 from flask_login import login_required,logout_user,current_user
 import hashlib
@@ -13,6 +13,7 @@ import app.controller.department_process as depp
 import app.controller.notebook as nte
 import app.controller.history as his
 import app.controller.dataJson as test
+import app.controller.hoadon as hdon
 from app.models import LichKham
 
 main_bp = Blueprint('main', __name__)
@@ -67,6 +68,7 @@ def chat():
         for symptom, department in symptom_database.items():
             if symptom in user_input:  # Kiểm tra nếu triệu chứng có trong tin nhắn
                 return jsonify({"reply": f"Dựa trên triệu chứng của bạn, bạn nên khám ở khoa {department}.", "user_input": user_input})
+
         # Nếu không có triệu chứng phù hợp
         return jsonify({"reply": "Xin lỗi, tôi không xác định được khoa phù hợp. Bạn nên đến khoa Nội tổng quát để được kiểm tra chi tiết.", "user_input": user_input})
 
@@ -106,7 +108,6 @@ def medical_schedule():
             flash('Không tìm thấy thông tin bệnh nhân.', 'error')
             return redirect(url_for('main.medical_book'))
 
-
 @main_bp.route('/history')
 def medical_history():
     return render_template('medicalbook/history.html',name_user=current_user.name_account)
@@ -140,6 +141,8 @@ def appointment1():
     time = request.args.get('time')
     location = request.args.get('location')
     package = request.args.get('package')
+
+    #lay cac khoa
     list_khoa=depp.get_department()
     doctors=depp.get_doctor()
 
@@ -263,10 +266,12 @@ def package_vip_lg():
 def form_medicine():
 
     return render_template('doctor/formMedicine.html',user=current_user)
+
 @main_bp.route('/formConfirm')
 def form_confirm():
     lich_id = request.args.get('lich_id')
     session['id_patient'] = request.args.get('id_patient')
+    session['lich_id'] = lich_id
 
     lichkham = his.get_appointment_id(lich_id)
     return render_template('doctor/formConfirm.html',lichkham=lichkham,user=current_user)
@@ -323,10 +328,12 @@ def cashier():
     return render_template('home_cashier.html')
 @main_bp.route('/scheduleCashier')
 def schedule_cashier():
+
     return render_template('cashier/scheduleCashier.html')
 @main_bp.route('/paymentInvoice')
 def payment_invoice():
-    return render_template('cashier/paymentInvoice.html')
+    ds_hoadon = hdon.get_hoadon()
+    return render_template('cashier/paymentInvoice.html',ds_hoadon=ds_hoadon)
 
 @main_bp.route('/lookupCashier')
 def look_cashier():
@@ -338,7 +345,10 @@ def setting_cashier():
 
 @main_bp.route('/formInvoice')
 def view_invoice():
-    return render_template('cashier/formInvoice.html')
+    hoadon_id = request.args.get('hoadon')
+
+    hoadon=hdon.get_hoadon_by_id(hoadon_id)
+    return render_template('cashier/formInvoice.html',hoadon=hoadon)
 
 #admin
 @main_bp.route('/admin')
@@ -350,31 +360,36 @@ def add_admin():
     list_khoa = depp.get_department()
     return render_template('admin/addAdmin.html',roles=mdl.UserRole,list_khoa=list_khoa)
 
-@main_bp.route('/addMedicine')
-def add_medicine():
-    return render_template('admin/addMedicine.html')
-
-@main_bp.route('/addDepartment')
-def add_department():
-    return render_template('admin/addDepartment.html')
-
 @main_bp.route('/regulations')
 def regulation_admin():
     return render_template('admin/regulations.html')
 
-
 @main_bp.route('/report', methods=['GET', 'POST'])
-def report():
-    report_type = request.form.get('searchType')
-    report_what = request.form.get('searchWhat')
+def report_admin():
+    report_type = None
+    report_what = None
+    data = {}  # Default empty data
 
-    data = {}
-    if report_what == 'revenue':
-        data = test.get_revenue_data()
-    elif report_what == 'drug':
-        data = test.get_drug_data()
+    if request.method == 'POST':
+        # Get the selected report type and category
+        report_type = request.form.get('searchType')
+        report_what = request.form.get('searchWhat')
 
-    return render_template('admin/report.html', report_type=report_type, report_what=report_what, data=data)
+        # Fetch data based on selected category
+        if report_what == 'revenue':
+            data = test.get_revenue_data()  # Assuming this function fetches the data
+        elif report_what == 'drug':
+            data = test.get_drug_data()  # Assuming this function fetches dru   g data
+
+    # Ensure data is always passed to the template
+    return render_template(
+        'admin/report.html',  # Template for displaying the result
+        report_type=report_type,
+        report_what=report_what,
+        data=data  # Always pass data, even if it's empty
+    )
+
+
 @main_bp.route('/searchAdmin')
 def search_admin():
     return render_template('admin/search.html')
@@ -382,30 +397,56 @@ def search_admin():
 def setting_admin():
     return render_template('admin/settingAdmin.html')
 
-@main_bp.route('/bill', methods=["GET","POST"])
-def medical_bill():
-    if request.method == "POST":
-        bill = int(request.form.get("appointmentMoney"))
-        order_id = str(current_user.id)+ datetime.now().__str__()
-        vnpay_url = vnpay.generate_payment_url(order_id,bill)
-        return redirect(vnpay_url)
-    return render_template('medicalbook/bill.html',name_user=current_user.name_account)
 
+# File: routes.py
 @main_bp.route('/billSuccess')
 def payment_return():
+    # Nhận các tham số từ URL callback của VNPay
     query_params = request.args.to_dict()
     vnp_secure_hash = query_params.pop("vnp_SecureHash", None)
+
+    # Sắp xếp các tham số và tạo chuỗi truy vấn
     sorted_params = sorted(query_params.items())
     query_string = "&".join(f"{k}={urllib.parse.quote_plus(str(v))}" for k, v in sorted_params)
+
+    # Tạo chữ ký bảo mật mong đợi
     hmac_obj = hmac.new(vnpay.VNP_HASH_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha512)
     expected_hash = hmac_obj.hexdigest()
 
-    is_success = True
+    # Kiểm tra tính hợp lệ của chữ ký bảo mật và mã phản hồi
+    is_success = vnp_secure_hash == expected_hash and query_params.get("vnp_ResponseCode") == "00"
 
-    if vnp_secure_hash == expected_hash and query_params.get("vnp_ResponseCode") == "00":
-        return render_template("bill_success.html", is_success=True)
+    # Lấy `hoadon_id` từ session
+    hoadon_id = session.get('hoadon_id')
+
+    if is_success:
+        print('Payment successful')
+        # Thực hiện hàm cập nhật trạng thái hóa đơn
+        hdon.thanh_toan_onl(hoadon_id)
     else:
-        return render_template("bill_success.html", is_success=False)
+        print('Payment failed or invalid signature')
 
+    # Chuyển hướng lại trang `medical_bill`
+    return redirect(url_for('main.medical_bill'))
 
+# Route thanh toán
+@main_bp.route('/bill', methods=["GET", "POST"])
+def medical_bill():
+    if request.method == "POST":
+        # Lấy `hoadon_id` từ form và lưu vào session
+        hoadon_id = request.form.get("appointmentID")
+        session['hoadon_id'] = hoadon_id
+        # Lấy số tiền thanh toán từ form
+        bill = int(request.form.get("appointmentMoney"))
+        # Tạo mã đơn hàng
+        order_id = f"{current_user.id}{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        # Tạo URL thanh toán VNPay
+        vnpay_url = vnpay.generate_payment_url(order_id, bill)
+        # Chuyển hướng đến URL thanh toán VNPay
+        return redirect(vnpay_url)
 
+    # Khi nhận được yêu cầu GET, lấy danh sách hóa đơn của bệnh nhân hiện tại
+    id = current_user.user.id
+    ds_hoadon = hdon.get_hoadon_for_patient(id)
+    # Hiển thị trang hóa đơn với danh sách hóa đơn
+    return render_template('medicalbook/bill.html', name_user=current_user.name_account, ds_hoadon=ds_hoadon)

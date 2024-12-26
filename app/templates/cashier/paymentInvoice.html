@@ -50,82 +50,23 @@
 
     <!-- Cards Container -->
     <section class="card-container">
-        <!-- Card 1 -->
+        {% for hoadon in ds_hoadon %}
         <article class="card">
             <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-            <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
+            <span class="new-badge">Mã ho dơn {{ hoadon.id }}</span>
+            <h3>{{ hoadon.phieu_kham.patient.name }}</h3>
+            <p><strong>Mã Bệnh Nhân:</strong> {{ hoadon.phieu_kham.patient.cccd }}</p>
+            <p><strong>Ngày:</strong> {{ hoadon.ngay_lap}}</p>
+            <p><strong>Tình Trạng Phiếu:</strong>
+            {% if hoadon.trangthai %}
+                Đã thanh toán
+                {% else %}
+                Chưa thanh toán
+                {% endif %}
+            </p>
+            <a href ="{{ url_for('main.view_invoice', hoadon = hoadon.id) }}" ><button class="confirm-btn">Xác Nhận</button></a>
         </article>
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-        <article class="card">
-            <span class="card-badge pink">1</span>
-            <span class="new-badge">NEW</span>
-            <h3>Lê Hồng Đức</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="/formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="card">
-            <span class="card-badge teal">2</span>
-            <h3>Hà Bảo Đăng</h3>
-            <p><strong>Mã Bệnh Nhân:</strong> 045240003235</p>
-            <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
-            <p><strong>Tình Trạng Phiếu:</strong> Đang Chờ Duyệt</p>
-             <a href ="formInvoice"><button class="confirm-btn">Xác Nhận</button></a>
-        </article>
-
-        <!-- Thêm các thẻ article tương tự -->
+        {% endfor %}
     </section>
 {% endblock %}
 {% block right %}

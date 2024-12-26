@@ -136,11 +136,15 @@ class PhieuKham(db.Model):
 
 class HoaDon(db.Model):
     __tablename__ = 'hoa_don'
+
     id = Column(Integer, primary_key=True, autoincrement=True)
-    ngay_lap = Column(Date, nullable=False, default=datetime.utcnow)
-    tong_tien = Column(Float, nullable=True)
-    trangthai = Column(Boolean, default=False)
+    ngay_lap = Column(Date, nullable=False,default=datetime.utcnow)
+    tong_tien = Column(Integer, nullable=True)
+    trangthai =Column(Boolean,default=False)
+    # Foreign key
     phieu_kham_id = Column(Integer, ForeignKey('phieu_kham.id'), nullable=False)
+
+    # Relationships
     phieu_kham = relationship('PhieuKham', back_populates='hoa_don')
     chi_tiet_hoa_don = relationship('ChiTietHoaDon', back_populates='hoa_don', cascade='all, delete-orphan')
 
@@ -159,7 +163,7 @@ class ChiTietHoaDon(db.Model):
     hoa_don_id = Column(Integer, ForeignKey('hoa_don.id'), nullable=False)
     thuoc_id = Column(Integer, ForeignKey('thuoc.id'), nullable=False)
     so_luong = Column(Integer, nullable=False)
-    don_gia = Column(Float, nullable=False)
+
 
     # Quan hệ
     thuoc = relationship('Thuoc', back_populates='chi_tiet_hoa_don')
@@ -181,7 +185,7 @@ class Thuoc(db.Model):
     quantity = Column(Integer, nullable=False)
     effect = Column(String(200), nullable=False)
     usage = Column(String(200), nullable=False)
-    price = Column(Float, nullable=False)
+    price = Column(Integer, nullable=False)
 
     danhmuc_id = Column(Integer, ForeignKey('danhmucthuoc.id'))
 

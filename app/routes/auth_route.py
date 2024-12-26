@@ -27,6 +27,8 @@ def user_signin():
                 return redirect(url_for('main.nurse'))
             if user.role == mdl.UserRole.PATIENT:
                 return redirect(url_for('main.index_login'))
+            if user.role == mdl.UserRole.CASHIER:
+                return redirect(url_for('main.cashier'))
 
         flash('Tài khoản hoặc mật khẩu không chính xác', 'error')
 

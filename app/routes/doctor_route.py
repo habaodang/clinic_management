@@ -21,21 +21,26 @@ def sick_predict():
 @doctor.route('/doctor/add-medicine', methods=['GET', 'POST'])
 def add_medicine():
     if request.method == 'POST':
-        medicineCode = request.form.get('medicineCode')
-        medicineUsage = request.form.get('medicinequan')
+        medicineCode = request.form.get('medicineId')
+        medicinequan = request.form.get('medicinequan')
 
+        print('code thuoc ',medicineCode)
+        print('sl thuoc ',medicinequan)
         symptom=session['symptom']
         predict = session['predict']
         id_patient= session['id_patient']
+        id_lichkham= session['lich_id']
 
         id_phieukham=dct.them_phieu_kham(trieuchung=symptom, chandoan=predict, patient_id=id_patient, doctor_id=current_user.user.id)
         id_hoadon=dct.them_hoadon(id_phieukham)
         id_chitietdon=dct.them_chitietdonthuoc(  hoa_don_id=id_hoadon,
             thuoc_id=medicineCode,
-            so_luong=medicineUsage,
-            don_gia=40)
+            so_luong=int(medicinequan))
 
-        tongtien=dct.tinh_tong_tien_hoa_don(id_hoadon)
+        dct.tinh_tong_tien_hoa_don(id_hoadon)
+
+        dct.cap_nhap_trang_thai_lichkham(id_lichkham)
+
         return redirect(url_for('main.form_doctor'))
 
 
