@@ -1,10 +1,6 @@
 
 
-const medicineData = {
-  PA01: { name: "Thuốc A1", unit: "Viên", effect: "Hạ sốt", usage: "Uống Sau Khi Ăn" },
-  PA02: { name: "Thuốc A2", unit: "Hộp", effect: "Kháng viêm", usage: "Uống Trước Khi Ăn" },
-  PA03: { name: "Thuốc A3", unit: "Ống", effect: "Giảm đau", usage: "Tiêm Tĩnh Mạch" },
-};
+
 // Mở form tìm kiếm thuốc
 function openForm() {
   document.getElementById("overlay").style.display = "flex"; // Mở overlay

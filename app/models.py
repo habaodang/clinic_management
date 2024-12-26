@@ -108,7 +108,7 @@ class LichKham(db.Model):
 
     id = Column(Integer, primary_key=True,autoincrement=True)
     time = Column(Time, nullable=False)
-    status = Column(String(150),default=False)
+    status = Column(Boolean,default=False)
     created_date = Column(DateTime, default=datetime.utcnow)
     date = Column(Date, nullable=False)
     location = Column(String(150), nullable=False)

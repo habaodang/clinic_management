@@ -27,21 +27,19 @@ def add_medicine():
         medicineEffect = request.form.get('medicineEffect')
         medicineUsage = request.form.get('medicineUsage')
 
-@doctor.route('/doctor/search-medicien', methods=['GET', 'POST'])
+
+@doctor.route('/doctor/search-medicine', methods=['POST'])
 def search_medicine():
     if request.method == 'POST':
-        search_medicine = request.form.get('search_medicine')
-        list_medicene_search = medicine.search_medicine_name(search_medicine)
-        result = [
-            {
-                "id": med.id,
-                "name": med.name,
-                "unit": med.unit,
-                "quantity": med.quantity
-            }
-            for med in list_medicene_search
-        ]
-        return jsonify(result)
+        print('vo ham')
+        # Nhận chuỗi tìm kiếm từ JavaScript
+        search_query = request.form.get('medicineName')
+
+        # Sử dụng hàm tìm kiếm của bạn để lấy danh sách thuốc
+        list_medicene_search = medicine.search_medicine_name(search_query)
+        print(list_medicene_search)
+        return redirect(url_for('main.form_find'))
+
 
 @doctor.route('/infor-doctor', methods=['GET', 'POST'])
 def infor_doctor():

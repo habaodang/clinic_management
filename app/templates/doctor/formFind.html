@@ -1,0 +1,72 @@
+{% extends 'doctor/formDoctor.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formMedicine.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+
+{% block middle %}
+<h2>Quản Lý Kê Toa Thuốc</h2>
+
+<div  id="overlay">
+    <div class="form-container" id="overlay1">
+        <h3>Tìm Kiếm Thuốc</h3>
+       <form action="{{ url_for('main.form_find') }}" method="post">
+        <input type="text" id="medicineName" name="medicineName" placeholder="Nhập tên Thuốc">
+
+         <button type="submit">Tìm Kiếm</button>
+        <button onclick="closeForm()">Hủy</button>
+    </div>
+</div>
+
+<!-- Bảng Hiển Thị Thuốc -->
+<table>
+    <thead>
+    <tr>
+        <th>Mã Thuốc</th>
+        <th>Tên Thuốc</th>
+        <th>Đơn Vị</th>
+        <th>công dụng</th>
+        <th>cách dùng</th>
+
+    </tr>
+    </thead>
+    <tbody id="medicineTable">
+    {% if list_medicene_search %}
+            {% for medicene_search in list_medicene_search %}
+             <tr>
+                <td>{{ medicene_search.id }}</td>
+                <td>{{ medicene_search.name }}</td>
+                <td>{{ medicene_search.unit }}</td>
+                <td>{{ medicene_search.effect }}</td>
+                <td>{{ medicene_search.usage }}</td>
+                 <td><input type="checkbox" name="" id=""> </td>
+
+            </tr>
+
+            {% endfor %}
+            {% endif %}
+    </tbody>
+    </form>
+</table>
+
+<div class="overlay-update" id="updateConfirmation">
+    <div class="form-container">
+        <h3>Bạn muốn làm gì với thuốc này?</h3>
+        <button onclick="confirmUpdate('delete')">Xóa đi</button>
+        <button onclick="closeUpdateConfirmation()">Hủy</button>
+    </div>
+</div>
+
+<button class="confirm-btn">Xác Nhận</button>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/doctor/formMedicine.js') }}"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+{% endblock %}
