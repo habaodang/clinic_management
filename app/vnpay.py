@@ -10,7 +10,7 @@ VNP_HASH_SECRET = "TC0ULXJYO9MQGPG8WDHME7BEEHZVXADO"  # Chuỗi bí mật (do VN
 VNP_URL = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"  # URL sandbox
 VNP_RETURN_URL = "http://127.0.0.1:5000/billSuccess"  # URL nhận callback ghi chu
 
-def generate_payment_url(order_id, amount):
+def generate_payment_url(order_id, amount): #Hàm này tạo một URL để người dùng thực hiện thanh toán.
     vnp_IpAddr = request.remote_addr  # Lấy IP thực của người dùng
     params = {
         "vnp_Version": "2.1.0",
@@ -28,7 +28,7 @@ def generate_payment_url(order_id, amount):
     }
 
     sorted_params = sorted(params.items())
-    query_string = "&".join(f"{k}={urllib.parse.quote_plus(str(v))}" for k, v in sorted_params)
+    query_string = "&".join(f"{k}={urllib.parse.quote_plus(str(v))}" for k, v in sorted_params) #
 
     hmac_obj = hmac.new(VNP_HASH_SECRET.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha512)
     signature = hmac_obj.hexdigest()

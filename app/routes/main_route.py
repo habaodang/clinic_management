@@ -69,7 +69,6 @@ def chat():
         for symptom, department in symptom_database.items():
             if symptom in user_input:  # Kiểm tra nếu triệu chứng có trong tin nhắn
                 return jsonify({"reply": f"Dựa trên triệu chứng của bạn, bạn nên khám ở khoa {department}.", "user_input": user_input})
-
         # Nếu không có triệu chứng phù hợp
         return jsonify({"reply": "Xin lỗi, tôi không xác định được khoa phù hợp. Bạn nên đến khoa Nội tổng quát để được kiểm tra chi tiết.", "user_input": user_input})
 
@@ -109,14 +108,6 @@ def medical_schedule():
             flash('Không tìm thấy thông tin bệnh nhân.', 'error')
             return redirect(url_for('main.medical_book'))
 
-@main_bp.route('/bill', methods=["GET","POST"])
-def medical_bill():
-    if request.method == "POST":
-        bill = int(request.form.get("appointmentMoney"))
-        order_id = str(current_user.id)+ datetime.now().__str__()
-        vnpay_url = vnpay.generate_payment_url(order_id,bill)
-        return redirect(vnpay_url)
-    return render_template('medicalbook/bill.html',name_user=current_user.name_account)
 
 @main_bp.route('/history')
 def medical_history():
@@ -404,6 +395,14 @@ def search_admin():
 def setting_admin():
     return render_template('admin/settingAdmin.html')
 
+@main_bp.route('/bill', methods=["GET","POST"])
+def medical_bill():
+    if request.method == "POST":
+        bill = int(request.form.get("appointmentMoney"))
+        order_id = str(current_user.id)+ datetime.now().__str__()
+        vnpay_url = vnpay.generate_payment_url(order_id,bill)
+        return redirect(vnpay_url)
+    return render_template('medicalbook/bill.html',name_user=current_user.name_account)
 
 @main_bp.route('/billSuccess')
 def payment_return():
