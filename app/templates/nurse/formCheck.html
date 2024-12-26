@@ -80,19 +80,13 @@
         </div>
     </div>
      <div class="form-containers">
+          <a href="{{ url_for('nurse.confirm_appointment', lich_id=lichkham.id) }}">
         <button class="confirm-btn" onclick="goBack()">Xác Nhận</button>
+              </a>
     </div>
 
     {% endblock %}
     {% block right %}
-    <div class="form-containers">
-        <a href="">
-        <button class="confirm-btn danger">Cập nhật</button>
-        </a>
-        <a href="{{url_for('nurse.confirm_appointment', lich_id=lichkham.id) }}">
-        <button class="confirm-btn">Xác Nhận</button>
-        </a>
-    </div>
 
     {% endblock %}
 

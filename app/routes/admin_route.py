@@ -45,7 +45,6 @@ def add_user_ad():
                     id_department = request.form.get('department')
                     id = in_u.add_infor_nurse(name, cccd, address, sex, birth, phone, role=role,id_department=id_department)
                     in_u.mapping_account(name_account=name_account, user_id=id)
-                    print('doctor')
                     return redirect(url_for('main.add_admin'))
 
                 if role == 'PATIENT':
