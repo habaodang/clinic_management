@@ -1,0 +1,50 @@
+{% extends 'doctor/formDoctor.html' %}
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formConfirm.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+ {% endblock %}
+
+{% block middle %}
+ <div class="form-container">
+        <div class="header">Thông Tin Bệnh Nhân</div>
+        <div class="form-group">
+            <div class="form-label">Họ và tên:</div>
+            <div class="form-value">{{lichkham.patient.name}}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Ngày sinh:</div>
+            <div class="form-value">{{lichkham.patient.birth}}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Số CMND/CCCD:</div>
+            <div class="form-value">{{lichkham.patient.cccd}}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Địa chỉ:</div>
+            <div class="form-value">{{lichkham.patient.address}}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Số điện thoại:</div>
+            <div class="form-value">{{lichkham.patient.phone}}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Tiền sử bệnh:</div>
+            <div class="form-value">Không Có</div>
+        </div>
+    </div>
+{% endblock %}
+{% block right %}
+<form action="{{ url_for ('doctor.sick_predict') }}" method="post">
+    <div class="form-containers">
+        <div class="header">Phiếu Khám Bệnh</div>
+        <div class="form-label">Triệu Chứng:</div>
+        <input type="text" class="doctor-input" name="symptom">
+        <div class="form-label">Chẩn Đoán Loại Bệnh:</div>
+        <input type="text" class="doctor-input" name="predict">
+        <button type="submit" class="confirm-btn">Xác Nhận</button>
+    </div>
+</form>
+{% endblock %}

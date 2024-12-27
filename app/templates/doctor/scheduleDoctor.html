@@ -1,0 +1,100 @@
+{% extends 'home_doctor.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/scheduleDoctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+{% block left %}
+        <div class="left">
+            <div class="left col-md-3">
+                <div class="sidebar" id="sidebar">
+                    <a class="menu-item" href="/doctor">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <h3>Trang chủ</h3>
+                    </a>
+                    <a class="menu-item active" href="/scheduleDoctor">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>Lịch làm việc</h3>
+                    </a>
+                    <a class="menu-item" href="/formDoctor">
+                        <span><i class="fas fa-user-md"></i></span>
+                        <h3>Lập Phiếu</h3>
+                    </a>
+                    <a class="menu-item" href="/lookupDoctor">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <h3>Tra cứu</h3>
+                    </a>
+                    <a class="menu-item" id="theme" >
+                        <span><i class="fa-solid fa-palette"></i></span>
+                        <h3>Theme</h3>
+                    </a>
+                    <a class="menu-item" href="/settingDoctor">
+                        <span><i class="fa-solid fa-gear"></i></span>
+                        <h3>Cài Đặt</h3>
+                    </a>
+                    <a href="/" class="menu-item logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <h3>Đăng Xuất</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block middle %}
+<div class="appointment-card">
+    <div class="appointment-header">
+        <span class="time time-highlight"><i class="fa-regular fa-clock"></i> 6:00 AM</span>
+        <span class="options">...</span>
+    </div>
+    <div class="appointment-body">
+        <p class="appointment-title">Lịch Khám Cho 30 Bệnh Nhân</p>
+        <p class="appointment-note">Vui lòng đến sớm trước 15p</p>
+        <div class="appointment-details">
+            <span class="date"> <i class="fa-solid fa-calendar-days dayappoint"></i> 23/12/2024</span>
+            <span class="time"> <i class="fa-regular fa-clock"></i> 6:00 AM</span>
+        </div>
+        <div class="text-center">
+            <button class="confirm-btn">Xác Nhận</button>
+        </div>
+    </div>
+</div>
+
+<div class="appointment-card">
+    <div class="appointment-header">
+        <span class="time time-highlight"><i class="fa-regular fa-clock"></i> 1:15 PM</span>
+        <span class="options">...</span>
+    </div>
+    <div class="appointment-body">
+        <p class="appointment-title">Khám Nội Soi</p>
+        <p class="appointment-note">Mã Bệnh Nhân: 045204003235</p>
+        <div class="appointment-details">
+            <span class="date"><i class="fa-solid fa-calendar-days"></i> 23/12/2024</span>
+            <span class="time"><i class="fa-regular fa-clock"></i> 1:15 PM</span>
+        </div>
+        <div class="text-center">
+            <button class="confirm-btn">Xác Nhận</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block right %}
+<div class="calendar-container">
+    <div class="calendar-header">
+        <button id="prev-month">&#8592;</button>
+        <div class="month-year" id="monthYear"></div>
+        <button id="next-month">&#8594;</button>
+    </div>
+    <div class="calendar-grid" id="calendar">
+        <!-- Days and dates will be injected dynamically -->
+    </div>
+    <div class="view-details">
+        <a href="#">Xem Chi Tiết</a>
+    </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/doctor/scheduleDoctor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+
+<div class="container my-5">
+  <div class="page-header text-center editA">
+      <h3>Chuyên Khoa</h3>
+    <a href = "/">  Trang chủ</a> /
+      <a href = "/specialty" > Chuyên khoa </a> /
+      <a> Chẩn đoán hình ảnh</a>
+  </div>
+
+  <div class="specialty-content">
+    <h2>I. Giới thiệu chung</h2>
+    <p>
+      Chẩn đoán hình ảnh là một trong những chuyên khoa không thể thiếu trong dịch vụ khám chữa bệnh. Ra đời ngay từ những ngày đầu thành lập, Khoa Chẩn đoán hình ảnh của phòng khám Bệnh viện Đại học Y Dược 1 quy tụ đội ngũ bác sĩ, kỹ thuật viên giàu kinh nghiệm và được đầu tư trang thiết bị hiện đại từ các thương hiệu nổi tiếng như GE, Fuji, Hologic, Hitachi... Chúng tôi luôn đảm bảo cung cấp các dịch vụ thăm khám chẩn đoán hình ảnh tốt nhất, đạt hiệu quả cao trong chẩn đoán và điều trị.
+    </p>
+    <p>Khoa chẩn đoán hình ảnh của Phòng khám gồm:</p>
+    <ul>
+      <li>01 phòng chụp cộng hưởng từ - MRI 1.5 Tesla</li>
+      <li>01 phòng chụp cắt lớp vi tính – CT Scanner 128</li>
+      <li>02 phòng chụp X-quang kỹ thuật số</li>
+      <li>01 phòng đo loãng xương bằng phương pháp DEXA (DXA)</li>
+      <li>05 phòng siêu âm</li>
+    </ul>
+
+    <h2>II. Dịch vụ</h2>
+    <p>
+      Khoa Chẩn đoán hình ảnh thực hiện các kỹ thuật tạo ảnh y học để chẩn đoán bệnh và theo dõi hiệu quả điều trị. Các kỹ thuật được thực hiện tại khoa Chẩn đoán hình ảnh của Phòng khám Bệnh viện Đại học Y Dược 1 bao gồm:
+    </p>
+    <p><strong>Chụp X-quang kỹ thuật số:</strong>  X-quang kỹ thuật số là kỹ thuật chẩn đoán hình ảnh phổ biến, sử dụng tia X để tạo ra hình ảnh của các bộ phận bên trong cơ thể. Kỹ thuật này có thể được sử dụng để chẩn đoán các bệnh lý về xương, phổi, tim, mạch máu,... </p>
+    <p><strong>Chụp cắt lớp vi tính (CT Scan):</strong> CT Scan là kỹ thuật chẩn đoán hình ảnh sử dụng tia X và máy tính để tạo ra hình ảnh cắt lớp chi tiết của cơ thể. Kỹ thuật này có thể được sử dụng để chẩn đoán các bệnh lý về não, tim, phổi, ổ bụng,... </p>
+    <p><strong>Chụp cộng hưởng từ (MRI):</strong> MRI là kỹ thuật chẩn đoán hình ảnh sử dụng từ trường và sóng radio để tạo ra hình ảnh chi tiết của các cơ quan và mô trong cơ thể. Kỹ thuật này có thể được sử dụng để chẩn đoán các bệnh lý về não, tủy sống, khớp, cơ,... </p>
+    <p><strong>Siêu âm:</strong> Siêu âm là kỹ thuật chẩn đoán hình ảnh sử dụng sóng âm để tạo ra hình ảnh của các cơ quan và mô trong cơ thể. Kỹ thuật này có thể được sử dụng để chẩn đoán các bệnh lý về ổ bụng, tim, mạch máu, thai nhi,... </p>
+    <p><strong>Đo loãng xương:</strong> Đo loãng xương là kỹ thuật sử dụng tia X năng lượng thấp để đo mật độ khoáng chất trong xương, giúp chẩn đoán và theo dõi bệnh loãng xương.</p>
+  </div>
+</div>
+
+{% endblock %}

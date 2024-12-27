@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+
+<div class="container my-5">
+  <div class="page-header text-center editA">
+      <h3>Chuyên Khoa</h3>
+    <a href = "/">  Trang chủ</a> /
+      <a href = "/specialty" > Chuyên khoa </a> /
+      <a> Cơ xương khớp</a>
+  </div>
+
+  <div class="specialty-content">
+    <h2>I. Giới thiệu chung</h2>
+    <p>
+      Các bệnh Cơ – Xương – Khớp là một nhóm bệnh thường gặp nhất trong mọi nhóm bệnh, có nguyên nhân và cơ chế bệnh sinh phức tạp, diễn tiến kéo dài liên quan đến nhiều bệnh lý nội ngoại khoa.
+    </p>
+    <p>Các bệnh Cơ – Xương – Khớp rất phổ biến trên thế giới và cũng đang có xu hướng gia tăng nhanh ở Việt Nam.</p>
+    <p>
+      Khoa Cơ – Xương – Khớp thuộc Phòng khám Bệnh viện Đại học Y Dược 1 với đội ngũ bác sĩ giàu kinh nghiệm đã và đang làm việc tại các bệnh viện lớn như (Bệnh viện Đại học Y Dược TP.HCM, Chợ Rẫy…). Khoa Cơ – Xương – Khớp của phòng khám quản lý, theo dõi và điều trị hiệu quả các bệnh lý về xương khớp, giúp người bệnh giảm bớt đau đớn và nhanh chóng hòa nhịp với cuộc sống hàng ngày.
+    </p>
+
+    <h2>II. Hoạt động chuyên môn</h2>
+    <p>
+        Khoa Cơ – Xương – Khớp thuộc Phòng khám Bệnh viện Đại học Y Dược 1 hiện khám và điều trị các bệnh lý gồm:
+    </p>
+    <p><strong>Các bệnh khớp thoái hóa:</strong>  Thoái hóa khớp gối, thoái hóa cột sống, thoái hóa khớp háng, thoái hóa đa khớp, hoại tử chỏm xương đùi…</p>
+    <p><strong>Bệnh lý phần mềm và rối loạn ngoài khớp: </strong>Viêm gân cơ chóp xoay, viên gân gấp ngón tay (ngón tay cò súng), viêm mỏm trâm quay, viêm lồi cầu cánh tay, viêm cân gan chân, hội chứng ống cổ tay, thoát vị đĩa đệm…</p>
+    <p><strong>Các bệnh khớp chuyển hóa: </strong> Viêm khớp gout, viêm khớp giả gout… </p>
+    <p><strong>Loãng xương và các biến chứng liên quan.</strong></p>
+    <p><strong>Các bệnh nhiễm khuẩn khớp, lao khớp.</strong></p>
+    <p><strong>Các bệnh khớp tự miễn hoặc bệnh tổ chức liên kết:</strong> Viêm khớp dạng thấp, lupus, viêm cột sống dính khớp, xơ cứng bì, viêm đa cơ, bệnh still, viêm khớp vảy nến… </p>
+    <p><strong>Thực hiện thủ thuật trong chẩn đoán và điều trị: </strong>Chọc hút dịch khớp, tiêm nội khớp, tiêm bao gân…</p>
+  </div>
+</div>
+
+{% endblock %}

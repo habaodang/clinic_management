@@ -24,7 +24,11 @@ footer {
   font-size: 13px;
   line-height: 20px;
 }
+.padding-lr div{
+  padding-left:1rem;
+  padding-right:1rem;
 
+}
 .btnLogin {
       background-color: #cfc8c8 !important;
       border-radius: 2rem;
@@ -42,10 +46,8 @@ footer {
 }
 .btnDrop
 {
- width: 13rem;
+ width: 14rem;
 }
-
-
 
 .dropdownToggle {
   border: none;
@@ -183,7 +185,7 @@ padding-left: 0rem;
   justify-content: space-between;
 }
 .col{
-  flex-basis: 25%;
+
   padding: 10px;
 
 }
@@ -364,13 +366,16 @@ hr{
   transform: scale(1.05); /* Phóng to nhẹ khi hover */
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4); /* Tăng hiệu ứng bóng khi hover */
 }
+.carousel-control-next, .carousel-control-prev {
+    background-color: transparent !important;
+}
 
 #uniqueCarousel .carousel-control-prev-icon,
 #uniqueCarousel .carousel-control-next-icon {
   background-color: black;
   width:1.5rem;
   height:1.5rem;
-  margin-top: 10rem;
+  margin-top: 5rem;
   border-radius: 50%; /* Bo tròn nút điều hướng */
   background-size: contain;
 }
@@ -554,4 +559,10 @@ header.scrolled {
 }
 .avatar-group img:hover {
   transform: scale(1.1); /* Phóng to nhẹ khi hover */
+}
+
+@media (max-width: 600px) {
+  body {
+  width: 400px !important;
+}
 }

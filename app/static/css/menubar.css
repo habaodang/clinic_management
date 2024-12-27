@@ -1,0 +1,251 @@
+.mt-4 a{
+    color:white;
+}
+.floating-menu-button {
+    display: none;
+    position: fixed;
+    bottom: 20rem;
+    right: 20px;
+    z-index: 1000;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.floating-menu-button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .floating-menu-button {
+        display: flex;
+    }
+     #playVideoBtn {
+        margin-top: 10px;
+    }
+    .hero .mt-4 {
+         margin-top: 20px;
+    }
+    .hero .col-md-6 img {
+        margin-top: 20px;
+    }
+}
+
+.floating-menu {
+    display: none;
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    border-radius: 10px 0 0 10px;
+    background-color: white;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 300px;
+    width: auto;
+    min-width: 200px;
+}
+.floating-menu h4{
+    color:  #0056b3;
+}
+.list-unstyled>li>a{
+    color: black;
+}
+.floating-menu.active {
+    display: block;
+}
+
+/* CSS cho nút hỗ trợ tư vấn */
+.support-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.support-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Hộp thoại chat */
+.chat-box {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+/* Ẩn hộp chat khi không dùng */
+.hidden {
+    display: none;
+}
+
+/* Header của hộp thoại */
+.chat-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h5 {
+    margin: 0;
+}
+
+/* Body của hộp thoại */
+.chat-body {
+    padding: 10px;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+/* Footer của hộp thoại */
+.chat-footer {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 5px;
+}
+
+.chat-footer input {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 5px;
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-footer .send-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.chat-footer .send-button:hover {
+    background: #0056b3;
+}
+
+/* Nút đóng chat */
+.close-button {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+.chat-box {
+    z-index: 1001; /* Cao hơn header */
+}
+/* Vị trí container */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Nút ba chấm */
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Menu tùy chọn */
+.menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    width: 200px;
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.menu li:hover {
+    background-color: #f5f5f5;
+}
+
+/* Ẩn menu bằng class hidden */
+        .hidden {
+            display: none;
+        }
+
+        #menuOptions {
+            position: absolute;
+            background-color: white;
+            color: black;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 10px;
+            width: 14rem;
+            margin-left: -12rem;
+            border-radius: 5px;
+        }
+
+        #menuOptions ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #menuOptions li {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #menuOptions li:hover {
+            background-color: #f0f0f0;
+        }

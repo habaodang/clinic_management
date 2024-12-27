@@ -1,0 +1,229 @@
+{% extends 'home_admin.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/admin/report.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_admin.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+{% block left %}
+<div class="left">
+    <div class="left col-md-3">
+        <div class="sidebar" id="sidebar">
+            <a class="menu-item" href="/admin">
+                <span><i class="fa-solid fa-house"></i></span>
+                <h3>Trang chủ</h3>
+            </a>
+            <a class="menu-item" href="/regulations">
+                <span><i class="fa-solid fa-briefcase"></i></span>
+                <h3>Thay đổi quy định</h3>
+            </a>
+            <a class="menu-item active" href="/report">
+                <span><i class="fa-regular fa-flag"></i></span>
+                <h3>Thống kê báo cáo</h3>
+            </a>
+            <a class="menu-item" href="/searchAdmin">
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                <h3>Tra cứu</h3>
+            </a>
+            <a class="menu-item" id="theme">
+                <span><i class="fa-solid fa-palette"></i></span>
+                <h3>Theme</h3>
+            </a>
+             <a class="menu-item" href="/addAdmin">
+                <span><i class="fa-solid fa-user"></i></span>
+                <h3>Thêm Tài Khoản</h3>
+            </a>
+              <a class="menu-item" href="/addDepartment">
+                <span><i class="fa-solid fa-user"></i></span>
+                <h3>Thêm Khoa</h3>
+            </a>
+            <a class="menu-item" href="/addMedicine">
+                <span><i class="fa-solid fa-user"></i></span>
+                <h3>Thêm Thuốc</h3>
+            </a>
+
+            <a class="menu-item" href="/settingAdmin">
+                <span><i class="fa-solid fa-gear"></i></span>
+                <h3>Cài Đặt</h3>
+            </a>
+            <a href="/" class="menu-item logout">
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                <h3>Đăng Xuất</h3>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block middle %}
+<div class="container-fluid mt-9">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5>Chọn loại báo cáo</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="/report">
+                        <div class="input-group mb-3">
+                            <select class="form-select text-center" name="searchType">
+                                <option value="table" {% if report_type=='table' %}selected{% endif %}>Bảng</option>
+                                <option value="chart" {% if report_type=='chart' %}selected{% endif %}>Biểu đồ</option>
+                            </select>
+                            <select class="form-select text-center" name="searchWhat">
+                                <option value="revenue" {% if report_what=='revenue' %} selected{% endif %}>Doanh thu</option>
+                                <option value="drug" {% if report_what=='drug' %}selected{% endif %}>Thuốc</option>
+                            </select>
+                            <button class="btn btn-danger" type="submit">Thống kê</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if report_type == 'table' %}
+    <!-- Display table when report type is 'table' -->
+    <h5 class="text-center">
+        {% if report_what == 'revenue' %}
+        Thống kê Doanh Thu
+        {% elif report_what == 'drug' %}
+        Thống kê Thuốc
+        {% endif %}
+    </h5>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            {% if report_what == 'revenue' %}
+            <th>Ngày</th>
+            <th>Số bệnh nhân</th>
+            <th>Doanh thu</th>
+            <th>Tỷ lệ</th>
+            {% elif report_what == 'drug' %}
+            <th>Tên thuốc</th>
+            <th>Số lượng</th>
+            <th>Tỷ lệ</th>
+            {% endif %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in data.details %}
+        <tr>
+            {% if report_what == 'revenue' %}
+            <td>{{ item.date }}</td>
+            <td>{{ item.patients }}</td>
+            <td>{{ item.revenue }}</td>
+            <td>{{ item.rate }}%</td>
+            {% elif report_what == 'drug' %}
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.rate }}%</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% elif report_type == 'chart' %}
+    <!-- Display chart when report type is 'chart' -->
+    <h5 class="text-center">
+        {% if report_what == 'revenue' %}
+        Biểu đồ Doanh Thu
+        {% elif report_what == 'drug' %}
+        Biểu đồ Thuốc
+        {% endif %}
+    </h5>
+    <canvas id="chartCanvas" width="400" height="400"></canvas>
+    <script>
+        const data = {{ data | tojson }};
+        const ctx = document.getElementById('chartCanvas').getContext('2d');
+
+        {% if report_what == 'revenue' %}
+            new Chart(ctx, {
+                type: 'bar',  // Bar chart for revenue
+                data: {
+                    labels: data.labels,  // Labels for each bar
+                    datasets: [{
+                        label: 'Doanh thu',
+                        data: data.revenues,  // Values for the bars
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Doanh thu'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Ngày'
+                            }
+                        }
+                    }
+                }
+            });
+        {% elif report_what == 'drug' %}
+            new Chart(ctx, {
+                type: 'pie',  // Pie chart for drug data
+                data: {
+                    labels: data.labels,  // Labels for each segment
+                    datasets: [{
+                        label: 'Thuốc',
+                        data: data.values,  // Values for the segments
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.6)',
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 206, 86, 0.6)',
+                            'rgba(75, 192, 192, 0.6)',
+                            'rgba(153, 102, 255, 0.6)',
+                            'rgba(255, 159, 64, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'right'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + ' đơn vị';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        {% endif %}
+    </script>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block right %}
+
+{% endblock %}
+{% block javascript %}
+
+<script src="{{ url_for('static', filename='js/admin/report.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

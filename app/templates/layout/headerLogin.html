@@ -5,7 +5,7 @@
             <ul class="list-unstyled d-flex mb-0">
                 <li class="me-3">
                     <div class="dropdown">
-                        <a href="/indexLogin">
+                        <a href="{{url_for('main.index_login')}}">
                             <button class="btn btn-white bt-hover" type="button" id="homeButton">Trang Chủ</button>
                         </a>
                     </div>
@@ -24,12 +24,12 @@
                             Chuyên Khoa <i class="bi bi-chevron-down" id="dropdownIcon3"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
-                            <li><a class="dropdown-item" href="#">1. Khoa Nội</a></li>
-                            <li><a class="dropdown-item" href="#">2. Khoa Mắt</a></li>
-                            <li><a class="dropdown-item" href="#">3. Khoa Sản phụ</a></li>
-                            <li><a class="dropdown-item" href="#">4. Khoa Nhi</a></li>
-                            <li><a class="dropdown-item" href="#">5. Răng - Hàm - Mặt</a></li>
-                            <li><a class="dropdown-item" href="#">6. Khoa Da Liễu</a></li>
+                            <li><a class="dropdown-item" href="/CDCHLogin">1. Khoa chuẩn hóa hình ảnh</a></li>
+                            <li><a class="dropdown-item" href="/CXKLogin">2. Khoa cơ- xương- khớp</a></li>
+                            <li><a class="dropdown-item" href="/NhiKhoaLogin">3. Khoa nhi khoa</a></li>
+                            <li><a class="dropdown-item" href="/SPKLogin">4. Khoa sản-phụ khoa</a></li>
+                            <li><a class="dropdown-item" href="/RHMLogin">5. Răng - Hàm - Mặt</a></li>
+                            <li><a class="dropdown-item" href="/DaLieuLogin">6. Khoa Da Liễu</a></li>
                         </ul>
                     </div>
                 </li>
@@ -40,10 +40,8 @@
                             Gói Khám <i class="bi bi-chevron-down" id="dropdownIcon4"></i>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                            <li><a class="dropdown-item" href="#">Gói Khám Dành Tổng Quát</a></li>
-                            <li><a class="dropdown-item" href="#">Gói Khám Dành Tim Mạch</a></li>
-                            <li><a class="dropdown-item" href="#">Gói Khám Dành Nhi Khoa</a></li>
-                            <li><a class="dropdown-item" href="#">Gói Khám Dành Cho Sản Phụ</a></li>
+                            <li><a class="dropdown-item" href="/packageNormalLG">Gói Khám Normal</a></li>
+                            <li><a class="dropdown-item" href="/packageVIPLG">Gói Khám VIP</a></li>
                         </ul>
                     </div>
                 </li>
@@ -76,15 +74,14 @@
                          class="rounded-circle">
                     <div>
                         <div class="fw-bold">Cá nhân</div>
-                        <div>Lê Hồng Đức</div>
+                        <div>{{ name_user }}</div>
                     </div>
-                    <button class="dropdownToggle"><i class="bi bi-chevron-down"></i></button>
                 </div>
                 <ul class="dropdown-menu dropdown-menu-end dropdownHello">
-                    <li>Chào, DUC</li><hr>
+                    <li>Chào, {{ name_user }}</li><hr>
                     <li><a class="dropdown-item" href="/medicalBook">Sổ tay khám bệnh</a></li>
-                    <li><a class="dropdown-item" href="/info">Cài đặt</a></li>
-                    <li><a class="dropdown-item" href="/">Thoát</a></li>
+                    <li><a class="dropdown-item" href="/passwd">Cài đặt</a></li>
+                    <li><a class="dropdown-item" href="{{url_for('main.logout_process')}}">Đăng Xuất</a></li>
                 </ul>
             </div>
         </div>

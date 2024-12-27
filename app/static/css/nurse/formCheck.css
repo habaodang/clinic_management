@@ -1,0 +1,171 @@
+          /* Cập nhật bố cục khi không có phần right */
+        main .container {
+            grid-template-columns: 18vw auto; /* Chỉ để lại phần left và middle */
+        }
+
+        /* Ẩn phần "right" */
+        main .container .right {
+            display: none;
+        }
+
+        /* Tăng kích thước phần middle để chiếm luôn không gian của phần right */
+        main .container .middle {
+            grid-column: span 2; /* Chiếm cả 2 cột lưới */
+            width: 100%; /* Tăng chiều rộng để phù hợp */
+        }
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        main .container {
+            display: grid;
+            grid-template-columns: 18vw auto 10vw;
+            position: absolute;
+        }
+        .form_doctor {
+        margin-top:2rem;
+        width: 72rem !important;
+
+        }
+        .form-container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+        }
+         .form-containers {
+            background: #fff;
+
+            padding: 20px;
+            width: 10rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 20px;
+            margin-top: 10rem;
+            margin-left: 15rem;
+        }
+        .header {
+            grid-column: span 2;
+            background-color: #9a76ff;
+            color: white;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            font-weight: bold;
+            text-align: center;
+        }
+        .form-label {
+            font-weight: bold;
+            text-align: left;
+            padding: 5px 0;
+        }
+        .form-value, .doctor-input {
+            background-color: #f0f0f0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        .doctor-input {
+            background-color: #fff;
+            border: 1px solid #7a6f9b;
+        }
+        .confirm-btn {
+            grid-column: span 2;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .confirm-btn:hover {
+            background-color: #218838;
+        }
+        .confirm-btn.danger {
+           background-color: #dc3545; /* Màu đỏ danger */
+           color: #fff;
+        }
+
+        /* Thêm hiệu ứng hover */
+       .confirm-btn.danger:hover {
+            background-color: #c82333; /* Màu đỏ đậm hơn khi hover */
+        }
+               /* Nút biểu tượng tìm kiếm */
+       /* Đảm bảo form-value có thể chứa cả ô nhập và nút tìm kiếm trong cùng một dòng */
+        .form-value {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Nút biểu tượng tìm kiếm */
+        .search-icon-btn {
+            background-color: #007bff;  /* Màu nền */
+            border: none;
+            border-radius: 50%;         /* Bo tròn */
+            color: white;
+            font-size: 14px;            /* Giảm kích thước */
+            padding: 6px;               /* Giảm padding */
+            cursor: pointer;
+            margin-left: 10px;          /* Khoảng cách giữa ô nhập và nút */
+        }
+
+        .search-icon-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Khối tìm kiếm bác sĩ */
+        /* Phần div tìm kiếm nằm trong .right, giúp tạo khoảng cách và vị trí phù hợp */
+        .search-container {
+            margin-top: 20px;  /* Khoảng cách phía trên */
+            background: #fff;  /* Màu nền trắng */
+            padding: 15px;     /* Khoảng padding xung quanh */
+            border-radius: 10px; /* Bo tròn góc */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+            width: 100%; /* Chiếm đầy chiều rộng của phần tử cha */
+            right: 3rem;
+        }
+
+        /* Kết quả tìm kiếm (hiển thị khi có kết quả) */
+        .search-results {
+            max-height: 150px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: #fff;
+            z-index: 10;
+            position: absolute;
+            width: 100%;
+        }
+
+        /* Kết quả tìm kiếm khi hover */
+        .search-results div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .search-results div:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Ẩn phần tử khi không cần thiết */
+        .d-none {
+            display: none;
+        }
+
+        /* Hiệu ứng cho ô nhập tìm kiếm */
+        #search-doctor {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }

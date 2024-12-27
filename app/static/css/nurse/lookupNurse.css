@@ -1,0 +1,17 @@
+/* Cập nhật bố cục khi không có phần right */
+main .container {
+    grid-template-columns: 18vw auto; /* Chỉ để lại phần left và middle */
+}
+
+/* Ẩn phần "right" */
+main .container .right {
+    display: none;
+}
+
+/* Tăng kích thước phần middle để chiếm luôn không gian của phần right */
+main .container .middle {
+    grid-column: span 2; /* Chiếm cả 2 cột lưới */
+    width: 100%; /* Tăng chiều rộng để phù hợp */
+}
+
+

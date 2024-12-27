@@ -1,6 +1,5 @@
 {% extends 'medicalBook.html' %}
 {% block head %}
-
 <link rel="stylesheet" href="{{ url_for('static', filename='css/medicalBook.css') }}"/>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/medicalbook/schedule.css') }}"/>
 
@@ -22,11 +21,11 @@
                     <h3>Lịch Hẹn</h3>
                 </a>
                 <a class="menu-item" id="messages-notification" href="/bill">
-                        <span><i class="fa-regular fa-envelope"><small class="notification-count"> 6</small></i></span>
-                        <h3>Hóa Đơn Thanh Toán</h3>
+                    <span><i class="fa-solid fa-receipt"><small class="notification-count"> 6</small></i></span>
+                    <h3>Hóa Đơn Thanh Toán</h3>
                 </a>
                 <a class="menu-item" id="theme" href="/history">
-                    <span><i class="fa-solid fa-palette"></i></span>
+                    <span><i class="fa-solid fa-file-medical"></i></span>
                     <h3>Lịch Sử Khám Bệnh</h3>
                 </a>
                 <a class="menu-item"  href="/indexLogin">
@@ -34,42 +33,58 @@
                     <h3>Thoát</h3>
                 </a>
             </div>
-            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
         </div>
         {% endblock %}
     {% block middle %}
+<div class="header-title">Lịch Hẹn Khám Bệnh</div>
+            {% for lichkham in list_lichkham %}
        <div class="appointment-wrapper">
-        <div class="header-title">Lịch Hẹn Khám Bệnh</div>
-
         <div class="appointment-card">
             <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hẹn Khám Bệnh Khoa Tổng Quát</div>
-            <p>Lịch hẹn vào 1:00 am ngày 20/12/2024</p>
-            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh Khoa Tổng Quát', '1:00 am ngày 20/12/2024', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
-        </div>
+            <div class="appointment-title">Lịch khám {{name_department}}</div>
+            <p>Lịch hẹn vào {{ lichkham.time }}  ngày {{ lichkham.date }}</p>
+            <button class="details-btn" onclick="showDetails('Lịch khám {{name_department}}', '{{ lichkham.time }}  ngày {{ lichkham.date }}',)">Xem Chi Tiết</button>
 
-        <div class="appointment-card">
-            <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hẹn Tái Khám</div>
-            <p>Lịch hẹn vào 10:00 am ngày 01/09/2024</p>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
         </div>
     </div>
-
     <div class="modal" id="detailsModal">
-        <div class="modal-content">
-            <h3>Lịch Hẹn Khám</h3>
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <form class="modal-form">
-                <label for="nurseName">Tên y tá</label>
-                <input type="text" id="nurseName" readonly>
+    <div class="modal-content">
+        <h3>Lịch Hẹn Khám {{ lichkham.department.name }}</h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <form class="modal-form">
+            <div class="form-group">
                 <label for="appointmentDate">Ngày giờ hẹn</label>
-                <input type="text" id="appointmentDate" readonly>
-                <label for="appointmentReason">Hẹn khám về</label>
+                <input type="text" id="appointmentDate" readonly value="">
+            </div>
+            <div class="form-group">
+                <label for="created_date">Ngày đặt lịch</label>
+                <input type="text" id="created_date" value="{{ lichkham.created_date }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="co_so">Cơ sở</label>
+                <input type="text" id="co_so" value="{{ lichkham.location }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="goi">Gói</label>
+                <input type="text" id="goi" value="{{ lichkham.package.value }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="bacsi">Bác sĩ</label>
+                <input type="text" id="bacsi" value="{{ lichkham.doctor.name }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="trangthai">Trạng thái</label>
+                <input type="text" id="trangthai" value="{{ lichkham.status }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="appointmentReason">Ghi chú</label>
                 <textarea id="appointmentReason" rows="3" readonly></textarea>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+</div>
+
+ {% endfor %}
         {% endblock %}
 {% block javascript %}
 <script src="{{ url_for('static', filename='js/medicalbook/schedule.js') }}"></script>

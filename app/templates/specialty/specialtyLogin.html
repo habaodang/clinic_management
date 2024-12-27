@@ -1,0 +1,64 @@
+{% extends 'indexLogin.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/specialty.css') }}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"/>
+{% endblock %}
+{% block content %}
+<div class="container my-5">
+  <div class="page-header text-center editA">
+    <h3>Chuyên Khoa</h3>
+    <a href = "/indexLogin">Trang Chủ</a> /
+    <a href ="/specialtyLogin">Chuyên Khoa</a>
+  </div>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="split">
+      <div class="specialty-card">
+        <i class="fa-solid fa-person-dots-from-line"></i>
+        <h4>Chẩn đoán hình ảnh</h4>
+        <a href="/CDCHLogin">Xem chi tiết</a>
+      </div>
+    </div>
+    <div class="split">
+      <div class="specialty-card">
+        <i class="fa-solid fa-bone"></i>
+        <h4>Cơ - Xương - Khớp</h4>
+        <a href="/CXKLogin">Xem chi tiết</a>
+      </div>
+    </div>
+    <div class="split">
+      <div class="specialty-card">
+        <i class="fa-solid fa-child"></i>
+        <h4>Nhi khoa</h4>
+        <a href="/NhiKhoaLogin">Xem chi tiết</a>
+      </div>
+    </div>
+    <div class="split">
+      <div class="specialty-card">
+        <i class="fa-solid fa-person-pregnant"></i>
+        <h4>Sản - Phụ khoa</h4>
+        <a href="/SPKLogin">Xem chi tiết</a>
+      </div>
+    </div>
+    <div class="split">
+      <div class="specialty-card">
+        <i class="fa-solid fa-hand-dots"></i>
+        <h4>Da Liễu</h4>
+        <a href="/DaLieuLogin">Xem chi tiết</a>
+      </div>
+    </div>
+    <div class="split">
+      <div class="specialty-card">
+       <i class="fa-solid fa-tooth"></i>
+        <h4>Răng - hàm - mặt</h4>
+        <a href="/RHMLogin">Xem chi tiết</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/medicalBook.js') }}"></script>
+<script src="{{ url_for('static', filename='js/specialty.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

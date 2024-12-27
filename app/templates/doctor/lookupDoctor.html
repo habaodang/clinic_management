@@ -1,0 +1,81 @@
+{% extends 'home_doctor.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/lookupDoctor.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+{% block left %}
+        <div class="left">
+            <div class="left col-md-3">
+                <div class="sidebar" id="sidebar">
+                    <a class="menu-item" href="/doctor">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <h3>Trang chủ</h3>
+                    </a>
+                    <a class="menu-item" href="/scheduleDoctor">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>Lịch làm việc</h3>
+                    </a>
+                    <a class="menu-item" href="/formDoctor">
+                        <span><i class="fas fa-user-md"></i></span>
+                        <h3>Lập Phiếu</h3>
+                    </a>
+                    <a class="menu-item active" href="/lookupDoctor">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <h3>Tra cứu</h3>
+                    </a>
+                    <a class="menu-item" id="theme" >
+                        <span><i class="fa-solid fa-palette"></i></span>
+                        <h3>Theme</h3>
+                    </a>
+                    <a class="menu-item" href="/settingDoctor">
+                        <span><i class="fa-solid fa-gear"></i></span>
+                        <h3>Cài Đặt</h3>
+                    </a>
+                    <a href="/" class="menu-item logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <h3>Đăng Xuất</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block middle %}
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h5>Tra Cứu Thông Tin Thuốc và Bệnh Nhân</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Combo Box và Input Search -->
+                    <div class="input-group mb-3">
+                        <select class="form-select" id="searchType">
+                            <option value="thuoc">Thuốc</option>
+                            <option value="benhnhan">Bệnh nhân</option>
+                        </select>
+                        <input type="text" class="form-control" id="searchInput" placeholder="Nhập từ khóa...">
+                        <button class="btn btn-primary" type="button" id="searchButton">Tìm kiếm</button>
+                    </div>
+
+                    <!-- Kết quả tìm kiếm -->
+                    <div id="searchResults" class="mt-3">
+                        <p class="text-muted text-center">Vui lòng nhập từ khóa để tìm kiếm...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block right %}
+
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/doctor/lookupDoctor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+{% endblock %}

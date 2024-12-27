@@ -182,11 +182,7 @@ main .container .left .profile{
     display: block;
 }
 
-.middle {
-    background-color:white;
-    border-radius: 1rem;
-    display: block !important;
-}
+
 .middle .alert {
     border-radius: 1rem;
     padding: 2rem;
@@ -268,6 +264,7 @@ button.btn-primary:hover {
     border-radius: var(--card-border-radius);
     width: 50%;
     box-shadow: 0 0 1rem var(--color-primary);
+    margin-top: 7rem;
 }
 /* FONT SIZE */
 .customize-theme .font-size{

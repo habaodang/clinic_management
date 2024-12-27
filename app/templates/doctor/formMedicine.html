@@ -1,0 +1,52 @@
+{% extends 'doctor/formDoctor.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formDoctor.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_doctor.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/doctor/formMedicine.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+{% endblock %}
+
+{% block middle %}
+<h2>Quản Lý Kê Toa Thuốc</h2>
+
+<div class="top-bar" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+    <a href="/formFind"><button onclick="openForm()">+ Thêm Thuốc</button></a>
+    <button onclick="clearTable()" style="background-color: #dc3545;">Xóa Tất Cả</button>
+</div>
+
+
+<!-- Bảng Hiển Thị Thuốc -->
+<table>
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Mã Thuốc</th>
+        <th>Tên Thuốc</th>
+        <th>Đơn Vị</th>
+        <th>Số Lượng</th>
+        <th>Tác Dụng</th>
+        <th>Cách Dùng</th>
+        <th>Cập Nhật</th>
+    </tr>
+    </thead>
+    <tbody id="medicineTable"></tbody>
+</table>
+
+<div class="overlay-update" id="updateConfirmation">
+    <div class="form-container">
+        <h3>Bạn muốn làm gì với thuốc này?</h3>
+        <button onclick="confirmUpdate('delete')">Xóa đi</button>
+        <button onclick="closeUpdateConfirmation()">Hủy</button>
+    </div>
+</div>
+
+<button class="confirm-btn">Xác Nhận</button>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/doctor/formMedicine.js') }}"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/doctor.js') }}"></script>
+{% endblock %}

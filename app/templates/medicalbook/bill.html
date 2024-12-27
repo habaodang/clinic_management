@@ -20,11 +20,11 @@
                     <h3>Lịch Hẹn</h3>
                 </a>
                 <a class="menu-item active" id="messages-notification" href="/bill">
-                        <span><i class="fa-regular fa-envelope"><small class="notification-count"> 6</small></i></span>
-                        <h3>Hóa Đơn Thanh Toán</h3>
+                    <span><i class="fa-solid fa-receipt"><small class="notification-count"> 6</small></i></span>
+                    <h3>Hóa Đơn Thanh Toán</h3>
                 </a>
                 <a class="menu-item" id="theme" href="/history">
-                    <span><i class="fa-solid fa-palette"></i></span>
+                    <span><i class="fa-solid fa-file-medical"></i></span>
                     <h3>Lịch Sử Khám Bệnh</h3>
                 </a>
                 <a class="menu-item"  href="/indexLogin">
@@ -32,7 +32,6 @@
                     <h3>Thoát</h3>
                 </a>
             </div>
-            <label for="create-post" class="btn btn-primary animate__animated animate__slideInUp">Tư Vấn</label>
         </div>
         {% endblock %}
         {% block middle %}
@@ -41,36 +40,37 @@
 
         <div class="appointment-card">
             <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hóa Đơn Thanh Toán Khám Nội Soi Ngày 01/09/2024</div>
-            <p>Tiền Khám : 100.000 Đồng </p>
-            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh Khoa Tổng Quát', '1:00 am ngày 20/12/2024', 'Nguyễn Thị Minh', 'Đau đầu, mệt mỏi')">Xem Chi Tiết</button>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Đã Thanh Toán</button>
-        </div>
-        <div class="appointment-card">
-            <button class="close-btn">&times;</button>
-            <div class="appointment-title">Hóa Đơn Tiền Khám Tổng Quát Đặt Trước Ngày 20/12/2024</div>
-            <p>Tiền Khám : 100.000 Đồng </p>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Xem Chi Tiết</button>
-            <button class="details-btn" onclick="showDetails('Hẹn Tái Khám', '10:00 am ngày 01/09/2024', 'Trần Văn Long', 'Kiểm tra huyết áp')">Thanh Toán</button>
-        </div>
-    </div>
+            {% for hoadon in ds_hoadon %}
+            <div class="appointment-title">Hóa Đơn Thanh Toán Khám  Ngày {{ hoadon.ngay_lap }} </div>
+            <p>Tiền Khám : {{ hoadon.tong_tien }} VND </p>
+            {% if hoadon.trangthai   %}
+            <p>Đã thanh toán </p>
+            {% else %}
+             <p>Chưa thanh toán </p>
+            <button class="details-btn" onclick="showDetails('Hẹn Khám Bệnh ', '{{ hoadon.tong_tien }}', '{{ hoadon.phieu_kham.patient.name }}', '{{ hoadon.id}}')">Thanh Toán</button>
+             {% endif %}
 
+            {% endfor %}
+        </div>
+
+    </div>
     <div class="modal" id="detailsModal">
         <div class="modal-content">
             <h3>Hóa Đơn Thanh Toán</h3>
             <button class="modal-close" onclick="closeModal()">&times;</button>
-            <form class="modal-form">
-                <label for="nurseName">Tên Thu Ngân</label>
+            <form class="modal-form" action ='/bill' method="post">
+                <label for="nurseName">Tên bệnh nhân</label>
                 <input type="text" id="nurseName" readonly>
-                <label for="appointmentDate">Tiền Khám</label>
-                <input type="text" id="appointmentDate" readonly>
-                <label for="appointmentReason">Tiền Thuốc</label>
-                <textarea id="appointmentReason" rows="3" readonly></textarea>
+                <label for="appointmentMoney">Tổng tiền </label>
+                <input type="text" id="appointmentMoney" name = "appointmentMoney" value="100000" readonly>
+
+                <input id="appointmentID" name="appointmentID" type="hidden" readonly >
+                <button class="details-btn" type="submit">Thanh Toán</button>
             </form>
         </div>
     </div>
 {% endblock %}
 {% block javascript %}
-<script src="{{ url_for('static', filename='js/medicalbook/schedule.js') }}"></script>
+<script src="{{ url_for('static', filename='js/medicalbook/bill.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}

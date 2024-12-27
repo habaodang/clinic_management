@@ -1,0 +1,53 @@
+{% extends 'cashier/paymentInvoice.html' %}
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/cashier/paymentInvoice.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_cashier.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/cashier/formInvoice.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+ {% endblock %}
+
+{% block middle %}
+ <div class="form-container">
+        <div class="header">Thông Tin Bệnh Nhân</div>
+        <div class="form-group">
+            <div class="form-label">Họ và tên:</div>
+            <div class="form-value">{{ hoadon.phieu_kham.patient.name }}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Ngày sinh:</div>
+            <div class="form-value">{{ hoadon.phieu_kham.patient.birth }}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Số CMND/CCCD:</div>
+            <div class="form-value">{{ hoadon.phieu_kham.patient.cccd }}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Địa chỉ:</div>
+            <div class="form-value">{{ hoadon.phieu_kham.patient.address }}</div>
+        </div>
+        <div class="form-group">
+            <div class="form-label">Số điện thoại:</div>
+            <div class="form-value">{{ hoadon.phieu_kham.patient.phone }}</div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block right %}
+<div class="form-containers">
+    <div class="header">Phiếu Hóa Đơn</div>
+    <div class="form-label">Mã hóa đơn</div>
+    <input type="text" class="cashier-input" readonly value="{{ hoadon.id}}">
+
+
+    <div class="form-label">Tổng cộng:</div>
+    <input type="text" class="cashier-input" value="{{ hoadon.tong_tien}} VND">
+    <div class="button-group">
+        <button class="btn btn-danger">Chỉnh sửa</button>
+        <a href="{{ url_for('cashier.comfirm_bill', hoadon = hoadon.id) }}"><button class="confirm-btn">Xác nhận</button></a>
+        <button id="exportButton"  class="btn export-btn"> <i class="fa-solid fa-file-export"></i> Xuất hóa đơn</button>
+    </div>
+
+</div>
+{% endblock %}
+

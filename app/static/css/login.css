@@ -70,10 +70,11 @@ font-size: 3rem;
   margin-left: 17rem
 }
 
-.heading {
+.heading h1 {
   font-size: 4.2rem;
   font-weight: 700;
   color: var(--text-dark);
+
 }
 
 .paragraph {
@@ -175,6 +176,9 @@ font-size: 3rem;
   border-radius: 2rem;
 }
 @media (max-width: 767px) {
+  .container {
+  margin-top: 10rem;
+}
   .signin-container {
     grid-template-columns: 1fr;
   }
@@ -242,4 +246,11 @@ font-size: 3rem;
 }
 .signin_name {
 
+}
+
+#mess_error {
+  font-size: 13px;
+  color: red;
+  margin-top: 10px;
+  text-align: center;
 }

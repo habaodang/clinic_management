@@ -1,59 +1,65 @@
-{% extends 'appointment.html' %}
+{% extends 'appointmentLogin.html' %}
 {% block form %}
 <div class="col-md-7">
     <div class="card shadow-lg">
         <div class="card-body">
             <h3 class="card-title text-center mb-4 text-primary">Thông Tin Đặt Lịch Hẹn</h3>
-            <form>
+            <form action="{{ url_for('booking.get_booking_second_form', date=date, package=package, location=location, time=time) }}" method="post">
+                <input type="hidden" name="date" value="{{ date }}">
+                <input type="hidden" name="time" value="{{ time }}">
+                <input type="hidden" name="location" value="{{ location }}">
+                <input type="hidden" name="package" value="{{ package }}">
                 <div class="row mb-3">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <label for="doctor" class="form-label">Gói Khám</label>
-                        <select id="doctor" class="form-select">
-                            <option value="bs0">Trống</option>
-                            <option value="bs1">Gói Khám Dành Cho Người Lớn</option>
-                            <option value="bs2">Gói Khám Dành Cho Trẻ Em</option>
-                            <option value="bs2">Gói Khám Dành Cho Sản Phụ</option>
+                     <div class="col-md-6">
+                        <label for="doctor" class="form-label">Chọn Khoa</label>
+                        <select id="doctor" class="form-select" name="department" required>
+                            <option value="">Trống</option>
+                            {% for khoa in list_khoa %}
+                            <option value="{{ khoa.id }}">{{ khoa.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="doctor" class="form-label">Chọn Khoa</label>
-                        <select id="doctor" class="form-select">
-                            <option value="bs1">   Trống</option>
-                            <option value="bs1">   Khoa Nội</option>
-                            <option value="bs2">   Khoa Mắt</option>
-                            <option value="bs1">   Khoa Sản phụ</option>
-                            <option value="bs2">   Khoa Nhi</option>
-                            <option value="bs1">   Răng - Hàm - Mặt</option>
-                            <option value="bs2">   Khoa Da Liễu</option>
+                        <label for="doctor" class="form-label">Chọn Bác Sĩ</label>
+                        <select id="doctor" class="form-select" name="doctor">
+                            <option value="">Trống</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3 mb-md-0">
                         <label for="clinic-room" class="form-label">Tình Trạng</label>
-                        <input type="text" class="form-control" id="clinic-room" placeholder="Ghi Chú"/>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" id="btn-consult" class="btn btn-primary w-30 btTuvan">Tư Vấn</button>
+                        <input type="text" class="form-control" id="clinic-room" placeholder="Ghi Chú" name="note"/>
                     </div>
                 </div>
                 <div class="form-check mb-3 mleft-2">
                     <input type="checkbox" class="form-check-input" id="captcha1" checked/>
                     <label class="form-check-label check-form" for="captcha">Tôi không phải là người máy</label>
                 </div>
-                <a href="/appointment" class="btn btn-secondary w-30 appointmentBack">Quay Lại</a>
+                <a href="/appointmentLogin" class="btn btn-secondary w-30 appointmentBack">Quay Lại</a>
                 <button type="submit" id="btn-book" class="btn btn-primary w-30">Đặt Lịch Khám</button>
             </form>
         </div>
     </div>
 </div>
-<!-- Success Notification -->
-<div id="success-notification" class="position-fixed top-50 start-50 translate-middle-x bg-white p-4 shadow rounded-3 appointmentFinish">
-    <div class="d-flex justify-content-end">
-        <button id="close-notification" class="btn-close" aria-label="Close"></button>
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="successModalLabel">Đặt Lịch Thành Công</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Cảm ơn bạn đã đặt lịch. Chúng tôi sẽ liên hệ với bạn sớm!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+      </div>
     </div>
-    <h3 class="mb-3 ">Đặt Lịch Thành Công</h3>
-    <button id="accept-notification" class="btn btn-primary">Chấp nhận</button>
+  </div>
 </div>
 {% endblock %}
 {% block javascript %}

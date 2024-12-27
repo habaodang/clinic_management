@@ -1,0 +1,79 @@
+{% extends 'home_cashier.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/cashier/paymentInvoice.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_cashier.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+ {% endblock %}
+ {% block left %}
+        <div class="left">
+            <div class="left col-md-3">
+                <div class="sidebar" id="sidebar">
+                    <a class="menu-item" href="/cashier">
+                        <span><i class="fa-solid fa-house"></i></span>
+                        <h3>Trang chủ</h3>
+                    </a>
+                    <a class="menu-item" href="/scheduleCashier">
+                        <span><i class="fa-solid fa-calendar-days"></i></span>
+                        <h3>Lịch làm việc</h3>
+                    </a>
+                    <a class="menu-item  active" href="/paymentInvoice">
+                        <span><i class="fa-solid fa-receipt"></i></span>
+                        <h3>Hóa đơn</h3>
+                    </a>
+                    <a class="menu-item" href="/lookupCashier">
+                        <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <h3>Tra cứu</h3>
+                    </a>
+                    <a class="menu-item" id="theme" >
+                        <span><i class="fa-solid fa-palette"></i></span>
+                        <h3>Theme</h3>
+                    </a>
+                    <a class="menu-item" href="/settingCashier">
+                        <span><i class="fa-solid fa-gear"></i></span>
+                        <h3>Cài Đặt</h3>
+                    </a>
+                    <a href="/" class="menu-item logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <h3>Đăng Xuất</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block middle %}
+ <!-- Tabs Section -->
+    <section class="tabs">
+        <button class="filter-btn active">All <span>50</span></button>
+        <button class="filter-btn">Started <span>20</span></button>
+        <button class="filter-btn">Finished <span>17</span></button>
+    </section>
+
+    <!-- Cards Container -->
+    <section class="card-container">
+        {% for hoadon in ds_hoadon %}
+        <article class="card">
+            <span class="card-badge pink">1</span>
+            <span class="new-badge">Mã ho dơn {{ hoadon.id }}</span>
+            <h3>{{ hoadon.phieu_kham.patient.name }}</h3>
+            <p><strong>Mã Bệnh Nhân:</strong> {{ hoadon.phieu_kham.patient.cccd }}</p>
+            <p><strong>Ngày:</strong> {{ hoadon.ngay_lap}}</p>
+            <p><strong>Tình Trạng Phiếu:</strong>
+            {% if hoadon.trangthai %}
+                Đã thanh toán
+                {% else %}
+                Chưa thanh toán
+                {% endif %}
+            </p>
+            <a href ="{{ url_for('main.view_invoice', hoadon = hoadon.id) }}" ><button class="confirm-btn">Xác Nhận</button></a>
+        </article>
+        {% endfor %}
+    </section>
+{% endblock %}
+{% block right %}
+
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/cashier/formCashier.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/cashier.js') }}"></script>
+ {% endblock %}

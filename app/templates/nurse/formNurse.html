@@ -1,0 +1,88 @@
+{% extends 'home_nurse.html' %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/nurse/formNurse.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style_nurse.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+{% endblock %}
+{% block left %}
+<div class="left">
+    <div class="left col-md-3">
+        <div class="sidebar" id="sidebar">
+            <a class="menu-item " href="/nurse">
+                <span><i class="fa-solid fa-house"></i></span>
+                <h3>Trang chủ</h3>
+            </a>
+            <a class="menu-item" href="/scheduleNurse">
+                <span><i class="fa-solid fa-calendar-days"></i></span>
+                <h3>Lịch làm việc</h3>
+            </a>
+            <a class="menu-item active" href="/formNurse">
+                <span><i class="fas fa-user-md"></i></span>
+                <h3>Phiếu khám bệnh</h3>
+            </a>
+            <a class="menu-item" href="/lookupNurse">
+                <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                <h3>Tra cứu</h3>
+            </a>
+            <a class="menu-item" id="theme">
+                <span><i class="fa-solid fa-palette"></i></span>
+                <h3>Theme</h3>
+            </a>
+            <a class="menu-item" href="/settingNurse">
+                <span><i class="fa-solid fa-gear"></i></span>
+                <h3>Cài Đặt</h3>
+            </a>
+            <a href="/" class="menu-item logout">
+                <span><i class="fas fa-sign-out-alt"></i></span>
+                <h3>Đăng Xuất</h3>
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+{% block middle %}
+<!-- Tabs Section -->
+<section class="tabs">
+    <button class="filter-btn active" data-filter= "all" >All <span>{{ count_lichkham_all }}</span></button>
+    <button class="filter-btn" data-filter= "started" >Started <span>20</span></button>
+    <button class="filter-btn" data-filter= "finished" >Finished <span>17</span></button>
+    <a href="{{ url_for('nurse.export_pdf') }}">
+    <button id="exportButton" class="btn export-btn"><i class="fa-solid fa-file-export"></i> Xuất danh sách phiếu khám</button>
+    </a>
+</section>
+
+<!-- Cards Container -->
+<section class="card-container">
+    {% for lichkham in list_lichkham %}
+    <article class="card active" data-status = '{{ lichkham.status }}'>
+        <span class="card-badge teal">1</span>
+        <span class="new-badge">NEW</span>
+        <h3>{{ lichkham.patient.name }}</h3>
+        <p><strong>Mã Bệnh Nhân:</strong> {{ lichkham.patient.id }}</p>
+        <p><strong>Ngày Khám Gần Nhất:</strong> Không Có</p>
+        <p><strong>Tình Trạng Phiếu:</strong>
+          {% if lichkham.status %}
+                Đã xác nhận
+            {% else %}
+                Chưa xác Nhận
+            {% endif %}
+        </p>
+        <div class="button-group">
+            <button class="confirm-btn danger">Hủy</button>
+            <a href="{{url_for('main.form_check', lich_id=lichkham.id) }}">
+                <button class="confirm-btn">Xem chi tiết</button>
+            </a>
+        </div>
+    </article>
+{% endfor %}
+</section>
+{% endblock %}
+{% block right %}
+{% endblock %}
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/nurse/formNurse.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js"></script>
+<script src="{{ url_for('static', filename='js/nurse.js') }}"></script>
+{% endblock %}
