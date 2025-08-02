@@ -2,4 +2,36 @@ venv/
 *.pyc
 __pycache__/
 
-routes.py
+# Environment files
+.env
+.env.prod
+.env.local
+.env.development
+.env.test
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# Logs
+*.log
+error.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Backup files
+*_backup_*
+
+# Temporary files
+tmp/
+temp/
