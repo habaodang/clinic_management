@@ -50,28 +50,28 @@ jobs:
         # Create a simple test if none exists
         if [ ! -d "tests" ] && [ ! -f "test_*.py" ]; then
           mkdir -p tests
-          cat > tests/test_basic.py << 'EOF'
-import pytest
-import sys
-import os
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+          cat > tests/test_basic.py << 'TESTEOF'
+        import pytest
+        import sys
+        import os
+        sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app import create_app
+        from app import create_app
 
-def test_create_app():
-    """Test app creation"""
-    app = create_app()
-    assert app is not None
+        def test_create_app():
+            """Test app creation"""
+            app = create_app()
+            assert app is not None
 
-def test_health_endpoint():
-    """Test health check endpoint"""
-    app = create_app()
-    client = app.test_client()
-    
-    response = client.get('/health')
-    assert response.status_code == 200
-    assert b'healthy' in response.data
-EOF
+        def test_health_endpoint():
+            """Test health check endpoint"""
+            app = create_app()
+            client = app.test_client()
+            
+            response = client.get('/health')
+            assert response.status_code == 200
+            assert b'healthy' in response.data
+        TESTEOF
         fi
         # Set environment variables for testing
         export DB_HOST=localhost
@@ -92,13 +92,13 @@ EOF
     - name: Test Docker image
       run: |
         # Create a test environment file
-        cat > .env.test << 'EOF'
-DB_HOST=db
-DB_USER=root
-DB_PASSWORD=test_password
-DB_NAME=clinic_db_test
-SECRET_KEY=test_secret_key
-EOF
+        cat > .env.test << 'ENVEOF'
+        DB_HOST=db
+        DB_USER=root
+        DB_PASSWORD=test_password
+        DB_NAME=clinic_db_test
+        SECRET_KEY=test_secret_key
+        ENVEOF
         # Test if the image runs successfully
         docker run --rm -d --name test-app -p 5001:5000 \
           --env-file .env.test \
@@ -133,7 +133,7 @@ EOF
 
     - name: Deploy to VM
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << 'EOF'
+        ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USER }}@${{ secrets.VM_HOST }} << 'DEPLOYEOF'
           set -e
           
           # Navigate to application directory
@@ -153,14 +153,12 @@ EOF
           # Create production environment file if it doesn't exist
           if [ ! -f .env.prod ]; then
             echo "Creating production environment file..."
-            cat > .env.prod << 'ENVEOF'
-DB_HOST=db
-DB_USER=root
-DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-DB_NAME=clinic_db
-SECRET_KEY=${{ secrets.SECRET_KEY }}
-FLASK_ENV=production
-ENVEOF
+            echo "DB_HOST=db" > .env.prod
+            echo "DB_USER=root" >> .env.prod
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env.prod
+            echo "DB_NAME=clinic_db" >> .env.prod
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env.prod
+            echo "FLASK_ENV=production" >> .env.prod
           fi
           
           # Stop existing containers
@@ -222,7 +220,7 @@ ENVEOF
           cd ..
           ls -t clinic_management_backup_* 2>/dev/null | tail -n +6 | xargs rm -rf
           
-        EOF
+        DEPLOYEOF
 
     - name: Verify deployment
       run: |
